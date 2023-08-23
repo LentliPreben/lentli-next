@@ -1,0 +1,12 @@
+.link {
+  text-decoration: none;
+  display: inline-block;
+}
+.link.ellipsis {
+  overflow: hidden;
+  width: -webkit-fill-available;
+  text-overflow: ellipsis;
+}
+.link.disabled {
+  color: var(--text-color-disabled);
+  pointer-events: none;}

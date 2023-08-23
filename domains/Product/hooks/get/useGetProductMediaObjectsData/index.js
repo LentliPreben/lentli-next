@@ -1,0 +1,3 @@
+import useGetProductMediaObjectsData from './useGetProductMediaObjectsData'
+
+export default useGetProductMediaObjectsData

@@ -1,0 +1,7 @@
+
+.first-image-preview-wrapper,
+.second-image-preview-wrapper {
+  position: relative;
+  border-radius: var(--border-radius-default);
+  overflow: hidden;
+}

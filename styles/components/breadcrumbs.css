@@ -1,0 +1,5 @@
+.breadcrumbs-wrapper {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}

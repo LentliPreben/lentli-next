@@ -1,0 +1,3 @@
+import useGetProductPriceRangeByCategory from './useGetProductPriceRangeByCategory'
+
+export default useGetProductPriceRangeByCategory

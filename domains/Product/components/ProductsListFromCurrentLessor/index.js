@@ -1,0 +1,3 @@
+import ProductsListFromCurrentLessor from './ProductsListFromCurrentLessor'
+
+export default ProductsListFromCurrentLessor

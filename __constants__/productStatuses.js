@@ -1,0 +1,21 @@
+const PRODUCT_STATUSES = {
+  DRAFT: 'DRAFT',
+  PUBLISHED: 'PUBLISHED',
+  APPROVED: 'APPROVED',
+  BLOCKED: 'BLOCKED'
+}
+
+
+const PRODUCT_STATUSES_LABELS = {
+  DRAFT: 'Draft',
+  PUBLISHED: 'Published',
+  APPROVED: 'Approved',
+  BLOCKED: 'Blocked'
+}
+
+const PRODUCT_STATUSES_OPTIONS = Object.keys(PRODUCT_STATUSES_LABELS).map(
+  (key) => ({ label: PRODUCT_STATUSES[key], value: key })
+)
+
+export default PRODUCT_STATUSES
+export { PRODUCT_STATUSES_OPTIONS, PRODUCT_STATUSES, PRODUCT_STATUSES_LABELS }

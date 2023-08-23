@@ -1,0 +1,3 @@
+import useProductRangeSelectActions from './useProductRangeSelectActions'
+
+export default useProductRangeSelectActions

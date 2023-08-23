@@ -1,0 +1,3 @@
+import ProductsGlobalSearchInputWithAction from './ProductsGlobalSearchInputWithAction'
+
+export default ProductsGlobalSearchInputWithAction

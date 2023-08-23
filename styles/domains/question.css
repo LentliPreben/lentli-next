@@ -1,0 +1,17 @@
+.common-questions-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 38px;
+}
+
+.question-number {
+  border: 1px solid var(--question-number-border-color);
+  color: var(--question-number-color);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--border-radius-round);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: var(--font-weight-medium);
+}

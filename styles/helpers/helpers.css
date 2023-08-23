@@ -1,0 +1,6 @@
+@import url('./display.css');
+@import url('./spacings.css');
+
+.strong {
+  font-weight: 700;
+}

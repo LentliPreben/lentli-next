@@ -1,0 +1,16 @@
+.image-overlay {
+  position: absolute;
+  top: 0;
+  bottom: 2px; /* it fixes strange gap */
+  left: 0;
+  right: 0;
+  background: var(--image-overlay-bg);
+  border-radius: var(--border-radius-default);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.image-overlay.gradient {
+  background: none;
+  background-image: linear-gradient(transparent 60%, var(--dark));
+}

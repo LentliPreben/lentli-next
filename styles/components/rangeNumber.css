@@ -1,0 +1,14 @@
+.range-number-wrapper {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+}
+.range-number-wrapper input {
+  width: 36%;
+}
+.range-number-wrapper .btn {
+  padding: 5px 16px;
+  font-size: var(--font-size-body2);
+  line-height: var(--line-height-body2);
+  margin-left: 8px;
+}

@@ -1,0 +1,2 @@
+import useSearchProductsByCategory from './useSearchProductsByCategory'
+export default useSearchProductsByCategory

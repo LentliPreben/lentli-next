@@ -1,0 +1,3 @@
+import useGetProductsAndRelatedDataByIds from './useGetProductsAndRelatedDataByIds'
+
+export default useGetProductsAndRelatedDataByIds

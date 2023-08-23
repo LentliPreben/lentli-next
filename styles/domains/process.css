@@ -1,0 +1,5 @@
+.process-overview-item-wrapper {
+  border-radius: var(--border-radius-default);
+  border: 1px solid var(--border-default-color);
+  padding: 40px 20px;
+}

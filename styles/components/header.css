@@ -1,0 +1,5 @@
+.header.primary-bg {
+  background-color: var(--header-primary-bg);
+  border: unset
+}
+

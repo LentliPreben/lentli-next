@@ -1,0 +1,75 @@
+.btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--btn-default-vertical-padding)
+    var(--btn-default-horizontal-padding);
+  font-size: var(--btn-default-font-size);
+  line-height: var(--btn-default-line-height);
+  font-weight: var(--btn-default-font-weight);
+  border-radius: var(--btn-default-border-radius);
+  text-decoration: none;
+  gap: 8px;
+}
+
+.btn img {
+  width: var(--btn-default-icon-size);
+  height: var(--btn-default-icon-size);
+}
+.btn.btn-lg {
+  padding: var(--btn-lg-vertical-padding) var(--btn-lg-horizontal-padding);
+  font-size: var(--btn-lg-font-size);
+  line-height: var(--btn-lg-line-height);
+}
+.btn.btn-lg img {
+  width: var(--btn-lg-icon-size);
+  height: var(--btn-lg-icon-size);
+}
+.btn.btn-sm {
+  padding: var(--btn-sm-vertical-padding) var(--btn-sm-horizontal-padding);
+  font-size: var(--btn-sm-font-size);
+  line-height: var(--btn-sm-line-height);
+}
+.btn.btn-sm img {
+  width: var(--btn-sm-icon-size);
+  height: var(--btn-sm-icon-size);
+}
+.btn.btn-block {
+  width: 100%;
+}
+.btn.btn-rounded {
+  border-radius: var(--btn-default-rounded-border-radius);
+}
+.btn.btn-lg.btn-rounded {
+  border-radius: var(--btn-lg-rounded-border-radius);
+}
+.btn.btn-sm.btn-rounded {
+  border-radius: var(--btn-sm-rounded-border-radius);
+}
+.btn.btn-secondary {
+  color: var(--btn-secondary-color);
+  background-color: var(--btn-secondary-bg);
+  border: 1px solid var(--btn-secondary-border-color);
+}
+.btn.btn-primary {
+  color: var(--btn-primary-color);
+  background-color: var(--btn-primary-bg);
+  border-color: unset;
+}
+.btn.btn-text {
+  border-color: var(--btn-text-color);
+  background-color: var(--btn-text-bg);
+  color: var(--btn-text-color);
+}
+.btn.btn-only-icon {
+  padding: var( --btn-default-only-icon-padding);
+}
+
+.btn.see-more {
+  font-size: var(--font-size-body2);
+  line-height: var(--line-height-body2);
+  color: var(--btn-see-more-color);
+  border: unset;
+  padding: var(--btn-see-more-padding);
+}

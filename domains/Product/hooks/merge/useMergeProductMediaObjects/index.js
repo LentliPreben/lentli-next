@@ -1,0 +1,2 @@
+import useMergeProductMediaObjects from './useMergeProductMediaObjects'
+export default useMergeProductMediaObjects

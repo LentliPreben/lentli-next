@@ -1,0 +1,3 @@
+import useGetProductPriceRangeNearByMe from './useGetProductPriceRangeNearByMe'
+
+export default useGetProductPriceRangeNearByMe
