@@ -1,0 +1,12 @@
+.avatar-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--border-radius-round);
+  border: 1px solid var(--avatar-border-color);
+}
+.avatar-wrapper.no-avatar {
+    background:url(../../public/assets/user.svg) 5px 11px  no-repeat;
+    background-size: 32px;
+}

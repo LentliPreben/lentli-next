@@ -1,0 +1,12 @@
+.renter-view-wrapper {
+  display: flex;
+  gap: 8px
+}
+
+.renter-details-wrapper {
+  row-gap: 20px;
+}
+.renter-detail-item {
+  display: flex;
+  gap: 12px;
+}

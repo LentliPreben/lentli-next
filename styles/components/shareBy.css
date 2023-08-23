@@ -1,0 +1,9 @@
+.share-by-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.share-by-wrapper img {
+    width: 20px;
+    height: 20px
+}

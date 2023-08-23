@@ -1,0 +1,3 @@
+import ProductsByCategoryAdvancedView from './ProductsByCategoryAdvancedView'
+
+export default ProductsByCategoryAdvancedView

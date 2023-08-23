@@ -1,0 +1,7 @@
+.rate-wrapper {
+  display: flex;
+}
+.rate-wrapper .rate-value-wrapper {
+  display: flex;
+  align-items: center;
+}

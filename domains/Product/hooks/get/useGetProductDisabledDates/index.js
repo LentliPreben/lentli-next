@@ -1,0 +1,2 @@
+import useGetProductDisabledDates from './useGetProductDisabledDates'
+export default useGetProductDisabledDates

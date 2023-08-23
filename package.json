@@ -1,0 +1,48 @@
+{
+  "name": "lentli-next",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_OPTIONS=--max-old-space-size=4096 next dev",
+    "build": "next lint --fix && next build",
+    "start": "next start",
+    "lint": "next lint --fix"
+  },
+  "dependencies": {
+    "@ant-design/icons": "5.1.4",
+    "@qonsoll/icons": "1.1.5",
+    "@react-google-maps/api": "2.18.1",
+    "@types/styled-components": "5.1.26",
+    "antd": "5.6.2",
+    "antd-notifications-messages": "2.0.0",
+    "autoprefixer": "10.4.14",
+    "babel-plugin-styled-components": "2.1.4",
+    "date-fns": "2.30.0",
+    "firebase": "9.22.0",
+    "i18next": "22.4.15",
+    "lodash": "4.17.21",
+    "md5": "2.3.0",
+    "moment": "2.29.4",
+    "next": "13.4.12",
+    "pluralize": "8.0.0",
+    "react": "18.2.0",
+    "react-date-range": "1.4.0",
+    "react-dom": "18.2.0",
+    "react-firebase-hooks": "5.1.1",
+    "react-i18next": "12.2.2",
+    "react-paginated-list": "1.1.6",
+    "react-responsive-carousel": "3.2.23",
+    "react-select": "5.7.3",
+    "styled-components": "6.0.0-rc.1",
+    "typesense": "1.5.4",
+    "use-places-autocomplete": "4.0.0"
+  },
+  "devDependencies": {
+    "@types/date-fns": "2.6.0",
+    "eslint": "8.46.0",
+    "eslint-config-next": "13.4.12",
+    "eslint-config-prettier": "8.10.0",
+    "eslint-plugin-prettier": "5.0.0",
+    "prettier": "3.0.1"
+  }
+}

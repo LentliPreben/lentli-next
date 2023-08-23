@@ -1,0 +1,175 @@
+/* ===================== Display ===================== */
+.flex {
+  display: flex;
+}
+.block {
+  display: block;
+}
+.inline-block {
+  display: inline-block !important;
+}
+.inline-flex {
+  display: inline-flex;
+}
+.absolute {
+  position: absolute !important;
+}
+.relative {
+  position: relative !important;
+}
+.sticky {
+  position: sticky !important;
+}
+.fixed {
+  position: fixed !important;
+}
+
+.none {
+  display: none !important;
+}
+
+/* ===================== Flex position ===================== */
+.flex-1 {
+  flex: 1;
+}
+.flex-row {
+  flex-direction: row;
+}
+
+.flex-row-reverse {
+  flex-direction: row-reverse;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+.flex-auto {
+  flex: auto;
+}
+/* ===================== Justify Content =================== */
+.justify-start {
+  justify-content: flex-start;
+}
+.justify-end {
+  justify-content: flex-end;
+}
+.justify-center {
+  justify-content: center;
+}
+.justify-between {
+  justify-content: space-between;
+}
+.justify-around {
+  justify-content: space-around;
+}
+/* ===================== Justify Items ===================== */
+.justify-items-start {
+  justify-items: flex-start;
+}
+.justify-items-end {
+  justify-items: flex-end;
+}
+.justify-items-center {
+  justify-items: center;
+}
+.justify-items-stretch {
+  justify-items: stretch;
+}
+/* ===================== Align Items ===================== */
+
+.align-start {
+  align-items: flex-start;
+}
+.align-end {
+  align-items: flex-end;
+}
+.align-center {
+  align-items: center;
+}
+.align-baseline {
+  align-items: baseline;
+}
+.align-content-start {
+  align-content: flex-start;
+}
+.align-self-baseline {
+  align-self: baseline;
+}
+.align-self-start {
+  align-self: flex-start;
+}
+.align-self-center{
+  align-self: center;
+}
+.full-width {
+  width: 100%;
+}
+.inherit-width {
+  width: inherit;
+}
+.min-content-width {
+  width: min-content
+}
+.width-inherit {
+  width: inherit;
+}
+.full-height {
+  height: 100%;
+}
+
+.text-align-center {
+  text-align: center;
+}
+.text-align-end {
+  text-align: end;
+}
+/* ===================== Overflow ===================== */
+
+.overflow-hidden {
+  overflow: hidden !important;
+}
+.x-hidden {
+  overflow-x: hidden !important;
+}
+.y-hidden {
+  overflow-y: hidden !important;
+}
+.y-scroll {
+  overflow-y: scroll !important;
+}
+.y-auto {
+  overflow-y: auto !important;
+}
+.x-scroll {
+  overflow-x: scroll !important;
+}
+.x-auto {
+  overflow-x: auto !important;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ===================== Size ===================== */
+
+.full-width {
+  width: 100%;
+}
+.width-available {
+  width: -webkit-fill-available;
+}
+.width-inherit {
+  width: inherit;
+}
+.full-height {
+  height: 100%;
+}
+.max100{
+  max-width: 100% !important;
+}

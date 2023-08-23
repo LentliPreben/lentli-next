@@ -1,0 +1,33 @@
+.pagination {
+  justify-content: flex-end !important;
+  gap: 16px;
+  margin: 32px 0 0 0 !important;
+}
+.pagination li {
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border-radius: var(--border-radius-round) !important;
+  border: 1px solid var(--pagination-item-border-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-caption);
+  line-height: var(--line-height-caption);
+  font-weight: 500;
+  color: var(--pagination-item-color);
+}
+.pagination li:first-of-type {
+  border: 1px solid var(--pagination-item-border-color) !important;
+}
+.pagination li.active {
+  background-color: var(--pagination-item-active-bg);
+  color: var(--pagination-item-active-color);
+  border-color: transparent;
+}
+.pagination-item.prev {
+  background: url("/assets/arrow-left.svg") no-repeat 8px 8px !important;
+}
+.pagination-item.next {
+  background: url("/assets/arrow-right.svg") no-repeat 8px 8px !important;
+}

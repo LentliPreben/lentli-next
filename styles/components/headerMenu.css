@@ -1,0 +1,9 @@
+.header-menu {
+  display: flex;
+  gap: 24px;
+}
+.header-menu .header-menu-item {
+  font-size: var(--header-menu-item-font-size);
+  line-height: var(--header-menu-item-line-height);
+  color: var(--text-color-primary)
+}

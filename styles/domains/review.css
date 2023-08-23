@@ -1,0 +1,5 @@
+.review-select-option,
+.review-simple-view {
+  display: flex;
+  gap: 4px;
+}

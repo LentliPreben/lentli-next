@@ -1,0 +1,3 @@
+import useGetGroupedProductFiltersWithCount from './useGetGroupedProductFiltersWithCount'
+
+export default useGetGroupedProductFiltersWithCount
