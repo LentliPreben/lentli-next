@@ -17,7 +17,7 @@ const ProductLessorView = (props) => {
 
   const isVerified = user?.isVerified
   const bio = user?.bio
-  const formattedJoinedDate = moment(user?._createdAt?.toDate()).format(
+  const formattedJoinedDate = moment(user?._createdAt).format(
     MOMENT_FORMATS.MONTH_YEAR
   )
   const userDisplayName = `${user?.firstName} ${user?.lastName}`

@@ -37,7 +37,7 @@ const ImagesPreview = (props) => {
           src={config?.main}
           alt={productName}
           onClick={handleShowAllPhotos}
-          preview={false}loading="lazy"
+          preview={false}
         />
         <Button
           icon={<Icon name="DotsGridOutlined" size={16} />}
@@ -71,7 +71,8 @@ const ImagesPreview = (props) => {
                   src={src}
                   alt={productName}
                   height="100%"
-                  width="100%"loading="lazy"
+                  width="100%"
+                  loading="lazy"
                 />
               </SmallImagePreview>
             )
