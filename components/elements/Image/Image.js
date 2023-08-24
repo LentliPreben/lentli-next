@@ -29,7 +29,6 @@ const Image = (props) => {
           src={computedSrc}
           height={height}
           width={width}
-          objectFit="cover"
           loading="lazy"
           {...rest}
         />

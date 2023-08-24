@@ -74,7 +74,7 @@ const CartSimpleView = (props) => {
   return (
     <LoadingBox loading={loading}>
       <Card>
-        <Row gutter={[16, 16]} className="mb-16">
+        <Row gutter={[16, 16]} className="mb-16 align-center">
           <Col xs={9} sm={7}>
             <Image
               alt={t('Product')}
