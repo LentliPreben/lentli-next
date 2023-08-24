@@ -1,7 +1,6 @@
 export { default as HEADER_MENU_ITEMS } from './headerMenuItems'
 export { default as FOOTER_MENU } from './footerMenu'
 export { default as SORT_BY_OPTIONS } from './sortByOptions'
-export { default as PRODUCTS } from './products'
 export { default as HOW_IS_IT_WORKS } from './howIsItWorks'
 export { default as COMMON_QUESTIONS } from './commonQuestions'
 export { default as LANGUAGES_ITEMS } from './languagesItems'
