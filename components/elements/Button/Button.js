@@ -31,7 +31,7 @@ const Button = (props) => {
   })
 
   const iconComponent = icon && (
-    <Image width={20} height={20} alt="button" src={icon} />
+    <Image width={20} height={20} alt="button" src={icon} loading="lazy" />
   )
 
   const leftIcon = iconPosition === 'left' ? iconComponent : null

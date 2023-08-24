@@ -31,6 +31,7 @@ const Accordion = (props) => {
           height={16}
           alt="Toggle"
           src="/assets/arrow-down.svg"
+          loading="lazy"
         />
       </div>
       <div className="panel" id={`panel-${id}`}>

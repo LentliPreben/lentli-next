@@ -9,8 +9,8 @@ const Logo = (props) => {
   const { xs } = useScreen()
 
   const computedSrc = inverse
-    ? '/logos/logo-full-inverse.svg'
-    : '/logos/logo-full.svg'
+    ? '/logos/logo-full-inverse.webp'
+    : '/logos/logo-full.webp'
 
   return (
     <LogoWrapper xs={xs}>
@@ -20,6 +20,9 @@ const Logo = (props) => {
           alt="Lentli"
           layout="fill"
           objectFit="contain"
+          loading="lazy"
+          width={110}
+          height={28}
         />
       </Link>
     </LogoWrapper>

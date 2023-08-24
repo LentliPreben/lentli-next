@@ -11,6 +11,7 @@ const Cart = () => {
     title: t('Cart'),
     textAlign: 'left'
   }
+
   return (
     <PageLayout headingProps={headingProps}>
       <Row gutter={[24, 16]}>
