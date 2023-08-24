@@ -16,10 +16,14 @@ const ImageOverlay = styled.div`
   right: 0;
   background: transparent;
   background-image: linear-gradient(transparent 60%, #00000085);
+  border-radius: 8px;
 `
 
 const imageRow = {
   height: '128px'
+}
+const imageWrapperRowStyle = {
+  height: '148px'
 }
 const CardStyled = styled(Card)`
   cursor: pointer;
@@ -34,4 +38,10 @@ const CardStyled = styled(Card)`
   }
 `
 
-export { ImageOverlay, CardStyled, likeFormStyles, imageRow }
+export {
+  ImageOverlay,
+  CardStyled,
+  likeFormStyles,
+  imageRow,
+  imageWrapperRowStyle
+}

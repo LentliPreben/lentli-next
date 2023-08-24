@@ -4,3 +4,6 @@
 .strong {
   font-weight: 700;
 }
+.height-inherit {
+  height: inherit
+}

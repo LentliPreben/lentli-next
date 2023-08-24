@@ -1,6 +1,6 @@
-import { Image, theme } from 'antd'
+import { theme } from 'antd'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
-
+import Image from 'next/image'
 import { ImageOverlay } from 'components'
 import PropTypes from 'prop-types'
 import { imgProps } from './RelativeImage.styled'
@@ -38,7 +38,7 @@ const RelativeImage = (props) => {
   const { borderRadiusLG } = theme.useToken().token
 
   return (
-    <div ref={ref} style={style}>
+    <div ref={ref} style={style} className="height-inherit">
       <Image
         {...rest}
         src={computedSrc}
