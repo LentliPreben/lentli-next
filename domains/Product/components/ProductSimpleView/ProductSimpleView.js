@@ -2,8 +2,7 @@ import {
   CardStyled,
   ImageOverlay,
   imageRow,
-  likeFormStyles,
-  imageWrapperRowStyle
+  likeFormStyles
 } from './ProductSimpleView.styles'
 import { Col, Row, Space, Typography } from 'antd'
 import { RateSelect, RelativeImage } from 'components'
@@ -52,13 +51,9 @@ const ProductSimpleView = (props) => {
 
   return (
     <CardStyled bordered={false} onClick={handleProductClick}>
-      <Row className="flex align-center" style={imageWrapperRowStyle}>
-        <Col span={24} className="height-inherit">
-          <RelativeImage
-            ratio={1.5}
-            withOverlay={false}
-            src={previewImageUrl}
-          />
+      <Row className="flex align-center flex-1">
+        <Col span={24} className="full-height">
+          <RelativeImage withOverlay={false} src={previewImageUrl} />
           <ImageOverlay />
           <ProductLike style={likeFormStyles} productId={_id} />
         </Col>

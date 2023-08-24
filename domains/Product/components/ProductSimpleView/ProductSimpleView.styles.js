@@ -11,7 +11,7 @@ const likeFormStyles = {
 const ImageOverlay = styled.div`
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: 6px;
   left: 0;
   right: 0;
   background: transparent;
@@ -22,11 +22,10 @@ const ImageOverlay = styled.div`
 const imageRow = {
   height: '128px'
 }
-const imageWrapperRowStyle = {
-  height: '148px'
-}
+
 const CardStyled = styled(Card)`
   cursor: pointer;
+  height: 100%;
 
   a {
     width: 100%;
@@ -35,13 +34,10 @@ const CardStyled = styled(Card)`
   .ant-card-body {
     padding: 0;
     position: relative;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
   }
 `
 
-export {
-  ImageOverlay,
-  CardStyled,
-  likeFormStyles,
-  imageRow,
-  imageWrapperRowStyle
-}
+export { ImageOverlay, CardStyled, likeFormStyles, imageRow }

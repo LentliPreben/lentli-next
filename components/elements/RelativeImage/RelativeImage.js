@@ -38,7 +38,7 @@ const RelativeImage = (props) => {
   const { borderRadiusLG } = theme.useToken().token
 
   return (
-    <div ref={ref} style={style} className="height-inherit">
+    <div ref={ref} style={style} className="full-height">
       <Image
         {...rest}
         src={computedSrc}
