@@ -1,14 +1,17 @@
 import LikeButtonStyled from './LikeForm.styled'
 import { useEffect, useState } from 'react'
 
-import { theme } from 'antd'
-import { Icon } from '@qonsoll/icons'
 import PropTypes from 'prop-types'
+import heart from 'public/assets/heart.svg'
+import heartFilled from 'public/assets/heartFilled.svg'
+
+import Image from 'next/image'
+import { useTranslations } from 'contexts'
 
 const LikeForm = (props) => {
   const { value, onChange, style } = props
 
-  const token = theme.useToken().token
+  const { t } = useTranslations()
 
   const [isLiked, setIsLiked] = useState(false)
 
@@ -26,15 +29,14 @@ const LikeForm = (props) => {
       setIsLiked(value)
     }
   }, [value])
+  const srcComputed = isLiked ? heartFilled : heart
 
   return (
     <LikeButtonStyled
       onClick={handleChange}
       className="flex justify-center align-center"
       shape="square"
-      isLiked={isLiked}
-      theme={token}
-      icon={<Icon name="HeartOutlined" size={16} />}
+      icon={<Image src={srcComputed} height={18} width={18} alt={t('Like')} />}
       style={style}
     />
   )

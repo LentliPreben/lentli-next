@@ -4,14 +4,11 @@
 @import url('./headerMenu.css');
 @import url('./header.css');
 @import url('./input.css');
-@import url('./accordion.css');
-@import url('./dateRange.css');
 @import url('./list.css');
 @import url('./shareBy.css');
 @import url('./avatar.css');
 @import url('./rate.css');
 @import url('./imagesPreview.css');
-@import url('./section.css');
 @import url('./content.css');
 @import url('./languagesMenu.css');
 @import url('./searchResultHeading.css');
@@ -20,4 +17,3 @@
 @import url('./tag.css');
 @import url('./imageOverlay.css');
 @import url('./rangeNumber.css');
-@import url('./slider.css');

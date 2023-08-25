@@ -1,4 +1,4 @@
-import { Button, Grid, Image, Typography, theme } from 'antd'
+import { Button, Grid, Image, Typography } from 'antd'
 import {
   CountImagesWrapper,
   ImagesPreviewWrapper,
@@ -7,7 +7,6 @@ import {
   SmallImagesPreviewWrapper
 } from './ImagesPreview.styled'
 
-import { Icon } from '@qonsoll/icons'
 import { useGetImagesPreviewConfig } from 'domains/Product/hooks'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
@@ -18,8 +17,7 @@ const ImagesPreview = (props) => {
   const { productName, productId, mediaObjects = [] } = props
 
   const { t } = useTranslations()
-  const { sm, md, xl } = useBreakpoint()
-  const { colorPrimaryActive } = theme.useToken().token
+  const { sm, md } = useBreakpoint()
   const router = useRouter()
 
   const { config, count, showCount } = useGetImagesPreviewConfig(mediaObjects)
@@ -30,7 +28,7 @@ const ImagesPreview = (props) => {
 
   return (
     <ImagesPreviewWrapper sm={sm} md={md}>
-      <MainImageWrapper colorPrimaryActive={colorPrimaryActive} sm={sm}>
+      <MainImageWrapper sm={sm}>
         <Image
           height="100%"
           width="100%"
@@ -38,12 +36,9 @@ const ImagesPreview = (props) => {
           alt={productName}
           onClick={handleShowAllPhotos}
           preview={false}
+          loading="lazy"
         />
-        <Button
-          icon={<Icon name="DotsGridOutlined" size={16} />}
-          onClick={handleShowAllPhotos}>
-          {computedButtonText}
-        </Button>
+        <Button onClick={handleShowAllPhotos}>{computedButtonText}</Button>
       </MainImageWrapper>
 
       {config?.small?.length ? (
@@ -72,6 +67,7 @@ const ImagesPreview = (props) => {
                   alt={productName}
                   height="100%"
                   width="100%"
+                  loading="lazy"
                 />
               </SmallImagePreview>
             )

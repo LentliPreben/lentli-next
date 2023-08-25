@@ -1,4 +1,3 @@
-import { Icon } from '@qonsoll/icons'
 import { useHorizontalScroll } from 'hooks'
 import {
   StyledSpace,
@@ -8,6 +7,8 @@ import {
 import { theme } from 'antd'
 import { useGetTopCategories } from 'domains/Category/hooks'
 import { Link } from 'components'
+import Image from 'next/image'
+import { CATEGORY_ICONS } from '__constants__'
 
 const LOADING_ITEMS = [...Array(8).keys()]
 
@@ -31,13 +32,23 @@ const TopCategoriesList = (props) => {
         ? LOADING_ITEMS?.map((value) => <StyledSkeleton active key={value} />)
         : topLevelCategories?.map((category) => {
             const href = `/categories/${category?._id}/products`
+            const src = CATEGORY_ICONS?.[category?.icon]
 
             return (
               <Link href={href} key={category._id}>
                 <StyledButton
                   type={type}
                   tagsView={tagsView}
-                  icon={<Icon name={category?.icon} fill="currentColor" />}
+                  icon={
+                    src && (
+                      <Image
+                        src={src}
+                        alt={category?.name}
+                        width={12}
+                        height={12}
+                      />
+                    )
+                  }
                   theme={token}>
                   {category?.name}
                 </StyledButton>

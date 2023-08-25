@@ -4,11 +4,12 @@ import { Image, LoadingBox } from 'components'
 import { formatPrice, getCheckoutId } from 'utils'
 import { useCart, useLikedProducts, useTranslations } from 'contexts'
 
-import { Icon } from '@qonsoll/icons'
 import { getTransformedImageUrl } from 'helpers'
 import noImage from 'public/assets/no-image.png'
 import { useCallback } from 'react'
 import { useGetProductAdditionalData } from 'domains/Product/hooks'
+import trash from 'public/assets/trash.svg'
+import calendar from 'public/assets/calendar.svg'
 
 const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_APP_URL
 
@@ -74,7 +75,7 @@ const CartSimpleView = (props) => {
   return (
     <LoadingBox loading={loading}>
       <Card>
-        <Row gutter={[16, 16]} className="mb-16">
+        <Row gutter={[16, 16]} className="mb-16 align-center">
           <Col xs={9} sm={7}>
             <Image
               alt={t('Product')}
@@ -93,7 +94,12 @@ const CartSimpleView = (props) => {
                 <TitleStyled level={5}>{product?.name}</TitleStyled>
               </Col>
               <Col span={24} className="flex align-center mb-4">
-                <Icon size={14} name="CalendarOutlined" className="mr-8" />
+                <Image
+                  width={18}
+                  height={18}
+                  src={calendar}
+                  alt={t('Calendar')}
+                />
                 <DisplayDateStyled>{formattedDateRange}</DisplayDateStyled>
               </Col>
             </Row>
@@ -118,7 +124,7 @@ const CartSimpleView = (props) => {
               danger
               type="link"
               size="small">
-              <Icon size={16} name="Trash3Outlined" fill="currentColor" />
+              <Image src={trash} width={18} height={18} alt={t('Remove')} />
             </Button>
           </Col>
         </Row>

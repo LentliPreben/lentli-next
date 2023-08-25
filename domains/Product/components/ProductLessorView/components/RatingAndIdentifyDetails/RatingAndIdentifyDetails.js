@@ -1,13 +1,13 @@
 import { Row, Col, Typography, theme } from 'antd'
 import { useTranslations } from 'contexts'
-import { Icon } from '@qonsoll/icons'
+import checkVerified from 'public/assets/checkVerified.svg'
+import Image from 'next/image'
 
 const { Text } = Typography
 
 const RatingAndIdentifyDetails = (props) => {
   const { isVerified, bio } = props
 
-  const { colorPrimary } = theme.useToken().token
   const { t } = useTranslations()
 
   return (
@@ -17,7 +17,12 @@ const RatingAndIdentifyDetails = (props) => {
       </Col> */}
       {isVerified && (
         <Col className="flex align-center gap-4">
-          <Icon name="CheckVerified2Filled" size={18} fill={colorPrimary} />
+          <Image
+            src={checkVerified}
+            width={12}
+            height={12}
+            alt={t('Verified')}
+          />
           <Text>{t('Identity verified')}</Text>
         </Col>
       )}

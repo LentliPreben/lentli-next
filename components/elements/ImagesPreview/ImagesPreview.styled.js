@@ -32,10 +32,6 @@ const MainImageWrapper = styled.div`
     align-items: center;
     gap: 8px;
   }
-
-  .ant-btn:hover path {
-    stroke: ${({ colorPrimaryActive }) => colorPrimaryActive};
-  }
 `
 
 const SmallImagesPreviewWrapper = styled.div`

@@ -1,5 +1,4 @@
 @import url("./globals/reset.css");
-@import url("./globals/fonts.css");
 @import url("./globals/variables.css");
 
 @import url("./components/");
@@ -20,6 +19,7 @@ body {
   font-family: var(--font-family);
   color: var(--text-color-primary);
   font-weight: var(--font-weight-regular);
+  font-display: swap;
 }
 html {
   height: 100vh;

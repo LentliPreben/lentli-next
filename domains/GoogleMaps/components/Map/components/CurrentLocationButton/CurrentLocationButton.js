@@ -1,12 +1,16 @@
 import { Button } from 'antd'
-import { Icon } from '@qonsoll/icons'
 import PropTypes from 'prop-types'
 import { useGetUserGeolocation } from 'domains/GoogleMaps/hooks'
 import { useScreen } from 'hooks'
+import target from 'public/assets/target.svg'
+import Image from 'next/image'
+import { useTranslations } from 'contexts'
 
 const CurrentLocationButton = (props) => {
   const { onChange } = props
+
   const { xs } = useScreen()
+  const { t } = useTranslations()
 
   const [handleGetUserGeolocation, loading] = useGetUserGeolocation(onChange)
 
@@ -23,7 +27,14 @@ const CurrentLocationButton = (props) => {
         display: 'flex',
         justifyContent: 'center'
       }}
-      icon={<Icon name="Target3Outlined" size={xs ? 18 : 16} />}
+      icon={
+        <Image
+          src={target}
+          width={18}
+          height={18}
+          alt={t('Current location')}
+        />
+      }
     />
   )
 }

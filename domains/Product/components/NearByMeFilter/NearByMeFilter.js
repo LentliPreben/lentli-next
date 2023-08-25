@@ -1,9 +1,10 @@
-import { ProductFilterList } from 'domains/Product/components/ProductFilter/components'
+import { useFilterContext, useTranslations } from 'contexts'
 
+import { CategoryFilter } from 'domains/Category/components'
+import { DestinationFilter } from 'domains/Destination/components'
 import { Filter } from 'components'
 import { PriceFilter } from 'domains/Price/components'
-import { DestinationFilter } from 'domains/Destination/components'
-import { useFilterContext, useTranslations } from 'contexts'
+import { ProductFilterList } from 'domains/Product/components/ProductFilter/components'
 
 const NearByMeFilter = () => {
   const {
@@ -37,6 +38,7 @@ const NearByMeFilter = () => {
         filterParams={filterParams}
       />
       <PriceFilter priceRange={priceRangeNearByMe} />
+      <CategoryFilter />
     </Filter>
   )
 }

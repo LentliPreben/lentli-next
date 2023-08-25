@@ -9,13 +9,14 @@ import {
   TitleWrapper
 } from './NearByProductHorizontalList.styled'
 import { Space, Typography } from 'antd'
-import { Icon } from '@qonsoll/icons'
 import { ProductSimpleView } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { StyledSpace } from './NearByProductHorizontalList.styled'
 import { useHorizontalScroll, useScreen } from 'hooks'
 import { useTranslations } from 'contexts'
 import { Link } from 'components'
+import chevronRightAccent from 'public/assets/chevronRightAccent.svg'
+import Image from 'next/image'
 
 const NearByProductHorizontalList = ({ products }) => {
   const { t } = useTranslations()
@@ -55,14 +56,14 @@ const NearByProductHorizontalList = ({ products }) => {
             </TitleWrapper>
           )}
           <div style={{ marginLeft: 'auto' }}>
-            <Link href="/products">
-              <Space size={0}>
+            <Link href="/products" className="pb-1">
+              <Space>
                 {t('See all')}
-                <Icon
-                  name="ChevronRightOutlined"
-                  ml={1}
-                  fill="currentColor"
-                  size={16}
+                <Image
+                  src={chevronRightAccent}
+                  width={12}
+                  height={12}
+                  alt={t('See all')}
                 />
               </Space>
             </Link>

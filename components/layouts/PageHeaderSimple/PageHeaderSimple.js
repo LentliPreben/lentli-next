@@ -1,10 +1,10 @@
 import { Button, Divider, Row, Col, Image, theme, Typography } from 'antd'
 
-import { Icon } from '@qonsoll/icons'
 import { useRouter } from 'next/router'
 import PageHeaderSimpleWrapper from './PageHeaderSimple.styles'
-import logo from 'public/logos/logo-full.svg'
+import logo from 'public/logos/logo-full.webp'
 import { useScreen } from 'hooks'
+// import arrowLongLeft from 'public/assets/arrowLongLeft.svg'
 
 const { Title } = Typography
 
@@ -29,7 +29,14 @@ const PageHeaderSimple = (props) => {
               type="text"
               className="flex align-center justify-center"
               size="large"
-              icon={<Icon name="ArrowLongLeftFilled" size={20} />}
+              icon={
+                <Image
+                  src={arrowLongLeft}
+                  height={18}
+                  width={18}
+                  alt={t('Back')}
+                />
+              }
             />
           </Col>
           <Col>
@@ -54,7 +61,14 @@ const PageHeaderSimple = (props) => {
               type="text"
               className="flex align-center justify-center"
               size="large"
-              icon={<Icon name="ArrowLongLeftFilled" size={20} />}
+              icon={
+                <Image
+                  src={arrowLongLeft}
+                  height={18}
+                  width={18}
+                  alt={t('Back')}
+                />
+              }
             />
           </Col>
           <Col>

@@ -1,3 +1,6 @@
 export { default as getUpdatedFilterArray } from './getUpdatedFilterArray'
 export { default as currencySymbol } from './currencySymbol'
 export { default as updateUserViewsStatistics } from './updateUserViewsStatistics'
+export { default as getProductInitialValues } from './getProductInitialValues'
+export { default as getProductsByUser } from './getProductsByUser'
+export { default as mergeProductMediaObjects } from './mergeProductMediaObjects'

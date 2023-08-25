@@ -3,7 +3,6 @@ import { useGetUserDisplayName } from 'domains/User/hooks'
 import { Row, Col, Typography } from 'antd'
 import { Avatar, Rate } from 'components'
 import { StyledDisplayName, StyledDisplayDate } from './ReviewSimpleView.styles'
-import moment from 'moment'
 
 const { Text } = Typography
 
@@ -12,7 +11,8 @@ const ReviewSimpleView = (props) => {
 
   const displayName = useGetUserDisplayName(rentee)
   const showDescription = !!review?.review
-  const dateFormatted = moment(review?._createdAt?.toDate()).fromNow()
+
+  const dateFormatted = review?.dateFormatted
 
   return (
     <Row gutter={[0, 4]}>
@@ -23,9 +23,13 @@ const ReviewSimpleView = (props) => {
         <StyledDisplayName>{displayName}</StyledDisplayName>
         <Rate type="advanced" value={review?.rating} size="small" />
       </Col>
-      <Col className="ml-auto">
-        <StyledDisplayDate type="secondary">{dateFormatted}</StyledDisplayDate>
-      </Col>
+      {dateFormatted && (
+        <Col className="ml-auto">
+          <StyledDisplayDate type="secondary">
+            {dateFormatted}
+          </StyledDisplayDate>
+        </Col>
+      )}
       {showDescription && (
         <Col span={24}>
           <Text type="secondary">{review?.review}</Text>

@@ -5,7 +5,7 @@ import {
   likeFormStyles
 } from './ProductSimpleView.styles'
 import { Col, Row, Space, Typography } from 'antd'
-import { Link, RateSelect, RelativeImage } from 'components'
+import { RateSelect, RelativeImage } from 'components'
 import {
   currencySymbol,
   updateUserViewsStatistics
@@ -15,7 +15,6 @@ import { ProductLike } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { getTransformedImageUrl } from 'helpers'
 import { useGetCategory } from 'domains/Category/hooks'
-import { useProductBaseActions } from 'domains/Product/hooks'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
 
@@ -52,13 +51,9 @@ const ProductSimpleView = (props) => {
 
   return (
     <CardStyled bordered={false} onClick={handleProductClick}>
-      <Row className="flex align-center">
-        <Col span={24}>
-          <RelativeImage
-            ratio={1.5}
-            withOverlay={false}
-            src={previewImageUrl}
-          />
+      <Row className="flex align-center flex-1">
+        <Col span={24} className="full-height">
+          <RelativeImage withOverlay={false} src={previewImageUrl} />
           <ImageOverlay />
           <ProductLike style={likeFormStyles} productId={_id} />
         </Col>

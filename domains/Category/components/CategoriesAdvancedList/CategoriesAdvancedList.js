@@ -1,4 +1,5 @@
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+
 import { CategoryView } from 'domains/Category/components'
 
 const CategoriesAdvancedList = (props) => {
@@ -17,7 +18,7 @@ const CategoriesAdvancedList = (props) => {
 
     const pairArr = []
 
-    for (let i = 0; i < data.length; i += 2) {
+    for (let i = 0; i < data?.length; i += 2) {
       pairArr.push([data[i], data[i + 1]])
     }
 

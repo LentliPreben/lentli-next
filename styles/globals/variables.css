@@ -229,12 +229,6 @@
   --header-bg: var(--gray);
   --header-primary-bg: var(--primary-lighten-5);
 
-  /* Checkbox */
-  --checkbox-checked-bg: var(--primary-default);
-  --checkbox-checked-border-color: transparent;
-  --checkbox-border-color: var(--secondary-lighten-6);
-  --checkbox-disabled-bg: var(--secondary-lighten-3);
-
   /* List */
   --pagination-item-color: var(--secondary-lighten-4);
   --pagination-item-border-color: var(--secondary-lighten-4);

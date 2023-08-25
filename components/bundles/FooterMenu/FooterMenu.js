@@ -10,7 +10,13 @@ const FooterMenu = (props) => {
         icon ? (
           <div key={text} className="d-flex align-items-center">
             <div className="me-2">
-              <Image src={icon} alt={alt} width={24} height={24} />
+              <Image
+                src={icon}
+                alt={alt}
+                width={24}
+                height={24}
+                loading="lazy"
+              />
             </div>
             <Text variant="body2" inverse>
               {text}

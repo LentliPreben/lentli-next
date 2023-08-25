@@ -1,7 +1,7 @@
 import { LoadingBox, PageHeaderSimple, PageLayout } from 'components'
 import {
   useGetProduct,
-  useGetProductCustomActions,
+  // useGetProductCustomActions,
   useGetProductMediaObjectsData
 } from 'domains/Product/hooks'
 
@@ -15,13 +15,14 @@ const ProductImages = (props) => {
   const [mediaObjects, mediaObjectsLoading] =
     useGetProductMediaObjectsData(product)
 
-  const actions = useGetProductCustomActions({ productId })
+  // temporary commented
+  // const actions = useGetProductCustomActions({ productId })
 
   const loading = useLoading([loadingProduct, mediaObjectsLoading])
 
   return (
     <PageLayout
-      topHeader={<PageHeaderSimple title={product?.name} actions={actions} />}
+      topHeader={<PageHeaderSimple title={product?.name} />}
       showFooter={false}
       showHeader={false}>
       <LoadingBox loading={loading}>

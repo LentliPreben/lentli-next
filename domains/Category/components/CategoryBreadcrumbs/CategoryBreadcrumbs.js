@@ -1,14 +1,18 @@
-import { Breadcrumb, Typography, theme } from 'antd'
+import { Breadcrumb, Typography } from 'antd'
 import { StyledBreadCrumb } from './CategoryBreadcrumbs.styled'
 
-import { Icon } from '@qonsoll/icons'
 import { useExtraCategoryBreadcrumbsItems } from './hooks'
 import { Link } from 'components'
+import home03Outlined from 'public/assets/home03Outlined.svg'
+import chevronRight from 'public/assets/chevronRight.svg'
+import Image from 'next/image'
+import { useTranslations } from 'contexts'
 
 const CategoryBreadcrumbs = (props) => {
   const { categoryId, productId } = props
 
-  const token = theme.useToken().token
+  const { t } = useTranslations()
+
   /* Getting extra breadcrumbs */
   const [extraBreadcrumbItems] = useExtraCategoryBreadcrumbsItems({
     categoryId,
@@ -17,10 +21,12 @@ const CategoryBreadcrumbs = (props) => {
 
   return (
     <StyledBreadCrumb
-      separator={<Icon name="ArrowShortRightFilled" fill="currentColor" />}>
+      separator={
+        <Image src={chevronRight} width={12} height={12} alt={t('Separator')} />
+      }>
       <Breadcrumb.Item key={'/'}>
         <Link href="/" className="flex align-center">
-          <Icon name="Home3Outlined" fill="currentColor" />
+          <Image width={16} height={16} src={home03Outlined} alt={t('Home')} />
         </Link>
       </Breadcrumb.Item>
 
