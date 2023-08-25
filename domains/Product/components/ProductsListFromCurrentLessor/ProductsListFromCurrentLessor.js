@@ -5,7 +5,8 @@ import { Link } from 'components'
 import { ProductHorizontalList } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { useTranslations } from 'contexts'
-import { Icon } from '@qonsoll/icons'
+import chevronRightAccent from 'public/assets/chevronRightAccent.svg'
+import Image from 'next/image'
 
 const { Title, Text } = Typography
 
@@ -43,11 +44,11 @@ const ProductsListFromCurrentLessor = (props) => {
                 <Link href="/products">
                   <Space>
                     {t('See all')}
-                    <Icon
-                      name="ChevronRightOutlined"
-                      ml={1}
-                      fill="currentColor"
-                      size={16}
+                    <Image
+                      src={chevronRightAccent}
+                      width={12}
+                      height={12}
+                      alt={t('See all')}
                     />
                   </Space>
                 </Link>

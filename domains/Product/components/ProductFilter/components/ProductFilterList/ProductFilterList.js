@@ -4,12 +4,13 @@ import PropTypes from 'prop-types'
 import { StyledTag } from './ProductFilterList.styled'
 import { isEmptyObject } from 'utils'
 import { memo } from 'react'
+import { useGetCategories } from 'domains/Category/hooks'
 import { useTranslations } from 'contexts'
 
 const ProductFilterList = (props) => {
   const { filterParams, setFilterParams, brands, brandsLoading } = props
   const { t } = useTranslations()
-
+  const [categories] = useGetCategories()
   const { colorPrimary } = theme.useToken().token
   const createTags = (key, values) => {
     if (key === 'pricePerDay') {
@@ -42,6 +43,23 @@ const ProductFilterList = (props) => {
           {`${radius}km`}
         </StyledTag>
       )
+    }
+    if (key === 'subcategoryId') {
+      return values?.map((categoryId) => {
+        const category = categories?.find(
+          (category) => category?._id === categoryId
+        )
+
+        return (
+          <StyledTag
+            className="mb-8"
+            onClose={() => handleTagClose(key, values)}
+            closable
+            key={key}>
+            {category?.name}
+          </StyledTag>
+        )
+      })
     }
 
     return values?.map((value) => {

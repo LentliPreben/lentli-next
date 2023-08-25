@@ -23,7 +23,7 @@ const { useBreakpoint } = Grid
 const ProductAdvancedView = (props) => {
   const { product, address, mediaObjects, user, tags, reviews } = props
 
-  const { lg, sm } = useBreakpoint()
+  const { lg } = useBreakpoint()
   const { t } = useTranslations()
   const {
     range,
@@ -129,7 +129,7 @@ const ProductAdvancedView = (props) => {
           <Col lg={9} xl={8} className="relative">
             <ProductRangeSelect
               disabledDates={disabledDates}
-              productId={product._id}
+              productId={product?._id}
               handleChangeRange={handleChangeRange}
               periodInDays={periodInDays}
               range={range}
@@ -150,7 +150,7 @@ const ProductAdvancedView = (props) => {
       {!lg && (
         <ProductRangeSelectFixed
           disabledDates={disabledDates}
-          productId={product._id}
+          productId={product?._id}
           handleChangeRange={handleChangeRange}
           periodInDays={periodInDays}
           range={range}

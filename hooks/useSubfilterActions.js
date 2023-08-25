@@ -1,6 +1,7 @@
+import { useCallback, useMemo } from 'react'
+
 import { getUpdatedFilterArray } from 'domains/Product/helpers'
 import { useEvent } from 'hooks'
-import { useMemo } from 'react'
 
 const LS_LABEL = 'details-visibility'
 
@@ -16,12 +17,24 @@ const useSubfilterActions = (params) => {
     }
   })
 
-  const checkIsEnabled = useEvent(
-    (data) =>
-      filterParams &&
-      Object.values(filterParams)?.some((query) =>
-        query?.includes(isField ? data : data._id)
-      )
+  const checkIsEnabled = useCallback(
+    (data) => {
+      if (!filterParams) {
+        return false
+      }
+
+      return Object.values(filterParams).some((query) => {
+        if (Array.isArray(query)) {
+          return query.includes(isField ? data : data._id)
+        } else if (typeof query === 'string') {
+          return query.includes(isField ? data : data._id.toString())
+        } else if (typeof query === 'number') {
+          return query === (isField ? data : data._id)
+        }
+        return false // Default case if query is not an array, string, or number
+      })
+    },
+    [filterParams, isField]
   )
 
   const onChange = useEvent((data) => {

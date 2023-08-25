@@ -1,6 +1,5 @@
-import { Button, Dropdown, theme } from 'antd'
+import { Button } from 'antd'
 
-import { Icon } from '@qonsoll/icons'
 import { useTranslations } from 'contexts'
 import { ProductLike } from 'domains/Product/components'
 
@@ -10,8 +9,6 @@ const useGetProductCustomActions = (props) => {
 
   const { t } = useTranslations()
 
-  const { colorTextTertiary } = theme.useToken().token
-
   const shareDropdownMenu = [
     {
       label: t('Mail'),
@@ -19,7 +16,8 @@ const useGetProductCustomActions = (props) => {
         <Button
           className="flex align-center justify-center p-0 m-0"
           type="link">
-          <Icon name="MailFilled" size={16} mr={2} fill={colorTextTertiary} />
+          {/* temporary commented. it needs change Icon 
+          <Icon name="MailFilled" size={16} mr={2} /> */}
         </Button>
       ),
       key: 'MailFilled'
@@ -30,7 +28,8 @@ const useGetProductCustomActions = (props) => {
         <Button
           className="flex align-center justify-center p-0 m-0"
           type="link">
-          <Icon name="FacebookOutlined" size={16} mr={2} />
+          {/* temporary commented. it needs change Icon 
+           <Icon name="FacebookOutlined" size={16} mr={2} /> */}
         </Button>
       ),
       key: 'FacebookFilled'
@@ -41,7 +40,8 @@ const useGetProductCustomActions = (props) => {
         <Button
           className="flex align-center justify-center p-0 m-0"
           type="link">
-          <Icon name="Twitter1Outlined" size={16} mr={2} />
+          {/* temporary commented. it needs change Icon 
+           <Icon name="Twitter1Outlined" size={16} mr={2} /> */}
         </Button>
       ),
       key: 'Twitter1Outlined'
@@ -54,6 +54,7 @@ const useGetProductCustomActions = (props) => {
         layout !== 'horizontal' && 'flex-col'
       } justify-between gap-12`}>
       <ProductLike productId={productId} />
+      {/*  temporary commented
       <Dropdown
         id="like-product"
         key="like-product"
@@ -61,9 +62,9 @@ const useGetProductCustomActions = (props) => {
         placement="bottomRight">
         <Button
           className="flex align-center justify-center"
-          icon={<Icon name="Share7Outlined" size={16} />}
+          icon={<Image src={share} width={18} height={18} alt={t('Share')} />}
         />
-      </Dropdown>
+      </Dropdown> */}
     </div>
   )
 

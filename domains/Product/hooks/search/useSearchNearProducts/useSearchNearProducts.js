@@ -52,16 +52,52 @@ const useSearchNearProducts = (
       )
   }, [location, selectedLocation, searchRadius, handleError, searchProducts])
 
+  const formattedIds = filterParams?.subcategoryId?.join(', ')
+
+  const filteredProductsConditions = useMemo(
+    () => ({
+      PriceAndSubcategory:
+        formattedIds && pricePerDay
+          ? `address.location:(${location}, ${searchRadius}) && pricePerDay: [${pricePerDay}] && categoryId: [${formattedIds}]`
+          : null,
+      OnlyPrice:
+        pricePerDay && !formattedIds
+          ? `address.location:(${location}, ${searchRadius}) && pricePerDay: [${pricePerDay}]`
+          : null,
+      OnlySubcategory:
+        !pricePerDay && formattedIds
+          ? `address.location:(${location}, ${searchRadius}) && categoryId: [${formattedIds}]`
+          : null
+    }),
+    [formattedIds, location, pricePerDay, searchRadius]
+  )
+
   useEffect(() => {
-    if (pricePerDay) {
-      searchProducts(
-        `address.location:(${location}, ${searchRadius}) && pricePerDay: [${pricePerDay}]`,
-        setFilteredNearByProducts
-      )
+    const filterType =
+      pricePerDay && formattedIds
+        ? 'PriceAndSubcategory'
+        : pricePerDay && !formattedIds
+        ? 'OnlyPrice'
+        : !pricePerDay && formattedIds
+        ? 'OnlySubcategory'
+        : null
+
+    const filterCondition = filteredProductsConditions[filterType]
+
+    if (filterCondition) {
+      searchProducts(filterCondition, setFilteredNearByProducts)
     } else {
       setFilteredNearByProducts(allNearByProducts)
     }
-  }, [location, pricePerDay, searchProducts, searchRadius, allNearByProducts])
+  }, [
+    location,
+    pricePerDay,
+    searchProducts,
+    searchRadius,
+    allNearByProducts,
+    formattedIds,
+    filteredProductsConditions
+  ])
 
   return useMemo(
     () => ({

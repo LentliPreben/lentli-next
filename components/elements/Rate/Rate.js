@@ -1,11 +1,14 @@
-import { theme } from 'antd'
-import { IconStyled, RateWrapper, LabelStyled } from './Rate.styles'
+import { RateWrapper, LabelStyled } from './Rate.styles'
 import PropTypes from 'prop-types'
+import Image from 'next/image'
+import starFilled from 'public/assets/starFilled.svg'
+import starFilledSecondary from 'public/assets/starFilledSecondary.svg'
+import { useTranslations } from 'contexts'
 
 const Rate = (props) => {
   const { value, type = 'simple', size = 'default' } = props
 
-  const token = theme.useToken().token
+  const { t } = useTranslations()
 
   const count = type === 'simple' ? 1 : 5
   const countArray = Array.apply(null, { length: count })
@@ -15,14 +18,14 @@ const Rate = (props) => {
     <RateWrapper size={size}>
       {countArray?.map((_, index) => {
         const isFilled = index + 1 <= value
-
+        const srcComputed = isFilled ? starFilled : starFilledSecondary
         return (
-          <IconStyled
+          <Image
             key={`start-${index}`}
-            name="StarFilled"
-            size={size}
-            isFilled={isFilled}
-            theme={token}
+            src={srcComputed}
+            width={18}
+            height={18}
+            alt={t('Star')}
           />
         )
       })}
@@ -33,6 +36,6 @@ const Rate = (props) => {
 Rate.propTypes = {
   value: PropTypes.number,
   type: PropTypes.string,
-  size: PropTypes.number
+  size: PropTypes.string
 }
 export default Rate

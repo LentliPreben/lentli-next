@@ -1,13 +1,15 @@
 import { Typography, theme } from 'antd'
 import { useEffect, useState } from 'react'
 
-import { Icon } from '@qonsoll/icons'
 import PropTypes from 'prop-types'
-import { RateStyled } from './RateSelect.styled'
+import starFilled from 'public/assets/starFilled.svg'
+import Image from 'next/image'
+import { useTranslations } from 'contexts'
 
 const RateSelect = (props) => {
-  const { size = 'md', value = 0 } = props
+  const { value = 0 } = props
 
+  const { t } = useTranslations()
   const { colorWarningBorderHover } = theme.useToken().token
   const [rating, setRating] = useState(value || null)
 
@@ -19,12 +21,7 @@ const RateSelect = (props) => {
 
   return (
     <div className="flex gap-4 align-center">
-      <Icon
-        name={'StarFilled'}
-        size={18}
-        fill={colorWarningBorderHover}
-        className="flex align-center"
-      />
+      <Image src={starFilled} width={18} height={18} alt={t('Star')} />
 
       <Typography.Text>{rating || 0}</Typography.Text>
     </div>

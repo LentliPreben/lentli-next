@@ -1,10 +1,9 @@
 /* eslint-disable react/prop-types */
 import { Col, Typography, theme } from 'antd'
-
-import { Icon } from '@qonsoll/icons'
+import Image from 'next/image'
 
 export const StyledIcon = (props) => {
-  const { titleSize, ...rest } = props
+  const { titleSize, alt, ...rest } = props
 
   const {
     token: {
@@ -23,7 +22,15 @@ export const StyledIcon = (props) => {
   ]
   const computeIconSize = iconsSize[Number(titleSize) - 1]
 
-  return <Icon size={computeIconSize} {...rest} />
+  return (
+    <Image
+      src={infoCircle}
+      width={computeIconSize}
+      height={computeIconSize}
+      alt={alt}
+      {...rest}
+    />
+  )
 }
 
 export const ActionsColStyled = (props) => {

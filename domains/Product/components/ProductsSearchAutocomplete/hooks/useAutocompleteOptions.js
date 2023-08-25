@@ -1,9 +1,13 @@
 import { Col, Space, Typography } from 'antd'
 
-import { Icon } from '@qonsoll/icons'
 import { OPTIONS_TYPES } from '../__constants__'
 import { useMemo } from 'react'
 import { useTranslations } from 'contexts'
+import markerPin from 'public/assets/markerPin.svg'
+import cube from 'public/assets/cube.svg'
+import dashboard from 'public/assets/dashboard.svg'
+
+import Image from 'next/image'
 
 const useAutocompleteOptions = (locations, products, categories) => {
   const { t } = useTranslations()
@@ -20,7 +24,12 @@ const useAutocompleteOptions = (locations, products, categories) => {
               label: (
                 <Col span={24} key={product._id}>
                   <Space>
-                    <Icon size={12} name="Cube1Outlined" />
+                    <Image
+                      src={cube}
+                      width={12}
+                      height={12}
+                      alt={t('Products')}
+                    />
                     <Typography.Text>{product?.name}</Typography.Text>
                   </Space>
                 </Col>
@@ -43,7 +52,12 @@ const useAutocompleteOptions = (locations, products, categories) => {
               label: (
                 <Col span={24} key={category._id}>
                   <Space>
-                    <Icon size={12} name="Dashboard2Outlined" />
+                    <Image
+                      src={dashboard}
+                      width={12}
+                      height={12}
+                      alt={t('Categories')}
+                    />
                     <Typography.Text>{category?.name}</Typography.Text>
                   </Space>
                 </Col>
@@ -63,7 +77,12 @@ const useAutocompleteOptions = (locations, products, categories) => {
             locations?.slice(0, 3).map(({ place_id, description }) => ({
               label: (
                 <Space>
-                  <Icon size={12} name="MarkerPin1Outlined" />
+                  <Image
+                    src={markerPin}
+                    width={12}
+                    height={12}
+                    alt={t('Location')}
+                  />
                   <Typography.Text>{description}</Typography.Text>
                 </Space>
               ),

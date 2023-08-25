@@ -1,11 +1,12 @@
 import { Button, Drawer } from 'antd'
 
-import { Icon } from '@qonsoll/icons'
 import { useScreen } from 'hooks'
 import { useState } from 'react'
 import PropTypes from 'prop-types'
 import { ProductFilter, NearByMeFilter } from 'domains/Product/components'
 import { useTranslations } from 'contexts'
+import filterLines from 'public/assets/filterLines.svg'
+import Image from 'next/image'
 
 const FilterButton = (props) => {
   const {
@@ -34,11 +35,7 @@ const FilterButton = (props) => {
           justifyContent: 'center'
         }}
         icon={
-          <Icon
-            name="FilterLinesOutlined"
-            size={xs ? 18 : 16}
-            fill="currentColor"
-          />
+          <Image src={filterLines} width={18} height={18} alt={t('Filter')} />
         }>
         {isSmallScreen ? null : t('Filter')}
       </Button>

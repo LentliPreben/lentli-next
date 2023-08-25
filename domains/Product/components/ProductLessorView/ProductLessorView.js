@@ -1,10 +1,8 @@
-import { Row, Col, Avatar, Typography, Button, Grid } from 'antd'
-import { useTranslations } from 'contexts'
-import { StyledDisplayName } from './ProductLessorView.styles'
-import moment from 'moment'
-import { Icon } from '@qonsoll/icons'
-import { MOMENT_FORMATS } from '__constants__'
+import { Avatar, Col, Grid, Row, Typography } from 'antd'
+
 import { RatingAndIdentifyDetails } from './components'
+import { StyledDisplayName } from './ProductLessorView.styles'
+import { useTranslations } from 'contexts'
 
 const { Text } = Typography
 const { useBreakpoint } = Grid
@@ -17,15 +15,18 @@ const ProductLessorView = (props) => {
 
   const isVerified = user?.isVerified
   const bio = user?.bio
-  const formattedJoinedDate = moment(user?._createdAt).format(
-    MOMENT_FORMATS.MONTH_YEAR
-  )
+  const formattedJoinedDate = user?.formattedJoinedDate
+
   const userDisplayName = `${user?.firstName} ${user?.lastName}`
-  const joinedInLabel = `${t('Joined in')} ${formattedJoinedDate}`
-  const buttonText = xl ? t('Contact lessor') : ''
-  const buttonIcon = xl ? null : (
-    <Icon name="MessageTextSquare1Outlined" size={18} />
-  )
+  const joinedInLabel =
+    formattedJoinedDate && `${t('Joined in')} ${formattedJoinedDate}`
+  {
+    /* Contact Lessor btn temporarily hidden */
+  }
+  // const buttonText = xl ? t('Contact lessor') : ''
+  // const buttonIcon = xl ? null : (
+  //   <Image name="MessageTextSquare1Outlined" size={18} />
+  // )
 
   return (
     <>
@@ -45,13 +46,14 @@ const ProductLessorView = (props) => {
             <RatingAndIdentifyDetails bio={bio} isVerified={isVerified} />
           </Col>
         )}
-        <Col className="flex align-center ml-32">
+        {/* Contact Lessor btn temporarily hidden */}
+        {/* <Col className="flex align-center ml-32">
           <Button
             className="flex align-center justify-center"
             icon={buttonIcon}>
             {buttonText}
           </Button>
-        </Col>
+        </Col> */}
       </Row>
       {!xl && <RatingAndIdentifyDetails isVerified={isVerified} bio={bio} />}
       {bio && (

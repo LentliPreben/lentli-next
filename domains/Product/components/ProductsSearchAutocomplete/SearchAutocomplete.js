@@ -1,10 +1,11 @@
 import { AutoComplete, Input } from 'antd'
 import { cloneElement, memo, useState } from 'react'
 
-import { Icon } from '@qonsoll/icons'
 import PropTypes from 'prop-types'
 import { autoCompleteStyles } from './ProductsSearchAutocomplete.styled'
 import { useTranslations } from 'contexts'
+import searchLg from 'public/assets/searchLg.svg'
+import Image from 'next/image'
 
 const SearchAutocomplete = (props) => {
   const {
@@ -46,7 +47,9 @@ const SearchAutocomplete = (props) => {
         cloneElement(input, { onChange: handleChange })
       ) : (
         <Input
-          prefix={<Icon mr={1} name="SearchLgOutlined" />}
+          prefix={
+            <Image src={searchLg} width={12} height={12} alt={t('Search')} />
+          }
           placeholder={`${t('Search by location or product name')}..`}
           onChange={handleChange}
           {...rest}

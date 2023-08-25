@@ -18,7 +18,6 @@ const Logo = (props) => {
         <Image
           src={computedSrc}
           alt="Lentli"
-          objectFit="contain"
           loading="lazy"
           width={110}
           height={28}

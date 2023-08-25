@@ -2,6 +2,7 @@ import { getDocument } from 'services/api/firebase'
 import { COLLECTIONS } from '__constants__'
 import { where, orderBy, collection, query, getDocs } from 'firebase/firestore'
 import { firestore } from 'services/firebase'
+import moment from 'moment'
 
 const getReviews = async (productId) => {
   try {
@@ -20,7 +21,11 @@ const getReviews = async (productId) => {
             COLLECTIONS.USERS,
             reviewData?.renteeId
           )
-          return { review: reviewData, rentee }
+          const dateFormatted = moment(
+            reviewData?._createdAt?.toDate()
+          ).fromNow()
+
+          return { review: { ...reviewData, dateFormatted }, rentee }
         })
       )
 

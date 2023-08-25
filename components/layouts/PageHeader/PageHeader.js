@@ -6,6 +6,7 @@ import {
 } from './PageHeader.styled'
 import { Col, Divider, Row, Tooltip, Typography } from 'antd'
 import { useScreen } from 'hooks'
+import infoCircle from 'public/assets/infoCircle.svg'
 
 const PageHeader = (props) => {
   const {
@@ -51,7 +52,8 @@ const PageHeader = (props) => {
                     <Tooltip title={tooltipTitle} className="ml-8">
                       <StyledIcon
                         titleSize={titleSize}
-                        name="InfoCircleOutlined"
+                        src={infoCircle}
+                        alt={t('Information')}
                       />
                     </Tooltip>
                   )}
