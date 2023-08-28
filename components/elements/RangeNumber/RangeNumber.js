@@ -27,7 +27,7 @@ const RangeNumber = (props) => {
   return (
     <div className="range-number-wrapper">
       <NumberInput value={values?.[0]} small onChange={handleChangeMinValue} />
-      <Text type="secondary">-</Text>
+      <Text secondary>-</Text>
       <NumberInput value={values?.[1]} small onChange={handleChangeMaxValue} />
       <Button onClick={handleOk} small>
         {t('OK')}

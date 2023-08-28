@@ -2,7 +2,7 @@ import { ProductSimpleView } from 'domains/Product/components'
 
 import PropTypes from 'prop-types'
 import { StyledList } from './ProductList.styles'
-import { Typography } from 'antd'
+import { Text } from 'components'
 import { useTranslations } from 'contexts'
 
 const ProductList = (props) => {
@@ -24,9 +24,7 @@ const ProductList = (props) => {
   }
 
   if (!products?.length) {
-    return (
-      <Typography.Text type="secondary">{emptyParams?.message}</Typography.Text>
-    )
+    return <Text secondary>{emptyParams?.message}</Text>
   }
   return products?.length ? (
     <StyledList
@@ -47,7 +45,7 @@ const ProductList = (props) => {
       pagination={pagination}
     />
   ) : (
-    <Typography.Text type="secondary">{emptyParams?.message}</Typography.Text>
+    <Text secondary>{emptyParams?.message}</Text>
   )
 }
 

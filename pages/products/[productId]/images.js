@@ -1,4 +1,4 @@
-import { LoadingBox, PageHeaderSimple, PageLayout } from 'components'
+import { PageHeaderSimple, PageLayout } from 'components'
 import {
   useGetProduct,
   // useGetProductCustomActions,
@@ -25,9 +25,7 @@ const ProductImages = (props) => {
       topHeader={<PageHeaderSimple title={product?.name} />}
       showFooter={false}
       showHeader={false}>
-      <LoadingBox loading={loading}>
-        <ProductImagesList mediaObjects={mediaObjects} />
-      </LoadingBox>
+      {!loading && <ProductImagesList mediaObjects={mediaObjects} />}
     </PageLayout>
   )
 }
@@ -35,8 +33,8 @@ const ProductImages = (props) => {
 export default ProductImages
 
 // This gets called on every request
-export async function getServerSideProps({ query, locale }) {
-  const productId = query?.productId
+export async function getServerSideProps({ params }) {
+  const productId = params?.productId
 
   // Pass data to the page via props
   return {

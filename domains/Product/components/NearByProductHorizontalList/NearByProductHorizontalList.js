@@ -8,13 +8,13 @@ import {
   HeadingWrapper,
   TitleWrapper
 } from './NearByProductHorizontalList.styled'
-import { Space, Typography } from 'antd'
+import { Space } from 'antd'
 import { ProductSimpleView } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { StyledSpace } from './NearByProductHorizontalList.styled'
 import { useHorizontalScroll, useScreen } from 'hooks'
 import { useTranslations } from 'contexts'
-import { Link } from 'components'
+import { Link, Title, Text } from 'components'
 import chevronRightAccent from 'public/assets/chevronRightAccent.svg'
 import Image from 'next/image'
 
@@ -45,18 +45,16 @@ const NearByProductHorizontalList = ({ products }) => {
     <>
       {filteredProducts?.length ? (
         <HeadingWrapper xs={xs}>
-          <Typography.Title level={xs ? 2 : 1}>
-            {t('Near by you')}
-          </Typography.Title>
+          <Title as={xs ? 'h2' : 'h1'}>{t('Near by you')}</Title>
           {xs ? null : (
             <TitleWrapper>
-              <Typography.Text>
+              <Text>
                 {filteredProducts?.length} {t('products')}
-              </Typography.Text>
+              </Text>
             </TitleWrapper>
           )}
           <div style={{ marginLeft: 'auto' }}>
-            <Link href="/products" className="pb-1">
+            <Link href="/products" className="pb-12">
               <Space>
                 {t('See all')}
                 <Image

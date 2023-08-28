@@ -1,9 +1,10 @@
-import { Checkbox, Space, Typography } from 'antd'
+import { Checkbox, Space } from 'antd'
 import { useSubfilterActions } from 'hooks'
 import { useTranslations } from 'contexts'
 import PropTypes from 'prop-types'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useGetCancellationTerms } from 'domains/CancellationTerm/hooks'
+import { Text } from 'components'
 
 const CancellationTermFilter = ({ filterParams, setFilterParams }) => {
   const [cancellationTerms] = useGetCancellationTerms()
@@ -24,13 +25,11 @@ const CancellationTermFilter = ({ filterParams, setFilterParams }) => {
           <div
             key={`status-${index}`}
             className="flex justify-between align-center">
-            <Typography.Text wordBreak="break-all">
+            <Text className="break-all">
               {cancellationTerm?.title || t('Unnamed filter')}
-            </Typography.Text>
+            </Text>
             <Space>
-              <Typography.Text type="secondary">
-                ({numberOfItemsByFilter})
-              </Typography.Text>
+              <Text secondary>({numberOfItemsByFilter})</Text>
               <Checkbox
                 key={`status-${index}`}
                 checked={checkIsEnabled(cancellationTerm)}

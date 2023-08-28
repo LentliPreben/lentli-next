@@ -10,7 +10,7 @@ const AppLayout = (props) => {
     children,
     fullWidth,
     fullHeight,
-    showTopLevelCategories
+    topLevelCategories
   } = props
 
   return (
@@ -21,9 +21,7 @@ const AppLayout = (props) => {
       </Head>
       <Layout className="app-layout">
         <Layout className="relative">
-          {showHeader && (
-            <Header showTopLevelCategories={showTopLevelCategories} />
-          )}
+          {showHeader && <Header topLevelCategories={topLevelCategories} />}
           <StyledContent
             className="relative"
             fullWidth={fullWidth}

@@ -57,8 +57,8 @@
   --font-size-h6: 14px;
   --font-size-label: 20px;
   --font-size-label2: 18px;
-  --font-size-body: 16px;
-  --font-size-body2: 14px;
+  --font-size-body: 14px;
+  --font-size-body2: 14px; /* maybe temporary solution */
   --font-size-caption: 12px;
 
   --line-height-mega: 94px;
@@ -70,7 +70,7 @@
   --line-height-h6: 21px;
   --line-height-label: 34px;
   --line-height-label2: 22px;
-  --line-height-body: 24px;
+  --line-height-body: 22px; /* maybe temporary solution */
   --line-height-body2: 22px;
   --line-height-caption: 12px;
 

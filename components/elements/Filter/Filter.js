@@ -1,10 +1,10 @@
-import { Button, Typography, theme } from 'antd'
+import { Button, theme } from 'antd'
 import { StyledFilter, StyledHeader, BlurBox } from './Filter.styled'
 
 import { CloseOutlined } from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import { useTranslations } from 'contexts'
-import { Spinner } from 'components'
+import { Spinner, Title } from 'components'
 
 const Filter = (props) => {
   const {
@@ -30,7 +30,7 @@ const Filter = (props) => {
     <>
       {withTitle && (
         <StyledHeader>
-          <Typography.Title level={3}>{title || t('Filter')}</Typography.Title>
+          <Title as="h3">{title || t('Filter')}</Title>
           <Button
             type="text"
             shape="circle"

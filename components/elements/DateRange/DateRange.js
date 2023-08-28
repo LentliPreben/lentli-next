@@ -1,12 +1,10 @@
-import { Col, Row, Typography, theme } from 'antd'
+import { theme } from 'antd'
 
-import { DateRangeInputs } from 'components'
+import { DateRangeInputs, Text, Title } from 'components'
 import { DateRangeStyled } from './DateRange.styled'
 import { LOCALES } from '__constants__'
 import moment from 'moment'
 import { useTranslations } from 'contexts'
-
-const { Text, Title } = Typography
 
 const DateRange = (props) => {
   const {
@@ -46,18 +44,18 @@ const DateRange = (props) => {
   return (
     <>
       {showHeader && (
-        <Row align="center" className="mb-24">
-          <Col span={10}>
-            <Title level={4}>{computedDayLabel}</Title>
-            <Text type="secondary">{formattedDateRange}</Text>
-          </Col>
-          <Col span={14} className="flex flex-col" justify="center">
+        <div className="row align-center mb-24">
+          <div className="col-5">
+            <Title as="h4">{computedDayLabel}</Title>
+            <Text secondary>{formattedDateRange}</Text>
+          </div>
+          <div className="col-7 flex flex-col justify-center">
             <DateRangeInputs range={range} onChange={onChange} />
-          </Col>
-        </Row>
+          </div>
+        </div>
       )}
-      <Row className="mt-24">
-        <Col span={24} onClick={handleStopPropagation}>
+      <div className="row mt-24">
+        <div className="col-12" onClick={handleStopPropagation}>
           <DateRangeStyled
             months={2}
             locale={locale}
@@ -74,8 +72,8 @@ const DateRange = (props) => {
             disabledDay={disabledDay}
             direction="horizontal"
           />
-        </Col>
-      </Row>
+        </div>
+      </div>
     </>
   )
 }

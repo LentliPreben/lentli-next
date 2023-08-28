@@ -1,10 +1,11 @@
-import { Checkbox, Space, Typography } from 'antd'
+import { Checkbox, Space } from 'antd'
 import { useSubfilterActions } from 'hooks'
 
 import PropTypes from 'prop-types'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useGetAddresses } from 'domains/Address/hooks'
 import { useTranslations } from 'contexts'
+import { Text } from 'components'
 
 const AddressFilter = ({ filterParams, setFilterParams }) => {
   const [addresses] = useGetAddresses({})
@@ -26,13 +27,11 @@ const AddressFilter = ({ filterParams, setFilterParams }) => {
           <div
             key={`status-${index}`}
             className="flex justify-between align-center">
-            <Typography.Text wordBreak="break-all">
+            <Text className="break-all">
               {address?.city || address?.postalTown || t('Unnamed filter')}
-            </Typography.Text>
+            </Text>
             <Space>
-              <Typography.Text type="secondary">
-                ({numberOfItemsByFilter})
-              </Typography.Text>
+              <Text secondary>({numberOfItemsByFilter})</Text>
               <Checkbox
                 key={`status-${index}`}
                 checked={checkIsEnabled(address)}

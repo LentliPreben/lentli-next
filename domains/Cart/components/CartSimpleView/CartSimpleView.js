@@ -1,6 +1,6 @@
-import { Button, Card, Col, Divider, Row, Typography, theme } from 'antd'
-import { DisplayDateStyled, TitleStyled } from './CartSimpleView.styled'
-import { Image, LoadingBox } from 'components'
+import { Button, Card, Divider, theme } from 'antd'
+import TitleStyled from './CartSimpleView.styled'
+import { Image, LoadingBox, Text, Title } from 'components'
 import { formatPrice, getCheckoutId } from 'utils'
 import { useCart, useLikedProducts, useTranslations } from 'contexts'
 
@@ -12,8 +12,6 @@ import trash from 'public/assets/trash.svg'
 import calendar from 'public/assets/calendar.svg'
 
 const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_APP_URL
-
-const { Text, Title } = Typography
 
 const CartSimpleView = (props) => {
   const { cart } = props
@@ -75,42 +73,43 @@ const CartSimpleView = (props) => {
   return (
     <LoadingBox loading={loading}>
       <Card>
-        <Row gutter={[16, 16]} className="mb-16 align-center">
-          <Col xs={9} sm={7}>
+        <div className="row mb-16 align-center gx-3">
+          <div className="col-5 col-sm-4">
             <Image
               alt={t('Product')}
               src={previewImgUrl}
               onError={handleImageError}
               borderRadius={borderRadiusLG}
             />
-          </Col>
+          </div>
 
-          <Col xs={24} sm={17}>
-            <Row gutter={[0, 4]}>
-              <Col span={24}>
-                <Text type="secondary">{categoryName}</Text>
-              </Col>
-              <Col span={24}>
-                <TitleStyled level={5}>{product?.name}</TitleStyled>
-              </Col>
-              <Col span={24} className="flex align-center mb-4">
+          <div className="col-12 col-sm-8">
+            <div className="row">
+              <div className="col-12">
+                <Text secondary>{categoryName}</Text>
+              </div>
+              <div className="col-12">
+                <TitleStyled>{product?.name}</TitleStyled>
+              </div>
+              <div className="col-12 flex align-center mb-4 gap-4">
                 <Image
                   width={18}
                   height={18}
                   src={calendar}
                   alt={t('Calendar')}
+                  className="flex"
                 />
-                <DisplayDateStyled>{formattedDateRange}</DisplayDateStyled>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
+                <Text variant="body2">{formattedDateRange}</Text>
+              </div>
+            </div>
+          </div>
+        </div>
 
-        <Row justify="space-between" align="middle">
-          <Col className="flex">
-            <Title level={5}>{pricePerPeriodDisplay}</Title>
-          </Col>
-          <Col className="flex align-center">
+        <div className="row justify-between align-middle">
+          <div className="col flex">
+            <Title as="h5">{pricePerPeriodDisplay}</Title>
+          </div>
+          <div className="col flex align-center justify-end">
             <Button
               size="small"
               type="link"
@@ -126,8 +125,8 @@ const CartSimpleView = (props) => {
               size="small">
               <Image src={trash} width={18} height={18} alt={t('Remove')} />
             </Button>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Card>
     </LoadingBox>
   )

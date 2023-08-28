@@ -1,4 +1,4 @@
-import { Col, Space, Typography } from 'antd'
+import { Col, Space } from 'antd'
 
 import { OPTIONS_TYPES } from '../__constants__'
 import { useMemo } from 'react'
@@ -6,7 +6,7 @@ import { useTranslations } from 'contexts'
 import markerPin from 'public/assets/markerPin.svg'
 import cube from 'public/assets/cube.svg'
 import dashboard from 'public/assets/dashboard.svg'
-
+import { Text } from 'components'
 import Image from 'next/image'
 
 const useAutocompleteOptions = (locations, products, categories) => {
@@ -16,9 +16,7 @@ const useAutocompleteOptions = (locations, products, categories) => {
     () =>
       [
         {
-          label: (
-            <Typography.Text type="secondary">{t('Products')}</Typography.Text>
-          ),
+          label: <Text secondary>{t('Products')}</Text>,
           options:
             products?.map((product) => ({
               label: (
@@ -30,7 +28,7 @@ const useAutocompleteOptions = (locations, products, categories) => {
                       height={12}
                       alt={t('Products')}
                     />
-                    <Typography.Text>{product?.name}</Typography.Text>
+                    <Text>{product?.name}</Text>
                   </Space>
                 </Col>
               ),
@@ -42,11 +40,7 @@ const useAutocompleteOptions = (locations, products, categories) => {
           filter: !!products?.length
         },
         {
-          label: (
-            <Typography.Text type="secondary">
-              {t('Categories')}
-            </Typography.Text>
-          ),
+          label: <Text secondary>{t('Categories')}</Text>,
           options:
             categories?.map((category) => ({
               label: (
@@ -58,7 +52,7 @@ const useAutocompleteOptions = (locations, products, categories) => {
                       height={12}
                       alt={t('Categories')}
                     />
-                    <Typography.Text>{category?.name}</Typography.Text>
+                    <Text>{category?.name}</Text>
                   </Space>
                 </Col>
               ),
@@ -70,9 +64,7 @@ const useAutocompleteOptions = (locations, products, categories) => {
           filter: !!categories?.length
         },
         {
-          label: (
-            <Typography.Text type="secondary">{t('Locations')}</Typography.Text>
-          ),
+          label: <Text secondary>{t('Locations')}</Text>,
           options:
             locations?.slice(0, 3).map(({ place_id, description }) => ({
               label: (
@@ -83,7 +75,7 @@ const useAutocompleteOptions = (locations, products, categories) => {
                     height={12}
                     alt={t('Location')}
                   />
-                  <Typography.Text>{description}</Typography.Text>
+                  <Text>{description}</Text>
                 </Space>
               ),
               value: JSON.stringify({

@@ -1,14 +1,12 @@
-import { Col, Row, Space, Typography } from 'antd'
+import { Space } from 'antd'
 import { useGetProductsByUser } from 'domains/Product/hooks'
 import { useRouter } from 'next/router'
-import { Link } from 'components'
+import { Link, Text, Title } from 'components'
 import { ProductHorizontalList } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { useTranslations } from 'contexts'
 import chevronRightAccent from 'public/assets/chevronRightAccent.svg'
 import Image from 'next/image'
-
-const { Title, Text } = Typography
 
 const ProductsListFromCurrentLessor = (props) => {
   const { user, showHeading = true } = props
@@ -30,18 +28,18 @@ const ProductsListFromCurrentLessor = (props) => {
 
   return (
     !!productsAmount && (
-      <Row>
-        <Col span={24} className="mb-16">
+      <div className="row">
+        <div className="col-12 mb-16">
           {showHeading && (
-            <Row gutter={16}>
-              <Col>
-                <Title level={2}>{otherFromTitle}</Title>
-              </Col>
-              <Col className="mr-auto flex align-end pb-2">
+            <div className="row">
+              <div className="col-auto">
+                <Title as="h2">{otherFromTitle}</Title>
+              </div>
+              <div className="col-auto mr-auto flex align-end pb-8">
                 <Text>{`${productsAmount} ${t('products')}`}</Text>
-              </Col>
-              <Col className="flex align-end">
-                <Link href="/products">
+              </div>
+              <div className="col-auto flex align-end">
+                <Link href="/products" className="pb-12">
                   <Space>
                     {t('See all')}
                     <Image
@@ -52,14 +50,14 @@ const ProductsListFromCurrentLessor = (props) => {
                     />
                   </Space>
                 </Link>
-              </Col>
-            </Row>
+              </div>
+            </div>
           )}
-        </Col>
-        <Col span={24}>
+        </div>
+        <div className="col-12">
           <ProductHorizontalList products={limitedProducts} />
-        </Col>
-      </Row>
+        </div>
+      </div>
     )
   )
 }

@@ -1,5 +1,5 @@
-import { DateRange, DateRangeInputs } from 'components'
-import { Col, Divider, Popover, Row, Typography, theme } from 'antd'
+import { DateRange, DateRangeInputs, Text, Title } from 'components'
+import { Divider, Popover, theme } from 'antd'
 
 import ProductRangeSelectWrapper from './ProductRangeSelect.styled'
 import { useCart, useTranslations } from 'contexts'
@@ -30,12 +30,12 @@ const ProductRangeSelect = (props) => {
 
   return (
     <ProductRangeSelectWrapper theme={token} {...rest}>
-      <Row>
-        <Col span={24} className="flex align-baseline mb-24">
-          <Typography.Title level={3}>{pricePerDayDisplay}</Typography.Title>
-          <Typography.Text type="secondary">{`/${t('day')}`}</Typography.Text>
-        </Col>
-        <Col span={24} className="mb-24">
+      <div className="row">
+        <div className="col-12 flex align-baseline mb-24">
+          <Title as="h3">{pricePerDayDisplay}</Title>
+          <Text secondary>{`/${t('day')}`}</Text>
+        </div>
+        <div className="col-12 mb-24">
           <Popover
             id="date-range-popover"
             content={
@@ -55,31 +55,29 @@ const ProductRangeSelect = (props) => {
               <DateRangeInputs range={range} onChange={handleChangeRange} />
             </div>
           </Popover>
-        </Col>
+        </div>
 
         <>
-          <Col span={24}>
-            <Row gutter={16} className="justify-between">
-              <Col className="flex gap-4">
-                <Typography.Text>{pricePerDayDisplay}</Typography.Text>
-                <Typography.Text type="secondary">x</Typography.Text>
-                <Typography.Text>{t(computedDayLabel)}</Typography.Text>
-              </Col>
-              <Col>{pricePerPeriodDisplay}</Col>
-            </Row>
-          </Col>
-          <Col span={24}>
+          <div className="col-12">
+            <div className="row justify-between">
+              <div className="col flex gap-4">
+                <Text>{pricePerDayDisplay}</Text>
+                <Text secondary>x</Text>
+                <Text>{t(computedDayLabel)}</Text>
+              </div>
+              <div className="col">{pricePerPeriodDisplay}</div>
+            </div>
+          </div>
+          <div className="col-12">
             <Divider />
-          </Col>
-          <Col span={24} className="flex justify-between mb-24">
-            <Typography.Title level={5}>{t('Total')}</Typography.Title>
-            <Typography.Title level={5}>
-              {pricePerPeriodDisplay}
-            </Typography.Title>
-          </Col>
+          </div>
+          <div className="col-12 flex justify-between mb-24">
+            <Title as="h5">{t('Total')}</Title>
+            <Title as="h5">{pricePerPeriodDisplay}</Title>
+          </div>
         </>
 
-        <Col span={24}>
+        <div className="col-12">
           <Button
             block
             size="large"
@@ -87,8 +85,8 @@ const ProductRangeSelect = (props) => {
             onClick={handleAddItemToCart}>
             {t('Reserve')}
           </Button>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </ProductRangeSelectWrapper>
   )
 }

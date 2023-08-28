@@ -1,10 +1,10 @@
-import { Checkbox, Space, Typography } from 'antd'
+import { Checkbox, Space } from 'antd'
 import { memo, useMemo } from 'react'
 import { useSubfilterActions } from 'hooks'
-import { useTranslations } from 'contexts'
+import { useTranslations, useFilterContext } from 'contexts'
 import PropTypes from 'prop-types'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
-import { useFilterContext } from 'contexts'
+import { Text } from 'components'
 
 const FieldFilter = ({ field }) => {
   const { t } = useTranslations()
@@ -39,11 +39,9 @@ const FieldFilter = ({ field }) => {
                 checked={checkIsEnabled(value, index)}
                 onChange={() => onChange(value)}
               />
-              <Typography.Text wordBreak="break-all">
-                {value || t('Unnamed filter')}
-              </Typography.Text>
+              <Text className="break-all">{value || t('Unnamed filter')}</Text>
             </Space>
-            <Typography.Text type="secondary">{count}</Typography.Text>
+            <Text secondary>{count}</Text>
           </div>
         ))}
       </StyledCollapse.Panel>

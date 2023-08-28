@@ -9,7 +9,7 @@ const UnlimitedDots = styled.div`
     left: 0;
     right: 0;
     top: 15px;
-    border-bottom: ${({ theme }) => `1px dotted ${theme?.colorTextQuaternary}`};
+    border-bottom: 1px dotted #00000040;
   }
 `
 

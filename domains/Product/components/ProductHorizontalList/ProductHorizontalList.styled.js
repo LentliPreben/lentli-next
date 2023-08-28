@@ -1,7 +1,10 @@
 import { Space } from 'antd'
 import styled from 'styled-components'
 
-export const StyledSpace = styled(Space)`
+export const StyledSpace = styled.div`
+  display: flex;
+  flex-wrap: inherit;
+  gap: 24px;
   width: 100%;
   max-width: 100%;
   overflow: auto;
@@ -12,6 +15,6 @@ export const StyledSpace = styled(Space)`
   scrollbar-width: none; /* Firefox */
 `
 export const StyledItemWrapper = styled.div`
-  width: 220px;
+  min-width: 220px;
   height: 275px;
 `

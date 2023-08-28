@@ -1,32 +1,30 @@
-import { Row, Col, Typography, theme } from 'antd'
 import { useTranslations } from 'contexts'
 import checkVerified from 'public/assets/checkVerified.svg'
 import Image from 'next/image'
-
-const { Text } = Typography
+import { Text } from 'components'
 
 const RatingAndIdentifyDetails = (props) => {
-  const { isVerified, bio } = props
+  const { isVerified } = props
 
   const { t } = useTranslations()
 
   return (
-    <Row gutter={16} className={bio && 'mb-16'}>
+    <div className="row">
       {/* <Col>
         <Rate value={4.1} />  temporary mocked 
       </Col> */}
       {isVerified && (
-        <Col className="flex align-center gap-4">
+        <div className="col-auto flex align-center gap-4">
           <Image
             src={checkVerified}
-            width={12}
-            height={12}
+            width={16}
+            height={16}
             alt={t('Verified')}
           />
-          <Text>{t('Identity verified')}</Text>
-        </Col>
+          <Text className="d-none d-sm-flex">{t('Identity verified')}</Text>
+        </div>
       )}
-    </Row>
+    </div>
   )
 }
 

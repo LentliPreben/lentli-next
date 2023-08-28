@@ -1,6 +1,6 @@
 import { TagListItem } from 'domains/Tag/components'
 import TagListStyled from './TagList.styles'
-import { Typography } from 'antd'
+import { Text } from 'components'
 import { useMemo } from 'react'
 
 const TagList = (props) => {
@@ -13,7 +13,7 @@ const TagList = (props) => {
           <TagListItem key={`item-${name}`} name={name} {...rest} />
         ))
       ) : (
-        <Typography.Text>n/a</Typography.Text>
+        <Text>n/a</Text>
       ),
     [tags]
   )

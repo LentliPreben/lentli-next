@@ -1,9 +1,9 @@
-import { Radio, Space, Typography } from 'antd'
+import { Radio, Space } from 'antd'
 import { useSubfilterActions } from 'hooks'
 import { useTranslations } from 'contexts'
 
 import PropTypes from 'prop-types'
-import { RateSelect } from 'components'
+import { RateSelect, Text } from 'components'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 
 const ReviewFilter = ({ filterParams, setFilterParams, value = 0 }) => {
@@ -28,7 +28,7 @@ const ReviewFilter = ({ filterParams, setFilterParams, value = 0 }) => {
               className="flex justify-between align-center">
               <Space>
                 <RateSelect value={item.value} size="md" disabled />
-                <Typography.Text type="secondary">&{t('up')}</Typography.Text>
+                <Text secondary>&{t('up')}</Text>
               </Space>
               <Radio className="mr-0" />
             </div>

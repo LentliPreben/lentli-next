@@ -1,9 +1,9 @@
-import { Breadcrumb, Typography } from 'antd'
+import { Breadcrumb } from 'antd'
 import StyledBreadCrumb from './Breadcrumbs.styled'
 
 import PropTypes from 'prop-types'
 import { useExtraBreadcrumbsItems } from './hooks'
-import { Link } from 'components'
+import { Link, Text } from 'components'
 import home03Outlined from 'public/assets/home03Outlined.svg'
 import chevronRight from 'public/assets/chevronRight.svg'
 import Image from 'next/image'
@@ -38,7 +38,7 @@ const Breadcrumbs = (props) => {
         if (hasEdit && index >= extraBreadcrumbItems.length - 2) {
           return (
             <Breadcrumb.Item key={key}>
-              <Typography.Text>{name}</Typography.Text>
+              <Text>{name}</Text>
             </Breadcrumb.Item>
           )
         }
@@ -48,7 +48,7 @@ const Breadcrumbs = (props) => {
             key={key}
             active={index === extraBreadcrumbItems.length - 1}>
             {index === extraBreadcrumbItems.length - 1 ? (
-              <Typography.Text>{name}</Typography.Text>
+              <Text>{name}</Text>
             ) : (
               <Link href={path}>{name}</Link>
             )}
