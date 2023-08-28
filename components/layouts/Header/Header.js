@@ -49,8 +49,8 @@ const Header = (props) => {
         </div>
         {extraContent && <div className="mx-2">{extraContent}</div>}
         {topLevelCategories && (
-          <div className="row align-center">
-            <div className="col-12">
+          <div className="row align-center justify-center">
+            <div className="col-auto">
               <TopCategoriesList tagsView={false} data={topLevelCategories} />
             </div>
           </div>
