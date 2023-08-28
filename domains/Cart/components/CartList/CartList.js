@@ -1,10 +1,9 @@
-import { Col, Row, Typography } from 'antd'
 import { useMemo } from 'react'
 
 import { CartSimpleView } from 'domains/Cart/components'
 import { useCart, useTranslations } from 'contexts'
-
-const { Text } = Typography
+import { Text } from 'components'
+import { getClassNames } from 'utils'
 
 const CartList = () => {
   const { cartItems, countCartItems } = useCart()
@@ -14,25 +13,29 @@ const CartList = () => {
   const checkoutsMap = useMemo(
     () =>
       cartItems?.map((cart) => (
-        <Col span={24} key={cart?._id}>
+        <div className="col-12" key={cart?._id}>
           <CartSimpleView cart={cart} />
-        </Col>
+        </div>
       )),
     [cartItems]
   )
 
-  const rowClassName = countCartItems ? ' gap-8' : 'full-height gap-8'
+  const rowClassName = getClassNames({
+    row: true,
+    'gap-8': countCartItems,
+    'full-height gap-8': !countCartItems
+  })
 
   return (
-    <Row className={rowClassName}>
+    <div className={rowClassName}>
       {countCartItems ? (
         checkoutsMap
       ) : (
-        <Col span={24} className="flex align-center justify-center">
-          <Text type="secondary">{t('Your cart is empty')}</Text>
-        </Col>
+        <div className="col-12 flex align-center justify-center">
+          <Text secondary>{t('Your cart is empty')}</Text>
+        </div>
       )}
-    </Row>
+    </div>
   )
 }
 

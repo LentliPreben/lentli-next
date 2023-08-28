@@ -1,7 +1,6 @@
-import { Row } from 'antd'
 import styled from 'styled-components'
 
-const StyledRow = styled(Row)`
+const StyledRow = styled.div`
   ::-webkit-scrollbar {
     width: 4px;
     height: 4px;

@@ -1,14 +1,11 @@
-import { Spin } from 'antd'
+import { useTranslations } from 'contexts'
 
 const LoadingBox = (props) => {
-  const { loading, children, spinProps } = props
+  const { loading, children } = props
 
-  if (loading)
-    return (
-      <div className="loading-box">
-        <Spin {...spinProps} />
-      </div>
-    )
+  const { t } = useTranslations()
+
+  if (loading) return <div className="loading-box">{t('Loading')}</div>
   return children
 }
 

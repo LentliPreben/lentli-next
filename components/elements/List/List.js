@@ -1,19 +1,14 @@
-import { Col, Typography } from 'antd'
-
 import PropTypes from 'prop-types'
 import { StyledRow } from './List.styled'
 import { useTranslations } from 'contexts'
+import { Text } from 'components'
 
 const List = (props) => {
   const {
     dataSource,
     renderItem,
     emptyProps,
-    span = { xs: 24, sm: 12, md: 8, lg: 6 },
-    gutter = [
-      { xs: 16, sm: 16, md: 24 },
-      { xs: 16, sm: 16, md: 24 }
-    ],
+    columnClass = 'col-12 col-sm-6 col-md-4 col-lg-3',
     wrapperStyles,
     pagination
   } = props
@@ -23,29 +18,27 @@ const List = (props) => {
   const isEmpty = !dataSource?.length
 
   return (
-    <StyledRow gutter={gutter} style={wrapperStyles}>
+    <StyledRow className="row gap-y-24" style={wrapperStyles}>
       {!isEmpty && renderItem && (
         <>
           {dataSource.map((item, index) => (
-            <Col {...span} key={index}>
+            <div className={columnClass} key={index}>
               {renderItem?.(item, index)}
-            </Col>
+            </div>
           ))}
           {!isEmpty && renderItem && pagination && (
-            <Col className="justify-center my-12" span={24}>
-              {pagination}
-            </Col>
+            <div className="col-12 justify-center my-12">{pagination}</div>
           )}
         </>
       )}
       {isEmpty && !emptyProps?.hidden && (
-        <Col span={24}>
-          <Typography.Text variant="overline" type="secondary">
+        <div className="col-12">
+          <Text variant="overline" secondary>
             {emptyProps?.message === undefined
               ? t('No items have been created yet')
               : emptyProps?.message}
-          </Typography.Text>
-        </Col>
+          </Text>
+        </div>
       )}
     </StyledRow>
   )

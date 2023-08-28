@@ -1,4 +1,4 @@
-import { Space, Button, Skeleton } from 'antd'
+import { Space, Button } from 'antd'
 import styled from 'styled-components'
 
 const StyledSpace = styled(Space)`
@@ -20,14 +20,4 @@ const StyledButton = styled(Button)`
   color: ${({ theme, tagsView }) => !tagsView && theme.colorTextSecondary};
 `
 
-const StyledSkeleton = styled(Skeleton.Button)`
-  height: 32px !important;
-  display: flex !important;
-  align-items: center;
-
-  span {
-    height: 22px !important;
-  }
-`
-
-export { StyledSpace, StyledButton, StyledSkeleton }
+export { StyledSpace, StyledButton }

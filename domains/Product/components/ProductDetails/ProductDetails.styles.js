@@ -8,7 +8,6 @@ const ProductDetailIconWrapper = styled.div`
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  margin-right: 16px;
 `
 
 export { ProductDetailIconWrapper }

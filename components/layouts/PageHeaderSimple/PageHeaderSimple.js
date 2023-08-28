@@ -1,15 +1,17 @@
-import { Button, Divider, Row, Col, Image, theme, Typography } from 'antd'
-
+import { Button, Divider, theme } from 'antd'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import PageHeaderSimpleWrapper from './PageHeaderSimple.styles'
 import logo from 'public/logos/logo-full.webp'
 import { useScreen } from 'hooks'
-// import arrowLongLeft from 'public/assets/arrowLongLeft.svg'
-
-const { Title } = Typography
+import arrowLongLeft from 'public/assets/arrowLongLeft.svg'
+import { useTranslations } from 'contexts'
+import { Title } from 'components'
 
 const PageHeaderSimple = (props) => {
   const { title, actions, onlyLogo = false } = props
+
+  const { t } = useTranslations()
 
   const { xs } = useScreen()
   const router = useRouter()
@@ -22,8 +24,8 @@ const PageHeaderSimple = (props) => {
   return (
     <PageHeaderSimpleWrapper theme={token}>
       {onlyLogo ? (
-        <Row align="center">
-          <Col>
+        <div className="row align-center">
+          <div className="col-auto">
             <Button
               onClick={onBack}
               type="text"
@@ -38,12 +40,11 @@ const PageHeaderSimple = (props) => {
                 />
               }
             />
-          </Col>
-          <Col>
+          </div>
+          <div className="col">
             <Divider className="full-height mx-16" type="vertical" />
-          </Col>
-
-          <Col className="flex align-center">
+          </div>
+          <div className="col flex align-center">
             <Image
               src={logo}
               className="cursor-pointer"
@@ -51,11 +52,11 @@ const PageHeaderSimple = (props) => {
               height={logoSize}
               alt="logo"
             />
-          </Col>
-        </Row>
+          </div>
+        </div>
       ) : (
-        <Row className="full-width">
-          <Col>
+        <div className="row full-width g-0">
+          <div className="col-auto">
             <Button
               onClick={onBack}
               type="text"
@@ -70,15 +71,15 @@ const PageHeaderSimple = (props) => {
                 />
               }
             />
-          </Col>
-          <Col>
+          </div>
+          <div className="col-auto">
             <Divider className="full-height mx-16" type="vertical" />
-          </Col>
-          <Col className="flex align-center">
-            <Title level={5}>{title}</Title>
-          </Col>
-          <Col className="ml-auto flex align-center">{actions}</Col>
-        </Row>
+          </div>
+          <div className="col flex align-center">
+            <Title as="h5">{title}</Title>
+          </div>
+          <div className="col-auto ml-auto flex align-center">{actions}</div>
+        </div>
       )}
     </PageHeaderSimpleWrapper>
   )

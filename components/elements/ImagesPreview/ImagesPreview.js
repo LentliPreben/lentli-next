@@ -1,4 +1,4 @@
-import { Button, Grid, Image, Typography } from 'antd'
+import { Button, Grid, Image } from 'antd'
 import {
   CountImagesWrapper,
   ImagesPreviewWrapper,
@@ -10,6 +10,7 @@ import {
 import { useGetImagesPreviewConfig } from 'domains/Product/hooks'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
+import { Text } from 'components'
 
 const { useBreakpoint } = Grid
 
@@ -55,9 +56,7 @@ const ImagesPreview = (props) => {
                 onClick={handleShowAllPhotos}>
                 {isLastImage && showCount && (
                   <CountImagesWrapper>
-                    <Typography.Text className="count-images">
-                      {label}
-                    </Typography.Text>
+                    <Text className="count-images">{label}</Text>
                   </CountImagesWrapper>
                 )}
 

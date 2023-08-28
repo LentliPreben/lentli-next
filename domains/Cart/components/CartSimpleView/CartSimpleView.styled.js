@@ -1,7 +1,6 @@
-import { Typography } from 'antd'
 import styled from 'styled-components'
 
-const TitleStyled = styled(Typography.Title)`
+const TitleStyled = styled.h5`
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -12,8 +11,4 @@ const TitleStyled = styled(Typography.Title)`
   -webkit-line-clamp: 2;
 `
 
-const DisplayDateStyled = styled(Typography.Text)`
-  font-size: 12px;
-`
-
-export { TitleStyled, DisplayDateStyled }
+export default TitleStyled

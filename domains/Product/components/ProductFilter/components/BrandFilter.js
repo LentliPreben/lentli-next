@@ -1,10 +1,10 @@
-import { Checkbox, Space, Typography } from 'antd'
+import { Checkbox, Space } from 'antd'
 import { useMemo, memo } from 'react'
 import { useSubfilterActions } from 'hooks'
 import { useTranslations, useFilterContext } from 'contexts'
 import { COLLECTIONS } from '__constants__'
 import PropTypes from 'prop-types'
-import { LoadingBox } from 'components'
+import { LoadingBox, Text } from 'components'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useGetDocumentsByIds } from 'services/api/firebase'
 
@@ -45,13 +45,13 @@ const BrandFilter = () => {
                   checked={checkIsEnabled(brand)}
                   onChange={() => onChange(brand)}
                 />
-                <Typography.Text wordBreak="break-all">
+                <Text className="break-all">
                   {brand?.name || t('Unnamed filter')}
-                </Typography.Text>
+                </Text>
               </Space>
-              <Typography.Text type="secondary">
+              <Text secondary>
                 {facets?.find(({ value }) => value === brand?._id)?.count}
-              </Typography.Text>
+              </Text>
             </div>
           ))}
         </StyledCollapse.Panel>

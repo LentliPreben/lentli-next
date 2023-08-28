@@ -1,5 +1,4 @@
 import styled from 'styled-components'
-import { Typography } from 'antd'
 
 const CONFIG_BY_SIZE = {
   default: { fontSize: '16px', lineHeight: '20px', gap: '4px', iconSize: 20 },
@@ -12,7 +11,7 @@ const RateWrapper = styled.div`
   align-items: center;
 `
 
-const LabelStyled = styled(Typography.Text)`
+const LabelStyled = styled.p`
   font-size: ${({ size }) => CONFIG_BY_SIZE?.[size]?.fontSize};
   line-height: ${({ size }) => CONFIG_BY_SIZE?.[size]?.lineHeight};
   margin-left: 4px;

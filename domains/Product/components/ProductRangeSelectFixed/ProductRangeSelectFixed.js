@@ -2,13 +2,11 @@ import {
   Body,
   ProductRangeSelectFixedWrapper
 } from './ProductRangeSelectFixed.styles'
-import { Button, Col, Divider, Row, Typography, theme } from 'antd'
+import { Button, Divider, theme } from 'antd'
 import { useCallback, useEffect, useState } from 'react'
 import { useScreen } from 'hooks'
-import { DateRange } from 'components'
+import { DateRange, Title, Text } from 'components'
 import { useCart, useTranslations } from 'contexts'
-
-const { Title, Text } = Typography
 
 const ProductRangeSelectFixed = (props) => {
   const {
@@ -30,7 +28,7 @@ const ProductRangeSelectFixed = (props) => {
 
   const [isOpened, setIsOpened] = useState(false)
 
-  const titleLevel = isOpened ? 3 : 5
+  const titleLevel = isOpened ? 'h3' : 'h5'
   const showExtraInHeader = !isOpened
 
   const handleToggle = (event) => {
@@ -65,69 +63,67 @@ const ProductRangeSelectFixed = (props) => {
       theme={token}
       onClick={handleToggle}
       id="product-range-select">
-      <Row>
-        <Col className="mr-auto flex-1">
-          <Row>
-            <Col span={24} className="flex align-baseline">
-              <Title level={titleLevel}>{pricePerDayDisplay}</Title>
-              <Text type="secondary">{`/${t('day')}`}</Text>
-            </Col>
-            <Col span={24} className="min-content-width">
-              <Text type="secondary">{formattedDateRange}</Text>
-            </Col>
-          </Row>
-        </Col>
+      <div className="row">
+        <div className="col-auto mr-auto flex-1">
+          <div className="row">
+            <div className="col-12 flex align-baseline">
+              <Title as={titleLevel}>{pricePerDayDisplay}</Title>
+              <Text secondary>{`/${t('day')}`}</Text>
+            </div>
+            <div className="col-12">
+              <Text secondary>{formattedDateRange}</Text>
+            </div>
+          </div>
+        </div>
         {showExtraInHeader && (
           <>
-            <Col className="flex flex-col align-end">
-              <Text type="secondary">{t('Total')}</Text>
-              <Title level={5}>{pricePerPeriodDisplay}</Title>
-            </Col>
-            <Col>
-              <Divider type="vertical" className="full-height mx-16" />
-            </Col>
-            <Col className="flex align-center">
+            <div className="col-auto flex flex-col align-end">
+              <Text secondary>{t('Total')}</Text>
+              <Title as="h5">{pricePerPeriodDisplay}</Title>
+            </div>
+            <div className="col-auto">
+              <Divider type="vertical" className="full-height m-0" />
+            </div>
+            <div className="col-auto flex align-center">
               <Button type="primary" onClick={handleAddItemToCart}>
                 {t('Reserve')}
               </Button>
-            </Col>
+            </div>
           </>
         )}
-      </Row>
+      </div>
 
       <Body>
-        <Row>
-          <Col span={24}>
+        <div className="row">
+          <div className="col-12">
             <DateRange
               showHeader={false}
               onChange={handleChangeRange}
               range={range}
               periodInDays={periodInDays}
             />
-          </Col>
-          <Col span={24}>
+          </div>
+          <div className="col-12">
             <Divider />
-          </Col>
-          <Col span={24}>
-            <Row gutter={16} className="justify-between">
-              <Col className="flex gap-4">
-                <Typography.Text>{pricePerDayDisplay}</Typography.Text>
-                <Typography.Text type="secondary">x</Typography.Text>
-                <Typography.Text>{t(computedDayLabel)}</Typography.Text>
-              </Col>
-              <Col>{pricePerPeriodDisplay}</Col>
-            </Row>
-          </Col>
-          <Col span={24}>
+          </div>
+          <div className="col-12">
+            <div className="row justify-between">
+              <div className="col-auto flex gap-4">
+                <Text>{pricePerDayDisplay}</Text>
+                <Text secondary>x</Text>
+                <Text>{t(computedDayLabel)}</Text>
+              </div>
+              <div className="col-auto">{pricePerPeriodDisplay}</div>
+            </div>
+          </div>
+          <div className="col-12">
             <Divider />
-          </Col>
-          <Col span={24} className="flex justify-between mb-24">
-            <Typography.Title level={5}>{t('Total')}</Typography.Title>
-            <Typography.Title level={5}>
-              {pricePerPeriodDisplay}
-            </Typography.Title>
-          </Col>
-          <Col span={24}>
+          </div>
+          <div className="col-12 flex justify-between mb-24">
+            <Title as="h5">{t('Total')}</Title>
+            <Title as="h5">{pricePerPeriodDisplay}</Title>
+          </div>
+          <div className="col-12">
             <Button
               disabled={disabled}
               block
@@ -136,8 +132,8 @@ const ProductRangeSelectFixed = (props) => {
               onClick={handleAddItemToCart}>
               {t('Reserve')}
             </Button>
-          </Col>
-        </Row>
+          </div>
+        </div>
       </Body>
     </ProductRangeSelectFixedWrapper>
   )

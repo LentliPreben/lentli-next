@@ -1,4 +1,4 @@
-import { Button, Divider, Typography, theme } from 'antd'
+import { Button, Divider, theme } from 'antd'
 
 import PropTypes from 'prop-types'
 import { StyledTag } from './ProductFilterList.styled'
@@ -6,6 +6,7 @@ import { isEmptyObject } from 'utils'
 import { memo } from 'react'
 import { useGetCategories } from 'domains/Category/hooks'
 import { useTranslations } from 'contexts'
+import { Text } from 'components'
 
 const ProductFilterList = (props) => {
   const { filterParams, setFilterParams, brands, brandsLoading } = props
@@ -103,9 +104,7 @@ const ProductFilterList = (props) => {
       {!isEmptyObject(filterParams) && (
         <>
           <div className="flex align-center justify-between mb-12">
-            <Typography.Text className="strong">
-              {t('Selected')}
-            </Typography.Text>
+            <Text className="strong">{t('Selected')}</Text>
 
             <Button
               type="text"
@@ -115,12 +114,12 @@ const ProductFilterList = (props) => {
             </Button>
           </div>
 
-          <Typography.Text type="secondary">
+          <Text secondary>
             {!brandsLoading &&
               Object.entries(filterParams)?.map(([key, values]) =>
                 createTags(key, values)
               )}
-          </Typography.Text>
+          </Text>
           <Divider className="mt-16 mb-24" />
         </>
       )}

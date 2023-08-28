@@ -1,7 +1,7 @@
-import { Checkbox, Typography } from 'antd'
+import { Checkbox } from 'antd'
 import { useSubfilterActions } from 'hooks'
 import { useTranslations } from 'contexts'
-
+import { Text } from 'components'
 import PropTypes from 'prop-types'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useGetMediaObject } from 'domains/MediaObject/hooks'
@@ -26,9 +26,9 @@ const MediaObjectFilter = ({ filterParams, setFilterParams }) => {
               key={`status-${index}`}
               checked={checkIsEnabled(mediaObject)}
               onChange={() => onChange(mediaObject)}>
-              <Typography.Text wordBreak="break-all">
+              <Text className="break-all">
                 {mediaObject?.fileName || t('Unnamed filter')}
-              </Typography.Text>
+              </Text>
             </Checkbox>
           </div>
         ))}

@@ -4,8 +4,8 @@ import {
   imageRow,
   likeFormStyles
 } from './ProductSimpleView.styles'
-import { Col, Row, Space, Typography } from 'antd'
-import { RateSelect, RelativeImage } from 'components'
+import { Space } from 'antd'
+import { RateSelect, RelativeImage, Text, Title } from 'components'
 import {
   currencySymbol,
   updateUserViewsStatistics
@@ -17,8 +17,6 @@ import { getTransformedImageUrl } from 'helpers'
 import { useGetCategory } from 'domains/Category/hooks'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
-
-const { Text, Title } = Typography
 
 const ProductSimpleView = (props) => {
   const { product } = props
@@ -51,31 +49,28 @@ const ProductSimpleView = (props) => {
 
   return (
     <CardStyled bordered={false} onClick={handleProductClick}>
-      <Row className="flex align-center flex-1">
-        <Col span={24} className="full-height">
+      <div className="row g-0 flex align-center flex-1">
+        <div className="col-12 full-height relative">
           <RelativeImage withOverlay={false} src={previewImageUrl} />
           <ImageOverlay />
           <ProductLike style={likeFormStyles} productId={_id} />
-        </Col>
-      </Row>
-      <Row className="px-16 pb-16 pt-8 justify-between" style={imageRow}>
-        <Col span={24} className="mb-4" style={{ height: 'fit-content' }}>
-          <Typography.Paragraph
-            className="mb-0"
-            level={5}
-            ellipsis={{ rows: 2 }}>
+        </div>
+      </div>
+      <div className="row px-16 pb-16 pt-8 justify-between" style={imageRow}>
+        <div className="col-12 mb-4" style={{ height: 'fit-content' }}>
+          <Text className="mb-0" ellipsis={{ rows: 2 }}>
             {name}
-          </Typography.Paragraph>
-          <Text className="mb-0" type="secondary" ellipsis={{ rows: 1 }}>
+          </Text>
+          <Text className="mb-0" secondary ellipsis={{ rows: 1 }}>
             {category?.name}
           </Text>
-        </Col>
+        </div>
 
-        <Col span={24} className="flex align-end justify-between" wrap={false}>
+        <div className="col-12 flex align-end justify-between" wrap={false}>
           <Space size={2} className="flex align-baseline">
-            <Title level={4}>{pricePerDay || 'n/a'}</Title>
-            <Title level={4}>{productCurrencySymbol}</Title>
-            <Text type="secondary">
+            <Title as="h4">{pricePerDay || 'n/a'}</Title>
+            <Title as="h4">{productCurrencySymbol}</Title>
+            <Text secondary>
               {' / '}
               {t('day')}
             </Text>
@@ -83,8 +78,8 @@ const ProductSimpleView = (props) => {
           <Space className="flex flex-col align-end" size={0}>
             <RateSelect mb={-1} size="sm" value={avgRating || 0} />
           </Space>
-        </Col>
-      </Row>
+        </div>
+      </div>
     </CardStyled>
   )
 }

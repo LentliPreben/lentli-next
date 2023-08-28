@@ -3,7 +3,14 @@ import { ImageOverlay } from 'components'
 import ImageStyled from './Image.styles'
 
 const Image = (props) => {
-  const { ratio = 4.5 / 3, overlay, overlayGradient, src, ...rest } = props
+  const {
+    ratio = 4.5 / 3,
+    overlay,
+    overlayGradient,
+    src,
+    className,
+    ...rest
+  } = props
 
   const [width, setWidth] = useState(200)
   const ref = useRef(null)
@@ -23,7 +30,7 @@ const Image = (props) => {
 
   return (
     <div ref={ref}>
-      <div className="p-relative">
+      <div className={`p-relative ${className}`}>
         <ImageStyled
           alt="Image"
           src={computedSrc}

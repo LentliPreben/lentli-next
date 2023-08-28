@@ -746,3 +746,12 @@
 .gap-128 {
   gap: var(--spacing-128) !important;
 }
+.gap-y-8 {
+  gap: 8px 0;
+}
+.gap-y-24 {
+  gap: 24px 0;
+}
+.gap-x-8 {
+  gap: 0 8px;
+}

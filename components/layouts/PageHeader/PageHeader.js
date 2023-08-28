@@ -1,12 +1,12 @@
 import {
   ActionsColStyled,
   PageHeaderWrapper,
-  StyledIcon,
-  StyledSubtitle
+  StyledIcon
 } from './PageHeader.styled'
-import { Col, Divider, Row, Tooltip, Typography } from 'antd'
+import { Divider, Tooltip } from 'antd'
 import { useScreen } from 'hooks'
 import infoCircle from 'public/assets/infoCircle.svg'
+import { Title, Text } from 'components'
 
 const PageHeader = (props) => {
   const {
@@ -24,7 +24,8 @@ const PageHeader = (props) => {
   } = props
 
   const { xs } = useScreen()
-  const computedTitleSize = xs && titleSize < 5 ? titleSize + 1 : titleSize
+  const computedTitleSize =
+    xs && `h${titleSize < 5 ? titleSize + 1 : titleSize}`
 
   if (withoutHeader) return null
 
@@ -35,19 +36,17 @@ const PageHeader = (props) => {
         className="relative mb-12"
         style={{ marginTop: topHeader && '68px' }}>
         {(breadcrumbs || filter) && (
-          <Row className="align-center">
-            <Col className="mr-auto">{breadcrumbs}</Col>
-            <Col className="ml-auto">{filter}</Col>
-          </Row>
+          <div className="row align-center">
+            <div className="col-auto mr-auto">{breadcrumbs}</div>
+            <div className="col-auto ml-auto">{filter}</div>
+          </div>
         )}
-        <Row align="center" className="flex-nowrap align-start">
-          <Col flex="auto">
+        <div className="row flex-nowrap align-start">
+          <div className="col flex-auto">
             {title && (
               <>
                 <div className={`flex align-center ${subTitle && 'mb-8'}`}>
-                  <Typography.Title level={computedTitleSize}>
-                    {title}
-                  </Typography.Title>
+                  <Title as={computedTitleSize}>{title}</Title>
                   {tooltipTitle && (
                     <Tooltip title={tooltipTitle} className="ml-8">
                       <StyledIcon
@@ -58,17 +57,13 @@ const PageHeader = (props) => {
                     </Tooltip>
                   )}
                 </div>
-                {subTitle && (
-                  <StyledSubtitle level={subTitleSize}>
-                    {subTitle}
-                  </StyledSubtitle>
-                )}
+                {subTitle && subTitle}
               </>
             )}
             {divider && <Divider className="mb-0 mt-8" />}
-          </Col>
+          </div>
           {actions && <ActionsColStyled>{actions}</ActionsColStyled>}
-        </Row>
+        </div>
       </div>
     </>
   )

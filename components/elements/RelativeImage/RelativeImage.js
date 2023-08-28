@@ -23,7 +23,7 @@ const RelativeImage = (props) => {
     const resizeObserver = new ResizeObserver((event) => {
       // Depending on the layout, you may need to swap inlineSize with blockSize
       // https://developer.mozilla.org/en-US/docs/Web/API/ResizeObserverEntry/contentBoxSize
-      setWidth(event?.[0]?.contentBoxSize?.[0]?.inlineSize || '100%')
+      setWidth(event?.[0]?.contentBoxSize?.[0]?.inlineSize || '200')
     })
 
     resizeObserver?.observe?.(ref.current)

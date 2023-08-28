@@ -1,6 +1,6 @@
-import { Col, Empty, Pagination, Row, Typography } from 'antd'
+import { Col, Empty, Pagination, Row } from 'antd'
 import { memo } from 'react'
-
+import { Text } from 'components'
 import { ProductList } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { useTranslations } from 'contexts'
@@ -17,8 +17,8 @@ const ProductsAllView = (props) => {
     : 'calc(100dvh - 198px)'
 
   return (
-    <Row gutter={24} className="flex-1">
-      <Col flex="auto" span={24}>
+    <div className="row flex-1">
+      <div className="col-12 flex-1">
         {products?.length ? (
           <ProductList
             maxHeight={heightToNegotiate}
@@ -38,14 +38,14 @@ const ProductsAllView = (props) => {
         ) : (
           <Empty
             description={
-              <Typography.Text type="secondary">
+              <Text secondary>
                 {t("There aren't products for current category")}
-              </Typography.Text>
+              </Text>
             }
           />
         )}
-      </Col>
-    </Row>
+      </div>
+    </div>
   )
 }
 

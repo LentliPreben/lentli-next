@@ -2,7 +2,7 @@ import { Logo, Text, FooterMenu } from 'components'
 import { FOOTER_MENU, APP_PATHS } from '__constants__'
 import { useTranslations } from 'contexts'
 import { FooterWrapperStyled, FooterStyled } from './Footer.styles'
-import { Row, Col, theme, Grid } from 'antd'
+import { theme, Grid } from 'antd'
 import { useCurrentScreen } from 'hooks'
 import { useRouter } from 'next/router'
 
@@ -27,8 +27,8 @@ const Footer = () => {
         xs={xs}
         sm={sm}
         lg={lg}>
-        <Row className="gap-24">
-          <Col xs={24} sm={12}>
+        <div className="row gap-24">
+          <div className="col-12 col-sm-6">
             <div className="mb-2">
               <Logo inverse />
             </div>
@@ -44,20 +44,20 @@ const Footer = () => {
             <Text inverse variant="body2">
               ©lentli
             </Text>
-          </Col>
+          </div>
           {/* <div className="col-3"> temporary commented
             <FooterMenu
               label={FOOTER_MENU.NAVIGATION?.label}
               items={FOOTER_MENU.NAVIGATION?.items}
             />
           </div> */}
-          <Col xs={24} sm={10}>
+          <div className="col-12 col-sm-10">
             <FooterMenu
               label={FOOTER_MENU.CONTACT?.label}
               items={FOOTER_MENU.CONTACT?.items}
             />
-          </Col>
-        </Row>
+          </div>
+        </div>
       </FooterStyled>
     </FooterWrapperStyled>
   )

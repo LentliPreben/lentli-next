@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { Col, Typography, theme } from 'antd'
+import { theme } from 'antd'
 import Image from 'next/image'
 
 export const StyledIcon = (props) => {
@@ -37,18 +37,10 @@ export const ActionsColStyled = (props) => {
   const { children, ...rest } = props
 
   return (
-    <Col className="flex align-center justify-end flex-auto ml-16" {...rest}>
+    <div className="col flex align-center justify-end flex-1 ml-16" {...rest}>
       {children}
-    </Col>
+    </div>
   )
-}
-
-export const StyledSubtitle = (props) => {
-  const {
-    token: { colorTextSecondary }
-  } = theme.useToken()
-
-  return <Typography.Text style={{ color: colorTextSecondary }} {...props} />
 }
 
 export const PageHeaderWrapper = (props) => {

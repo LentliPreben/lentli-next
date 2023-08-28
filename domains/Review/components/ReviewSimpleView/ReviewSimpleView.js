@@ -1,10 +1,7 @@
 import PropTypes from 'prop-types'
 import { useGetUserDisplayName } from 'domains/User/hooks'
-import { Row, Col, Typography } from 'antd'
-import { Avatar, Rate } from 'components'
+import { Avatar, Rate, Text } from 'components'
 import { StyledDisplayName, StyledDisplayDate } from './ReviewSimpleView.styles'
-
-const { Text } = Typography
 
 const ReviewSimpleView = (props) => {
   const { review, rentee } = props
@@ -15,27 +12,27 @@ const ReviewSimpleView = (props) => {
   const dateFormatted = review?.dateFormatted
 
   return (
-    <Row gutter={[0, 4]}>
-      <Col className="mr-8">
+    <div className="row gx-0">
+      <div className="col-auto mr-16">
         <Avatar src={rentee?.avatarUrl} size={34} />
-      </Col>
-      <Col className="flex flex-col">
+      </div>
+      <div className="col">
         <StyledDisplayName>{displayName}</StyledDisplayName>
         <Rate type="advanced" value={review?.rating} size="small" />
-      </Col>
+      </div>
       {dateFormatted && (
-        <Col className="ml-auto">
-          <StyledDisplayDate type="secondary">
+        <div className="col-auto ml-auto">
+          <StyledDisplayDate className="c-secondary">
             {dateFormatted}
           </StyledDisplayDate>
-        </Col>
+        </div>
       )}
       {showDescription && (
-        <Col span={24}>
-          <Text type="secondary">{review?.review}</Text>
-        </Col>
+        <div className="col-12">
+          <Text secondary>{review?.review}</Text>
+        </div>
       )}
-    </Row>
+    </div>
   )
 }
 

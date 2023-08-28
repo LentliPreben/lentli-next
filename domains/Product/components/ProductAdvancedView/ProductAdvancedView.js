@@ -1,4 +1,4 @@
-import { Col, Divider, Grid, Row, Typography } from 'antd'
+import { Divider, Grid } from 'antd'
 import {
   ProductCharacteristics,
   ProductDetails,
@@ -8,7 +8,7 @@ import {
   ProductsListFromCurrentLessor
 } from 'domains/Product/components'
 
-import { ImagesPreview } from 'components'
+import { ImagesPreview, Title, Text } from 'components'
 import PropTypes from 'prop-types'
 import { ReviewsList } from 'domains/Review/components'
 import { TagList } from 'domains/Tag/components'
@@ -17,7 +17,6 @@ import { useMemo } from 'react'
 import { useProductRangeSelectActions } from 'domains/Product/hooks'
 import { useTranslations } from 'contexts'
 
-const { Title, Text } = Typography
 const { useBreakpoint } = Grid
 
 const ProductAdvancedView = (props) => {
@@ -52,81 +51,79 @@ const ProductAdvancedView = (props) => {
 
   return (
     <>
-      <Row gutter={32} className="mb-48">
-        <Col xs={24} md={24} lg={24} xxl={24} className="mb-24">
+      <div gutter={32} className="row mb-48">
+        <div className="co-12 mb-24">
           <ImagesPreview
             mediaObjects={mediaObjectsUrls}
             productId={product?._id}
             productName={product?.name}
           />
-        </Col>
-        <Col xs={24} lg={15} xl={16}>
-          <Row>
-            <Col span={24}>
+        </div>
+        <div className="col col-lg-8">
+          <div className="row">
+            <div className="col-12">
               <ProductDetails product={product} address={address} />
-            </Col>
-            <Col span={24}>
+            </div>
+            <div className="col-12">
               <Divider />
-            </Col>
+            </div>
             {showCharacteristics && (
               <>
-                <Col span={24}>
-                  <Col span={24} className="mb-8">
-                    <Title level={5}>{t('Characteristics')}</Title>
-                  </Col>
-                </Col>
-                <Col span={24}>
+                <div className="col-12 mb-8">
+                  <Title as="h5">{t('Characteristics')}</Title>
+                </div>
+                <div className="col-12">
                   <ProductCharacteristics characteristic={product?.fields} />
-                </Col>
-                <Col span={24}>
+                </div>
+                <div className="col-12">
                   <Divider />
-                </Col>
+                </div>
               </>
             )}
             {showDescription && (
               <>
-                <Col span={24}>
+                <div className="col-12">
                   <Text>{product?.description}</Text>
-                </Col>
-                <Col span={24}>
+                </div>
+                <div className="col-12">
                   <Divider />
-                </Col>
+                </div>
               </>
             )}
 
             {showTags && (
               <>
-                <Col span={24} className="mb-8">
-                  <Title level={5}>{t('Tags')}</Title>
-                </Col>
-                <Col span={24}>
+                <div className="col-12 mb-8">
+                  <Title as="h5">{t('Tags')}</Title>
+                </div>
+                <div className="col-12">
                   <TagList tags={tags} />
-                </Col>
-                <Col span={24}>
+                </div>
+                <div className="col-12">
                   <Divider />
-                </Col>
+                </div>
               </>
             )}
             {showReviews && (
               <>
-                <Col span={24} className="mb-8">
-                  <Title level={5}>{t('Reviews')}</Title>
-                </Col>
-                <Col span={24}>
+                <div className="col-12">
+                  <Title as="h5">{t('Reviews')}</Title>
+                </div>
+                <div className="col-12">
                   <ReviewsList reviews={reviews} />
-                </Col>
-                <Col span={24}>
+                </div>
+                <div className="col-12">
                   <Divider />
-                </Col>
+                </div>
               </>
             )}
-            <Col span={24}>
+            <div className="col-12">
               <ProductLessorView user={user} />
-            </Col>
-          </Row>
-        </Col>
+            </div>
+          </div>
+        </div>
         {lg && (
-          <Col lg={9} xl={8} className="relative">
+          <div className="col-lg-4 relative">
             <ProductRangeSelect
               disabledDates={disabledDates}
               productId={product?._id}
@@ -139,14 +136,14 @@ const ProductAdvancedView = (props) => {
               computedDayLabel={computedDayLabel}
               className="sticky"
             />
-          </Col>
+          </div>
         )}
-      </Row>
-      <Row>
-        <Col span={24}>
+      </div>
+      <div className="row">
+        <div className="col-12">
           <ProductsListFromCurrentLessor user={user} />
-        </Col>
-      </Row>
+        </div>
+      </div>
       {!lg && (
         <ProductRangeSelectFixed
           disabledDates={disabledDates}

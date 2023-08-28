@@ -1,16 +1,14 @@
-import { Avatar, Col, Grid, Row, Typography } from 'antd'
-
+import { Grid } from 'antd'
+import { Avatar, Text } from 'components'
 import { RatingAndIdentifyDetails } from './components'
-import { StyledDisplayName } from './ProductLessorView.styles'
 import { useTranslations } from 'contexts'
+import StyledDisplayName from './ProductLessorView.styled'
 
-const { Text } = Typography
 const { useBreakpoint } = Grid
 
 const ProductLessorView = (props) => {
   const { user } = props
 
-  const { xl } = useBreakpoint()
   const { t } = useTranslations()
 
   const isVerified = user?.isVerified
@@ -30,22 +28,22 @@ const ProductLessorView = (props) => {
 
   return (
     <>
-      <Row align={`center ${bio || (!xl && 'mb-16')}`}>
-        <Col className="mr-16">
+      <div className="row gx-3">
+        <div className="col-auto">
           <Avatar src={user?.avatarUrl} size={48} />
-        </Col>
-        <Col className="mr-auto">
+        </div>
+        <div className="col-auto mr-auto">
           <div className="flex align-center gap-4">
             <Text>{t('Rented out by')}</Text>
-            <StyledDisplayName level={5}>{userDisplayName}</StyledDisplayName>
+            <StyledDisplayName>{userDisplayName}</StyledDisplayName>
           </div>
-          <Text type="secondary">{joinedInLabel}</Text>
-        </Col>
-        {xl && (
-          <Col className="flex align-center">
-            <RatingAndIdentifyDetails bio={bio} isVerified={isVerified} />
-          </Col>
-        )}
+          <Text secondary>{joinedInLabel}</Text>
+        </div>
+
+        <div className="col-auto flex">
+          <RatingAndIdentifyDetails bio={bio} isVerified={isVerified} />
+        </div>
+
         {/* Contact Lessor btn temporarily hidden */}
         {/* <Col className="flex align-center ml-32">
           <Button
@@ -54,14 +52,13 @@ const ProductLessorView = (props) => {
             {buttonText}
           </Button>
         </Col> */}
-      </Row>
-      {!xl && <RatingAndIdentifyDetails isVerified={isVerified} bio={bio} />}
+      </div>
       {bio && (
-        <Row>
-          <Col>
+        <div className="row mt-8">
+          <div className="col">
             <Text>{bio}</Text>
-          </Col>
-        </Row>
+          </div>
+        </div>
       )}
     </>
   )

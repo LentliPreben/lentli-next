@@ -1,5 +1,4 @@
 import { PageLayout } from 'components'
-import { Col, Row } from 'antd'
 import { useTranslations } from 'contexts'
 
 import { CartList } from 'domains/Cart/components'
@@ -14,11 +13,7 @@ const Cart = () => {
 
   return (
     <PageLayout headingProps={headingProps}>
-      <Row gutter={[24, 16]}>
-        <Col flex="auto">
-          <CartList />
-        </Col>
-      </Row>
+      <CartList />
     </PageLayout>
   )
 }

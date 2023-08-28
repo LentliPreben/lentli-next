@@ -1,10 +1,11 @@
-import { Button, Input, Slider, Typography } from 'antd'
+import { Button, Input, Slider } from 'antd'
 import { memo, useEffect, useMemo, useState } from 'react'
 import { useSubfilterActions } from 'hooks'
 
 import PropTypes from 'prop-types'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useFilterContext, useTranslations } from 'contexts'
+import { Text } from 'components'
 
 const PriceFilter = ({ priceRange }) => {
   const { setFilterParams, filterParams } = useFilterContext()
@@ -69,7 +70,7 @@ const PriceFilter = ({ priceRange }) => {
               value={minValue}
               onChange={(e) => handleInputChange(e.target.value, 'min')}
             />
-            <Typography.Text type="secondary">-</Typography.Text>
+            <Text secondary>-</Text>
             <Input
               className="mr-4"
               value={maxValue}

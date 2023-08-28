@@ -1,10 +1,11 @@
-import { Checkbox, Space, Typography } from 'antd'
+import { Checkbox, Space } from 'antd'
 import { useSubfilterActions } from 'hooks'
 import { useTranslations } from 'contexts'
 
 import PropTypes from 'prop-types'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useGetTags } from 'domains/Tag/hooks'
+import { Text } from 'components'
 
 const TagFilter = ({ filterParams, setFilterParams }) => {
   const [tags] = useGetTags()
@@ -24,13 +25,11 @@ const TagFilter = ({ filterParams, setFilterParams }) => {
           <div
             key={`status-${index}`}
             className="flex justify-between align-center">
-            <Typography.Text wordBreak="break-all">
+            <Text className="break-all">
               {tag?.name || t('Unnamed filter')}
-            </Typography.Text>
+            </Text>
             <Space>
-              <Typography.Text type="secondary">
-                ({numberOfItemsByFilter})
-              </Typography.Text>
+              <Text secondary>({numberOfItemsByFilter})</Text>
               <Checkbox
                 key={`status-${index}`}
                 checked={checkIsEnabled(tag)}

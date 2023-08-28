@@ -30,4 +30,5 @@ export const HeadingWrapper = styled.div`
 export const TitleWrapper = styled.div`
   margin-bottom: 3px;
   margin-left: 16px;
+  padding-bottom: 8px;
 `

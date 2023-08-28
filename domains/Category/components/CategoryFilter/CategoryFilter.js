@@ -1,10 +1,10 @@
-import { Checkbox, Space, Typography } from 'antd'
+import { Checkbox, Space } from 'antd'
 import { collection, query, where } from 'firebase/firestore'
 import { useFilterContext, useTranslations } from 'contexts'
 
 import { COLLECTIONS } from '__constants__'
 import PropTypes from 'prop-types'
-import { Spinner } from 'components'
+import { Spinner, Text } from 'components'
 import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { firestore } from 'services/firebase'
 import { memo } from 'react'
@@ -44,9 +44,9 @@ const CategoryFilter = () => {
                 checked={checkIsEnabled(category)}
                 onChange={() => onChange(category)}
               />
-              <Typography.Text wordBreak="break-all">
+              <Text className="break-all">
                 {category?.name || t('Unnamed filter')}
-              </Typography.Text>
+              </Text>
             </Space>
           </div>
         ))}

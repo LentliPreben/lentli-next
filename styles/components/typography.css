@@ -107,6 +107,12 @@ p.uppercase {
 .fs-italic {
   font-style: italic;
 }
+.overline { 
+  text-transform: uppercase;
+}
+.break-all {
+  word-break: break-all;
+}
 .c-primary {
   color: var(--text-color-primary);
 }
