@@ -7,16 +7,19 @@ import {
   LikedProductsProvider,
   TranslationsProvider
 } from 'contexts'
+import { ConfigProvider } from 'antd'
 
 function MyApp({ Component, pageProps }) {
   return (
-    <TranslationsProvider>
-      <CartProvider>
-        <LikedProductsProvider>
-          <Component {...pageProps} />
-        </LikedProductsProvider>
-      </CartProvider>
-    </TranslationsProvider>
+    <ConfigProvider theme={{}}>
+      <TranslationsProvider>
+        <CartProvider>
+          <LikedProductsProvider>
+            <Component {...pageProps} />
+          </LikedProductsProvider>
+        </CartProvider>
+      </TranslationsProvider>
+    </ConfigProvider>
   )
 }
 
