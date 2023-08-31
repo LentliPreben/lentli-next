@@ -1,22 +1,38 @@
 import { useState, useEffect } from 'react'
 import { useTranslations } from 'contexts'
-import { Select } from 'antd'
-
+import Select from 'components/elements/Select'
 const LanguagesMenu = () => {
   const { setCurrentLanguage, languages, language } = useTranslations()
 
-  const [defaultValue, setDefaultValue] = useState()
+  const [selectedOption, setSelectedOption] = useState()
+
+  const handleChange = (option) => setCurrentLanguage(option.value)
+
+  const styles = {
+    control: (baseStyles) => ({
+      ...baseStyles,
+      border: 'unset',
+      boxShadow: 'unset',
+      width: 'fit-content'
+    })
+  }
+  const components = {
+    DropdownIndicator: () => null,
+    IndicatorSeparator: () => null
+  }
 
   useEffect(() => {
-    setDefaultValue(language)
-  }, [language])
+    setSelectedOption(languages?.find(({ value }) => value === language))
+  }, [language, languages])
 
   return (
     <Select
-      onSelect={setCurrentLanguage}
-      bordered={false}
+      className="language-menu"
+      onChange={handleChange}
       options={languages}
-      value={defaultValue}
+      value={selectedOption}
+      components={components}
+      styles={styles}
     />
   )
 }

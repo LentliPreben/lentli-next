@@ -1,5 +1,4 @@
 import { getClassNames } from 'utils'
-import Image from 'next/image'
 
 const Button = (props) => {
   const {
@@ -8,8 +7,7 @@ const Button = (props) => {
     type = 'secondary',
     block,
     rounded,
-    large,
-    small,
+    size = 'md',
     icon,
     iconPosition = 'left',
     onClick,
@@ -24,18 +22,13 @@ const Button = (props) => {
     [`btn-${type}`]: type,
     'btn-rounded': rounded,
     'btn-block': block,
-    'btn-lg': large,
-    'btn-sm': small,
+    [`btn-${size}`]: size,
     [className]: !!className,
     'btn-only-icon': !children && icon
   })
 
-  const iconComponent = icon && (
-    <Image width={20} height={20} alt="button" src={icon} loading="lazy" />
-  )
-
-  const leftIcon = iconPosition === 'left' ? iconComponent : null
-  const rightIcon = iconPosition === 'right' ? iconComponent : null
+  const leftIcon = iconPosition === 'left' ? icon : null
+  const rightIcon = iconPosition === 'right' ? icon : null
 
   return (
     <a className={classNames} onClick={onClick} {...rest}>

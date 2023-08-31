@@ -29,7 +29,7 @@ const RangeNumber = (props) => {
       <NumberInput value={values?.[0]} small onChange={handleChangeMinValue} />
       <Text secondary>-</Text>
       <NumberInput value={values?.[1]} small onChange={handleChangeMaxValue} />
-      <Button onClick={handleOk} small>
+      <Button onClick={handleOk} size="sm">
         {t('OK')}
       </Button>
     </div>

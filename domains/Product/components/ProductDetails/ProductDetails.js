@@ -1,5 +1,3 @@
-import { theme, Grid } from 'antd'
-
 import { CANCELLATION_TERMS_TYPES_DESCRIPTION } from '__constants__'
 import { formatAddress } from 'utils'
 import { useTranslations } from 'contexts'
@@ -9,8 +7,7 @@ import markerPin from 'public/assets/markerPin.svg'
 import calendar from 'public/assets/calendar.svg'
 import { Text, Title } from 'components'
 import Image from 'next/image'
-
-const { useBreakpoint } = Grid
+import { useBreakpoint } from 'hooks'
 
 const ProductDetails = (props) => {
   const { product, address } = props
@@ -18,7 +15,6 @@ const ProductDetails = (props) => {
   const { xl } = useBreakpoint()
   const { t } = useTranslations()
 
-  const { colorFillSecondary } = theme.useToken().token
   const cancellationTermsDescription =
     CANCELLATION_TERMS_TYPES_DESCRIPTION?.[product?.cancellationTerms]
 
@@ -55,8 +51,7 @@ const ProductDetails = (props) => {
           <div className="row">
             {!xl && (
               <div className="col-auto">
-                <ProductDetailIconWrapper
-                  colorFillSecondary={colorFillSecondary}>
+                <ProductDetailIconWrapper>
                   {src && (
                     <Image src={src} width={18} height={18} alt={title} />
                   )}

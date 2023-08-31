@@ -1,4 +1,3 @@
-import { Space } from 'antd'
 import { Link, RelativeImage } from 'components'
 
 import PropTypes from 'prop-types'
@@ -14,19 +13,19 @@ const MapProductView = (props) => {
 
   return (
     <div style={{ width: '200px' }}>
-      <div className="row mb-4">
-        <div className="col-9 pr-16">
+      <div className="row mb-4 g-2">
+        <div className="col-5">
           <RelativeImage src={previewImgUrl} withOverlay={false} />
         </div>
-        <div className="7">
-          <Space size={2} className="flex align-baseline">
+        <div className="col-7">
+          <div className="flex gap-4 align-baseline">
             <Title as="h5">{pricePerDay || 'n/a'}</Title>
             <Title as="h5">{productCurrencySymbol}</Title>
             <Text secondary>
               {' / '}
               {t('day')}
             </Text>
-          </Space>
+          </div>
           <Link href={href}>{t('View details')}</Link>
         </div>
       </div>

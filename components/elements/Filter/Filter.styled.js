@@ -1,4 +1,3 @@
-import { Collapse } from 'antd'
 import styled from 'styled-components'
 
 export const StyledFilter = styled.div`
@@ -15,6 +14,9 @@ export const StyledFilter = styled.div`
     height: 0;
     width: 0;
   }
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
 `
 
 export const StyledHeader = styled.div`
@@ -25,28 +27,6 @@ export const StyledHeader = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 12px;
-`
-
-export const StyledCollapse = styled(Collapse)`
-  margin-bottom: 36px;
-
-  .ant-collapse-header {
-    padding-inline: 0px !important;
-    padding-top: 0 !important;
-    padding-bottom: 16px !important;
-    font-weight: 600;
-  }
-  .ant-collapse-content-box {
-    padding-block: 0px !important;
-    padding: 0px !important;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  .ant-collapse-expand-icon {
-    order: 2;
-    padding-inline-end: 0px !important;
-  }
 `
 
 export const BlurBox = styled.div`

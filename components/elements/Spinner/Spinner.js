@@ -1,22 +1,25 @@
 import { Text } from 'components'
-import PropTypes from 'prop-types'
-import { StyledSpinner } from './Spinner.styled'
 
 const Spinner = (props) => {
-  const { text, ...rest } = props
+  const { tip } = props
+
+  const tipNode = tip ? (
+    <Text variant="body2" secondary>
+      {tip}
+    </Text>
+  ) : null
 
   return (
-    <div className="flex flex-1 justify-center align-center" {...rest}>
-      <div className="flex gap-8">
-        <StyledSpinner />
-        {text && <Text>{text}</Text>}
+    <div className="spinner-wrapper">
+      <div className="spinner">
+        <div className="spinner-dot spinner-dot-left-top" />
+        <div className="spinner-dot spinner-dot-right-top" />
+        <div className="spinner-dot spinner-dot-left-bottom" />
+        <div className="spinner-dot spinner-dot-right-bottom" />
       </div>
+      {tipNode}
     </div>
   )
-}
-
-Spinner.propTypes = {
-  text: PropTypes.string
 }
 
 export default Spinner

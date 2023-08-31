@@ -1,18 +1,16 @@
-import { Button, Divider, theme } from 'antd'
-
 import PropTypes from 'prop-types'
-import { StyledTag } from './ProductFilterList.styled'
 import { isEmptyObject } from 'utils'
 import { memo } from 'react'
 import { useGetCategories } from 'domains/Category/hooks'
 import { useTranslations } from 'contexts'
-import { Text } from 'components'
+import { Text, Button, Divider, Tag } from 'components'
+import TagsListWrapper from './ProductFilterList.styled'
 
 const ProductFilterList = (props) => {
   const { filterParams, setFilterParams, brands, brandsLoading } = props
   const { t } = useTranslations()
   const [categories] = useGetCategories()
-  const { colorPrimary } = theme.useToken().token
+
   const createTags = (key, values) => {
     if (key === 'pricePerDay') {
       const regex = /(\d+)\.\.(\d+)/ // Regular expression to match the numbers before and after the double dots
@@ -22,13 +20,13 @@ const ProductFilterList = (props) => {
         const [, minPrice, maxPrice] = matches // Destructure the matched values
 
         return (
-          <StyledTag
+          <Tag
             className="mb-8"
             onClose={() => handleTagClose(key, values)}
             closable
             key={key}>
             {`${minPrice}-${maxPrice} NOK`}
-          </StyledTag>
+          </Tag>
         )
       }
     }
@@ -36,13 +34,13 @@ const ProductFilterList = (props) => {
       const radius = values / 1000
 
       return (
-        <StyledTag
+        <Tag
           className="mb-8"
           onClose={() => handleTagClose(key, values)}
           closable
           key={key}>
           {`${radius}km`}
-        </StyledTag>
+        </Tag>
       )
     }
     if (key === 'subcategoryId') {
@@ -52,13 +50,13 @@ const ProductFilterList = (props) => {
         )
 
         return (
-          <StyledTag
+          <Tag
             className="mb-8"
-            onClose={() => handleTagClose(key, values)}
+            onClose={() => handleTagClose(key, categoryId)}
             closable
             key={key}>
             {category?.name}
-          </StyledTag>
+          </Tag>
         )
       })
     }
@@ -70,13 +68,13 @@ const ProductFilterList = (props) => {
           : value
 
       return (
-        <StyledTag
+        <Tag
           className="mb-8"
           closable
           onClose={() => handleTagClose(key, value)}
           key={`${key}-${displayValue}`}>
           {`${displayValue}`}
-        </StyledTag>
+        </Tag>
       )
     })
   }
@@ -106,21 +104,17 @@ const ProductFilterList = (props) => {
           <div className="flex align-center justify-between mb-12">
             <Text className="strong">{t('Selected')}</Text>
 
-            <Button
-              type="text"
-              style={{ color: colorPrimary }}
-              onClick={handleResetFiltersAll}>
+            <Button type="link" onClick={handleResetFiltersAll}>
               {t('Clear all')}
             </Button>
           </div>
-
-          <Text secondary>
+          <TagsListWrapper>
             {!brandsLoading &&
               Object.entries(filterParams)?.map(([key, values]) =>
                 createTags(key, values)
               )}
-          </Text>
-          <Divider className="mt-16 mb-24" />
+          </TagsListWrapper>
+          <Divider className="my-4" />
         </>
       )}
     </>

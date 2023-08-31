@@ -14,7 +14,7 @@ const ReviewSimpleView = (props) => {
   return (
     <div className="row gx-0">
       <div className="col-auto mr-16">
-        <Avatar src={rentee?.avatarUrl} size={34} />
+        <Avatar src={rentee?.avatarUrl} />
       </div>
       <div className="col">
         <StyledDisplayName>{displayName}</StyledDisplayName>

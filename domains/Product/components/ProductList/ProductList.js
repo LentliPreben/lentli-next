@@ -10,9 +10,9 @@ const ProductList = (props) => {
     products,
     emptyProps,
     onDraftsToPublishSelect,
-    span,
     pagination,
     maxHeight,
+    wrapperStyles = {},
     ...rest
   } = props
 
@@ -29,9 +29,9 @@ const ProductList = (props) => {
   return products?.length ? (
     <StyledList
       wrapperStyles={{
-        overflowY: 'auto'
+        overflowY: 'scroll',
+        ...wrapperStyles
       }}
-      span={span}
       {...rest}
       dataSource={products}
       emptyProps={emptyParams}
@@ -58,7 +58,6 @@ ProductList.propTypes = {
   onDraftsToPublishSelect: PropTypes.func,
   selectedDrafts: PropTypes.array,
   isDraftsPage: PropTypes.bool,
-  span: PropTypes.object,
   pagination: PropTypes.object,
   maxHeight: PropTypes.string
 }

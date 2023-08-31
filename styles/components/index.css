@@ -12,8 +12,15 @@
 @import url('./content.css');
 @import url('./languagesMenu.css');
 @import url('./searchResultHeading.css');
-@import url('./breadcrumbs.css');
 @import url('./loadingBox.css');
 @import url('./tag.css');
 @import url('./imageOverlay.css');
 @import url('./rangeNumber.css');
+@import url('./collapse.css');
+@import url('./checkbox.css');
+@import url('./drawer.css');
+@import url('./tooltip.css');
+@import url('./divider.css');
+@import url('./slider.css');
+@import url('./pagination.css');
+@import url('./spinner.css');

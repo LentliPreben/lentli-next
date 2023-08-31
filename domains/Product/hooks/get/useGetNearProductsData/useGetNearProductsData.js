@@ -9,12 +9,12 @@ const useGetNearProductsData = (nearProducts, numVisible) => {
   const handleError = useHandleError()
 
   const getCategory = useCallback(
-    async categoryId => getDocument(COLLECTIONS.CATEGORIES, categoryId),
+    async (categoryId) => getDocument(COLLECTIONS.CATEGORIES, categoryId),
     []
   )
 
   const getParentCategory = useCallback(
-    async categoryId => {
+    async (categoryId) => {
       const category = await getCategory(categoryId)
       if (!category) {
         return null

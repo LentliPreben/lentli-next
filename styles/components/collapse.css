@@ -1,0 +1,29 @@
+.collapse {
+  cursor: pointer;
+  width: 100%;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.collapse-wrapper.active  > .panel {
+  overflow: inherit;
+}
+.collapse.active {
+  margin-bottom: 16px;
+}
+.collapse img {
+  transition: transform 0.2s ease-out;
+}
+.collapse.active img {
+  transform: rotate(180deg);
+  transition: transform 0.2s ease-out;
+}
+.panel {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}

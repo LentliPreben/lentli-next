@@ -1,5 +1,5 @@
 import moment from 'moment'
-import { message } from 'antd'
+import { notification } from 'utils'
 /**
  *
  * @param {object} range  has startDate and endDate
@@ -11,22 +11,24 @@ const finalCheck = (range, t, onChange) => {
 
   // Check if start date is today or day after today
   if (!moment(startDate).isAfter(moment().subtract(1, 'd'))) {
-    message.error(
-      `${t(
+    notification({
+      type: 'error',
+      message: `${t(
         'The selected date cannot be from the past'
       )}. ${'Please, select other date'}`
-    )
+    })
     onChange?.({ startDate: moment().toDate() })
     return
   }
 
   // Check if end date is today or day after today
   if (!moment(endDate).isAfter(moment().subtract(1, 'd'))) {
-    message.error(
-      `${t(
+    notification({
+      type: 'error',
+      message: `${t(
         'The selected date cannot be from the past'
       )}. ${'Please, select other date'}`
-    )
+    })
     onChange?.({ endDate: moment().toDate() })
     return
   }
@@ -36,11 +38,12 @@ const finalCheck = (range, t, onChange) => {
     !moment(endDate).isAfter(moment(startDate)) &&
     !moment(endDate).startOf('day').isSame(moment(startDate).startOf('day'))
   ) {
-    message.error(
-      `${t(
-        'Еhe end date cannot be earlier than the initial date'
+    notification({
+      type: 'error',
+      message: `${t(
+        'The end date cannot be earlier than the initial date'
       )}. ${'Please, select other date'}`
-    )
+    })
     onChange?.({ startDate: moment().toDate() })
     return
   }

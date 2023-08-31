@@ -6,6 +6,7 @@ import { database } from 'services/firebase'
 import { ref as dbRef, onValue, update } from 'firebase/database'
 import md5 from 'md5'
 import { LoadingBox } from 'components'
+import { notification } from 'utils'
 
 const APPLICATION_NAME = process.env.NEXT_PUBLIC_APPLICATION_NAME
 const STORAGE_KEY = 'language'
@@ -55,7 +56,10 @@ const TranslationsProvider = ({ children }) => {
         resolve(onWrite?.({ ref, value: { [refEnding]: textLabel } }))
       })
     } catch (error) {
-      message.error(`Error during saving translations, ${error.message}`)
+      notification({
+        type: 'error',
+        message: t('Error during saving translations')
+      })
     }
   }
   // Function that looks like i18n t
@@ -118,7 +122,10 @@ const TranslationsProvider = ({ children }) => {
           setLoaded(true)
         }
       } catch (error) {
-        message.error(`Error during getting translations, ${error.message}`)
+        notification({
+          type: 'error',
+          message: t('Error during getting translations')
+        })
       }
     }
 

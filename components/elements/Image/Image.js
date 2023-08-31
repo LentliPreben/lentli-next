@@ -30,7 +30,7 @@ const Image = (props) => {
 
   return (
     <div ref={ref}>
-      <div className={`p-relative ${className}`}>
+      <div className={`p-relative ${className || ''}`}>
         <ImageStyled
           alt="Image"
           src={computedSrc}

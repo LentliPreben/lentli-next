@@ -3,14 +3,14 @@ import moment from 'moment'
 import { getPriceDisplay } from 'utils'
 import pluralize from 'pluralize'
 import { MOMENT_FORMATS } from '__constants__'
-import { useScreen } from 'hooks'
+import { useBreakpoint } from 'hooks'
 import _ from 'lodash'
 import { useGetProductDisabledDates } from 'domains/Product/hooks'
 
 const { MONTH_DAYS_YEAR, DAY_MONTH } = MOMENT_FORMATS
 
 const useProductRangeSelectActions = (product) => {
-  const { xs } = useScreen()
+  const { xs } = useBreakpoint()
   const [disabledDates] = useGetProductDisabledDates(product?._id)
 
   const [range, setRange] = useState({})

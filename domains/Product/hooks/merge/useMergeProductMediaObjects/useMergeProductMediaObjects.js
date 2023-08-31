@@ -3,9 +3,11 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { COLLECTIONS } from '__constants__'
 import { firestore } from 'services/firebase'
-import { notification } from 'antd'
+import { useHandleError } from 'hooks'
 
 const useMergeProductMediaObjects = (products) => {
+  const handleError = useHandleError()
+
   const [transformedProduct, setTransformedProduct] = useState([])
   const [loading, setLoading] = useState(true)
 
@@ -39,7 +41,7 @@ const useMergeProductMediaObjects = (products) => {
 
       transformedData?.length && setTransformedProduct(transformedData)
     } catch (error) {
-      notification.error({ message: 'Error during get product media object' })
+      handleError(error, t('Error during get product media object'))
     } finally {
       setLoading(false)
     }

@@ -1,6 +1,0 @@
-.search-page section:first-child {
-  padding-top: 32px;
-}
-.search-page .products-list {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}

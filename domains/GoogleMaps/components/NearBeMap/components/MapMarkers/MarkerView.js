@@ -5,7 +5,6 @@ import MapProductView from './MapProductView'
 import PropTypes from 'prop-types'
 import { getIcon } from './helpers'
 import { getTransformedImageUrl } from 'helpers'
-import { useRouter } from 'next/router'
 
 const MarkerView = (props) => {
   const {
@@ -19,8 +18,6 @@ const MarkerView = (props) => {
   } = props
 
   const [detailsVisible, setDetailsVisible] = useState(false)
-
-  const router = useRouter()
 
   const icon = useMemo(() => getIcon(topCategory?.icon), [topCategory?.icon])
 

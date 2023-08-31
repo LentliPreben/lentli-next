@@ -1,16 +1,13 @@
-import { Breadcrumb } from 'antd'
 import styled from 'styled-components'
 
-const StyledBreadCrumb = styled(Breadcrumb)`
-  .ant-breadcrumb-separator,
-  .ant-breadcrumb-link > * {
-    display: flex;
-    align-items: center;
-  }
-  li {
-    display: flex;
-    align-items: center;
+const StyledBreadcrumbs = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  .link {
+    color: var(--text-color-secondary);
   }
 `
 
-export default StyledBreadCrumb
+export default StyledBreadcrumbs

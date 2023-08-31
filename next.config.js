@@ -4,7 +4,10 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
-  images: { domains: ['firebasestorage.googleapis.com'] }
+  images: { domains: ['firebasestorage.googleapis.com'] },
+  compiler: {
+    styledComponents: true
+  }
 }
 
 module.exports = nextConfig

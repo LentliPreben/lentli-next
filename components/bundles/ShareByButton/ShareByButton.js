@@ -17,19 +17,19 @@ const ShareByButton = () => {
       <Button
         type="text"
         onClick={handleShareByMail}
-        small
+        size="sm"
         icon="/assets/mail.svg"
       />
       <Button
         type="text"
         onClick={handleShareByFacebook}
-        small
+        size="sm"
         icon="/assets/facebook.svg"
       />
       <Button
         type="text"
         onClick={handleShareByTwitter}
-        small
+        size="sm"
         icon="/assets/twitter.svg"
       />
     </div>

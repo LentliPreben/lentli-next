@@ -6,13 +6,13 @@ import {
 import { useRef, useState } from 'react'
 import {
   HeadingWrapper,
-  TitleWrapper
+  TitleWrapper,
+  productSimpleViewWrapperStyles
 } from './NearByProductHorizontalList.styled'
-import { Space } from 'antd'
 import { ProductSimpleView } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { StyledSpace } from './NearByProductHorizontalList.styled'
-import { useHorizontalScroll, useScreen } from 'hooks'
+import { useHorizontalScroll, useBreakpoint } from 'hooks'
 import { useTranslations } from 'contexts'
 import { Link, Title, Text } from 'components'
 import chevronRightAccent from 'public/assets/chevronRightAccent.svg'
@@ -21,7 +21,7 @@ import Image from 'next/image'
 const NearByProductHorizontalList = ({ products }) => {
   const { t } = useTranslations()
 
-  const { xs } = useScreen()
+  const { xs } = useBreakpoint()
 
   const [scrollRef, handleMouseEnter, handleMouseLeave] = useHorizontalScroll()
   const [numVisible, setNumVisible] = useState(0)
@@ -55,7 +55,7 @@ const NearByProductHorizontalList = ({ products }) => {
           )}
           <div style={{ marginLeft: 'auto' }}>
             <Link href="/products" className="pb-12">
-              <Space>
+              <div className="flex gap-8 align-center">
                 {t('See all')}
                 <Image
                   src={chevronRightAccent}
@@ -63,7 +63,7 @@ const NearByProductHorizontalList = ({ products }) => {
                   height={12}
                   alt={t('See all')}
                 />
-              </Space>
+              </div>
             </Link>
           </div>
         </HeadingWrapper>
@@ -72,10 +72,10 @@ const NearByProductHorizontalList = ({ products }) => {
         ref={scrollRef}
         onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}>
-        <div className="flex gap-8" ref={listContainerRef}>
+        <div className="flex gap-8 full-height" ref={listContainerRef}>
           {filteredProducts?.slice(0, numVisible).map((product, key) => (
             <div
-              style={{ width: productWidth }}
+              style={productSimpleViewWrapperStyles}
               key={key}
               ref={getItemKey(key)}>
               <ProductSimpleView

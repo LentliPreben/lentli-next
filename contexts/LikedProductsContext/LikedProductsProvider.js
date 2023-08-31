@@ -4,11 +4,12 @@ import { COLLECTIONS } from '__constants__'
 import LikedProductsContext from './LikedProductsContext'
 import PropTypes from 'prop-types'
 import { getDocument } from 'services/api/firebase'
-import { message } from 'antd'
 import { useTranslations } from 'contexts'
+import { useHandleError } from 'hooks'
 
 const LikedProductsProvider = ({ children }) => {
   const { t } = useTranslations()
+  const handleError = useHandleError()
 
   const [countLikedProducts, setCountLikedProducts] = useState()
   const [likedProductIds, setLikedProductIds] = useState()
@@ -46,7 +47,7 @@ const LikedProductsProvider = ({ children }) => {
       setLikedProducts(productsData)
       getDataForTransfer()
     } catch (error) {
-      message.error(t('Error during getting products'))
+      handleError(error, t('Error during getting products'))
     } finally {
       setLoading(false)
     }

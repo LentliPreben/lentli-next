@@ -1,24 +1,24 @@
-import { Button, Grid, Image } from 'antd'
+import Image from 'next/image'
 import {
   CountImagesWrapper,
   ImagesPreviewWrapper,
   MainImageWrapper,
   SmallImagePreview,
-  SmallImagesPreviewWrapper
+  SmallImagesPreviewWrapper,
+  buttonStyle
 } from './ImagesPreview.styled'
 
-import { useGetImagesPreviewConfig } from 'domains/Product/hooks'
+import useGetImagesPreviewConfig from 'domains/Product/hooks/get/useGetImagesPreviewConfig'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
-import { Text } from 'components'
-
-const { useBreakpoint } = Grid
+import { Text, Button } from 'components'
+import { useBreakpoint } from 'hooks'
 
 const ImagesPreview = (props) => {
   const { productName, productId, mediaObjects = [] } = props
 
   const { t } = useTranslations()
-  const { sm, md } = useBreakpoint()
+  const { xs, sm, md } = useBreakpoint()
   const router = useRouter()
 
   const { config, count, showCount } = useGetImagesPreviewConfig(mediaObjects)
@@ -31,19 +31,19 @@ const ImagesPreview = (props) => {
     <ImagesPreviewWrapper sm={sm} md={md}>
       <MainImageWrapper sm={sm}>
         <Image
-          height="100%"
-          width="100%"
+          layout="fill"
           src={config?.main}
           alt={productName}
           onClick={handleShowAllPhotos}
-          preview={false}
           loading="lazy"
         />
-        <Button onClick={handleShowAllPhotos}>{computedButtonText}</Button>
+        <Button style={buttonStyle} onClick={handleShowAllPhotos}>
+          {computedButtonText}
+        </Button>
       </MainImageWrapper>
 
       {config?.small?.length ? (
-        <SmallImagesPreviewWrapper sm={sm}>
+        <SmallImagesPreviewWrapper xs={xs} sm={sm}>
           {config?.small?.map((src, index) => {
             const isLastImage = index === config?.small?.length - 1
             const label = `+${count}`
@@ -61,11 +61,9 @@ const ImagesPreview = (props) => {
                 )}
 
                 <Image
-                  preview={false}
                   src={src}
                   alt={productName}
-                  height="100%"
-                  width="100%"
+                  layout="fill"
                   loading="lazy"
                 />
               </SmallImagePreview>

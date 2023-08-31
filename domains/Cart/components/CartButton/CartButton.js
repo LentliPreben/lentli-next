@@ -1,26 +1,24 @@
-import { Button, Badge } from 'antd'
-
 import { useCart } from 'contexts'
-import { useScreen } from 'hooks'
+import { useBreakpoint } from 'hooks'
 import { CartPopover } from 'domains/Cart/components'
-import { Link } from 'components'
+import { Link, Button, Badge } from 'components'
 import shoppingCart from 'public/assets/shoppingCart.svg'
 import Image from 'next/image'
 import { useTranslations } from 'contexts'
 
 const CartButton = () => {
   const { countCartItems } = useCart()
-  const { xs } = useScreen()
+  const { xs } = useBreakpoint()
   const { t } = useTranslations()
 
   const buttonProps = {
     className: 'flex align-center justify-center',
     icon: (
-      <Badge count={countCartItems} size="small">
-        <Image width={16} height={16} src={shoppingCart} alt={t('Cart')} />
+      <Badge count={countCartItems}>
+        <Image src={shoppingCart} alt={t('Cart')} />
       </Badge>
     ),
-    size: 'large',
+    size: 'lg',
     type: 'text'
   }
 
@@ -29,7 +27,10 @@ const CartButton = () => {
       <Button {...buttonProps} />
     </Link>
   ) : (
-    <CartPopover countCartItems={countCartItems}>
+    <CartPopover
+      show={countCartItems}
+      countCartItems={countCartItems}
+      overlayClassName="cart">
       <Button {...buttonProps} />
     </CartPopover>
   )

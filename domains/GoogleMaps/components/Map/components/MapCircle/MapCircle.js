@@ -1,20 +1,15 @@
 import { CircleF } from '@react-google-maps/api'
 import PropTypes from 'prop-types'
-import { theme } from 'antd'
 
 const MapCircle = ({ value, circleRadius, ...props }) => {
-  const {
-    token: { colorPrimary, colorPrimaryBgHover }
-  } = theme.useToken()
-
   return (
     <CircleF
       center={value}
       radius={circleRadius}
       options={{
-        strokeColor: colorPrimary,
+        strokeColor: '#1c74e0',
         strokeWeight: 1,
-        fillColor: colorPrimaryBgHover,
+        fillColor: '#c4e7ff',
         clickable: false,
         editable: false
       }}

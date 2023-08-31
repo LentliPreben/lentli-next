@@ -1,4 +1,4 @@
-import { notification } from 'antd'
+import { notification } from 'utils'
 import { useCallback } from 'react'
 import { useTranslations } from 'contexts'
 
@@ -12,9 +12,10 @@ const useHandleError = () => {
       // eslint-disable-next-line no-console
       console.error(err)
 
-      notification.error({
-        message: message || t('Something went wrong'),
-        description: err.message,
+      notification({
+        type: 'error',
+        title: message || t('Something went wrong'),
+        message: err.message,
         ...notificationParams
       })
     },

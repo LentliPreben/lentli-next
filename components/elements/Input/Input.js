@@ -1,23 +1,13 @@
 import { getClassNames } from 'utils'
 
 const Input = (props) => {
-  const {
-    rounded,
-    large,
-    small,
-    icon,
-    block,
-    inverse,
-    className,
-    onChange,
-    ...rest
-  } = props
+  const { rounded, size, icon, block, inverse, className, onChange, ...rest } =
+    props
 
   const classNames = getClassNames({
     input: true,
     'input-rounded': rounded,
-    'input-lg': large,
-    'input-sm': small,
+    [`input-${size}`]: size,
     'input-icon': icon,
     block,
     inverse,

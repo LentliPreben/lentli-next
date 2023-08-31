@@ -1,4 +1,3 @@
-import { Space } from 'antd'
 import { useGetProductsByUser } from 'domains/Product/hooks'
 import { useRouter } from 'next/router'
 import { Link, Text, Title } from 'components'
@@ -33,14 +32,14 @@ const ProductsListFromCurrentLessor = (props) => {
           {showHeading && (
             <div className="row">
               <div className="col-auto">
-                <Title as="h2">{otherFromTitle}</Title>
+                <Title as="h3">{otherFromTitle}</Title>
               </div>
               <div className="col-auto mr-auto flex align-end pb-8">
                 <Text>{`${productsAmount} ${t('products')}`}</Text>
               </div>
               <div className="col-auto flex align-end">
                 <Link href="/products" className="pb-12">
-                  <Space>
+                  <div className="flex gap-8 align-center">
                     {t('See all')}
                     <Image
                       src={chevronRightAccent}
@@ -48,7 +47,7 @@ const ProductsListFromCurrentLessor = (props) => {
                       height={12}
                       alt={t('See all')}
                     />
-                  </Space>
+                  </div>
                 </Link>
               </div>
             </div>

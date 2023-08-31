@@ -1,10 +1,8 @@
-import { Grid } from 'antd'
+import { useBreakpoint } from 'hooks'
 import { Avatar, Text } from 'components'
 import { RatingAndIdentifyDetails } from './components'
 import { useTranslations } from 'contexts'
 import StyledDisplayName from './ProductLessorView.styled'
-
-const { useBreakpoint } = Grid
 
 const ProductLessorView = (props) => {
   const { user } = props

@@ -1,11 +1,9 @@
-import { Button, Input, Slider } from 'antd'
 import { memo, useEffect, useMemo, useState } from 'react'
 import { useSubfilterActions } from 'hooks'
 
 import PropTypes from 'prop-types'
-import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
 import { useFilterContext, useTranslations } from 'contexts'
-import { Text } from 'components'
+import { Text, Button, Collapse, Input, Slider } from 'components'
 
 const PriceFilter = ({ priceRange }) => {
   const { setFilterParams, filterParams } = useFilterContext()
@@ -25,6 +23,8 @@ const PriceFilter = ({ priceRange }) => {
       setMaxValue(value)
     }
   }
+  const handleInputMinValueChange = (value) => handleInputChange(value, 'min')
+  const handleInputMaxValueChange = (value) => handleInputChange(value, 'max')
 
   const handleSliderChange = (values) => {
     setDisabled(false)
@@ -62,36 +62,36 @@ const PriceFilter = ({ priceRange }) => {
   const { onChange } = useSubfilterActions(subfilterOptions)
 
   return (
-    <StyledCollapse ghost defaultActiveKey="price">
-      <StyledCollapse.Panel header={t('Price')} key="price" forceRender>
-        <div className="mx-4">
-          <div className="flex gap-4 align-center">
-            <Input
-              value={minValue}
-              onChange={(e) => handleInputChange(e.target.value, 'min')}
-            />
-            <Text secondary>-</Text>
-            <Input
-              className="mr-4"
-              value={maxValue}
-              onChange={(e) => handleInputChange(e.target.value, 'max')}
-            />
-
-            <Button disabled={disabled} onClick={applyChanges}>
-              {t('OK')}
-            </Button>
-          </div>
-          <Slider
-            min={minPrice}
-            max={maxPrice}
-            range
-            step={1}
-            value={[minValue, maxValue]}
-            onChange={handleSliderChange}
+    <Collapse ghost id="price" name={t('Price')}>
+      <div className="mx-4">
+        <div className="flex gap-4 align-center">
+          <Input
+            size="sm"
+            value={minValue}
+            onChange={handleInputMinValueChange}
           />
+          <Text secondary>-</Text>
+          <Input
+            size="sm"
+            className="mr-4"
+            value={maxValue}
+            onChange={handleInputMaxValueChange}
+          />
+
+          <Button disabled={disabled} onClick={applyChanges}>
+            {t('OK')}
+          </Button>
         </div>
-      </StyledCollapse.Panel>
-    </StyledCollapse>
+        <Slider
+          min={minPrice}
+          max={maxPrice}
+          range
+          step={1}
+          value={[minValue, maxValue]}
+          onChange={handleSliderChange}
+        />
+      </div>
+    </Collapse>
   )
 }
 PriceFilter.propTypes = {
