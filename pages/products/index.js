@@ -1,4 +1,4 @@
-import { Breadcrumbs, PageLayout } from 'components'
+import { PageLayout } from 'components'
 import { useMemo, useState } from 'react'
 import {
   useMergeProductMediaObjects,
@@ -41,7 +41,6 @@ const Products = () => {
   ])
 
   return (
-    // <PageLayout breadcrumbs={<Breadcrumbs />}> temporary commented
     <PageLayout>
       <LoadingBox spinnerProps={{ height: '100%' }} loading={loading}>
         <ProductsAllView

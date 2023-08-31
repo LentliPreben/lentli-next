@@ -1,4 +1,4 @@
-import { Button } from 'antd'
+import { Button } from 'components'
 
 import { useTranslations } from 'contexts'
 import { ProductLike } from 'domains/Product/components'

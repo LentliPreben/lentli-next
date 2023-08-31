@@ -1,5 +1,4 @@
-import { Breadcrumb } from 'antd'
-import StyledBreadCrumb from './Breadcrumbs.styled'
+import StyledBreadcrumbs from './Breadcrumbs.styled'
 
 import PropTypes from 'prop-types'
 import { useExtraBreadcrumbsItems } from './hooks'
@@ -23,39 +22,38 @@ const Breadcrumbs = (props) => {
   // so we check of extraBreadcrumbItems has Edit in path and then disable both items
   const hasEdit = extraBreadcrumbItems?.some(({ name }) => name === 'Edit')
 
+  const Separator = () => (
+    <Image src={chevronRight} width={12} height={12} alt={t('Separator')} />
+  )
   return (
-    <StyledBreadCrumb
-      separator={
-        <Image src={chevronRight} width={12} height={12} alt={t('Separator')} />
-      }>
-      <Breadcrumb.Item key={'/'}>
-        <Link href="/">
-          <Image width={16} height={16} src={home03Outlined} alt={t('Home')} />
-        </Link>
-      </Breadcrumb.Item>
+    <StyledBreadcrumbs>
+      <Link href="/">
+        <Image width={16} height={16} src={home03Outlined} alt={t('Home')} />
+      </Link>
+
+      {!!extraBreadcrumbItems?.length && <Separator />}
+
       {/* if path has Edit word then we can disable click on item name - replace it with Text */}
       {extraBreadcrumbItems?.map(({ key, path, name }, index) => {
         if (hasEdit && index >= extraBreadcrumbItems.length - 2) {
           return (
-            <Breadcrumb.Item key={key}>
+            <div key={key}>
               <Text>{name}</Text>
-            </Breadcrumb.Item>
+              <Separator />
+            </div>
           )
         }
 
-        return (
-          <Breadcrumb.Item
-            key={key}
-            active={index === extraBreadcrumbItems.length - 1}>
-            {index === extraBreadcrumbItems.length - 1 ? (
-              <Text>{name}</Text>
-            ) : (
-              <Link href={path}>{name}</Link>
-            )}
-          </Breadcrumb.Item>
+        return index === extraBreadcrumbItems.length - 1 ? (
+          <Text>{name}</Text>
+        ) : (
+          <>
+            <Link href={path}>{name}</Link>
+            <Separator />
+          </>
         )
       })}
-    </StyledBreadCrumb>
+    </StyledBreadcrumbs>
   )
 }
 

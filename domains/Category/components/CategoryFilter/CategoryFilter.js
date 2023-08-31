@@ -1,26 +1,15 @@
-import { Checkbox, Space } from 'antd'
-import { collection, query, where } from 'firebase/firestore'
 import { useFilterContext, useTranslations } from 'contexts'
-
-import { COLLECTIONS } from '__constants__'
-import PropTypes from 'prop-types'
-import { Spinner, Text } from 'components'
-import { StyledCollapse } from 'components/elements/Filter/Filter.styled'
-import { firestore } from 'services/firebase'
+import { TopCategoryWithSubcategoriesCollapse } from './components'
 import { memo } from 'react'
-import { useCollectionData } from 'react-firebase-hooks/firestore'
+import { useGetGroupedCategories } from 'domains/Category/hooks'
 import { useSubfilterActions } from 'hooks'
+import { Collapse } from 'components'
 
 const CategoryFilter = () => {
   const { setFilterParams, filterParams } = useFilterContext()
   const { t } = useTranslations()
 
-  const [subcategories, subcategoriesLoading] = useCollectionData(
-    query(
-      collection(firestore, COLLECTIONS.CATEGORIES),
-      where('isTopLevel', '==', false)
-    )
-  )
+  const { topLevelCategories, groupedByParentId } = useGetGroupedCategories({})
 
   const { onChange, checkIsEnabled } = useSubfilterActions({
     filterParams: filterParams,
@@ -29,38 +18,20 @@ const CategoryFilter = () => {
     operand: 'array-contains'
   })
 
-  if (!subcategories?.length) return null
+  if (!topLevelCategories?.length) return null
 
-  return !subcategoriesLoading ? (
-    <StyledCollapse ghost defaultActiveKey="categories">
-      <StyledCollapse.Panel header={t('Categories')} key="categories">
-        {subcategories?.map((category, index) => (
-          <div
-            key={`status-${index}`}
-            className="flex justify-between align-center">
-            <Space>
-              <Checkbox
-                key={`status-${index}`}
-                checked={checkIsEnabled(category)}
-                onChange={() => onChange(category)}
-              />
-              <Text className="break-all">
-                {category?.name || t('Unnamed filter')}
-              </Text>
-            </Space>
-          </div>
-        ))}
-      </StyledCollapse.Panel>
-    </StyledCollapse>
-  ) : (
-    <Spinner />
+  return (
+    <Collapse name={t('Categories')} id="categories">
+      <div className="flex flex-col mx-12 gap-32">
+        <TopCategoryWithSubcategoriesCollapse
+          topLevelCategories={topLevelCategories}
+          groupedByParentId={groupedByParentId}
+          onChange={onChange}
+          checkIsEnabled={checkIsEnabled}
+        />
+      </div>
+    </Collapse>
   )
-}
-
-CategoryFilter.propTypes = {
-  filterParams: PropTypes.object,
-  setFilterParams: PropTypes.func,
-  categoryId: PropTypes.string
 }
 
 export default memo(CategoryFilter)

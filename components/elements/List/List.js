@@ -8,7 +8,7 @@ const List = (props) => {
     dataSource,
     renderItem,
     emptyProps,
-    columnClass = 'col-12 col-sm-6 col-md-4 col-lg-3',
+    columnClass = 'col-12 col-sm-6 col-md-4 col-xl-3',
     wrapperStyles,
     pagination
   } = props
@@ -48,7 +48,6 @@ List.propTypes = {
   dataSource: PropTypes.array,
   renderItem: PropTypes.func,
   emptyProps: PropTypes.object,
-  span: PropTypes.object,
   gutter: PropTypes.array,
   wrapperStyles: PropTypes.object,
   pagination: PropTypes.object

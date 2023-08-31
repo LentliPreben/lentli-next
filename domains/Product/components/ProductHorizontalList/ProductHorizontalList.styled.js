@@ -1,4 +1,3 @@
-import { Space } from 'antd'
 import styled from 'styled-components'
 
 export const StyledSpace = styled.div`
@@ -8,6 +7,8 @@ export const StyledSpace = styled.div`
   width: 100%;
   max-width: 100%;
   overflow: auto;
+  height: fit-content;
+
   &::-webkit-scrollbar {
     display: none;
   }
@@ -16,5 +17,5 @@ export const StyledSpace = styled.div`
 `
 export const StyledItemWrapper = styled.div`
   min-width: 220px;
-  height: 275px;
+  height: inherit;
 `

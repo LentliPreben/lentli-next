@@ -3,44 +3,64 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--btn-default-vertical-padding)
-    var(--btn-default-horizontal-padding);
+  padding: var(--btn-default-vertical-padding) var(--btn-default-horizontal-padding);
   font-size: var(--btn-default-font-size);
   line-height: var(--btn-default-line-height);
   font-weight: var(--btn-default-font-weight);
   border-radius: var(--btn-default-border-radius);
   text-decoration: none;
   gap: 8px;
+  box-sizing: border-box;
+  transition: all 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  min-width: fit-content
 }
 
 .btn img {
   width: var(--btn-default-icon-size);
   height: var(--btn-default-icon-size);
 }
-.btn.btn-lg {
-  padding: var(--btn-lg-vertical-padding) var(--btn-lg-horizontal-padding);
-  font-size: var(--btn-lg-font-size);
-  line-height: var(--btn-lg-line-height);
+
+.btn.btn-sm img {
+  width: var(--btn-sm-icon-size);
+  height: var(--btn-sm-icon-size);
 }
+
 .btn.btn-lg img {
   width: var(--btn-lg-icon-size);
   height: var(--btn-lg-icon-size);
 }
+
+.btn.btn-lg {
+  height: var(--btn-lg-height);
+  padding: var(--btn-lg-vertical-padding) var(--btn-lg-horizontal-padding);
+  font-size: var(--btn-lg-font-size);
+  line-height: var(--btn-lg-line-height);
+}
+
+.btn.btn-lg img {
+  width: var(--btn-lg-icon-size);
+  height: var(--btn-lg-icon-size);
+}
+
 .btn.btn-sm {
   padding: var(--btn-sm-vertical-padding) var(--btn-sm-horizontal-padding);
   font-size: var(--btn-sm-font-size);
   line-height: var(--btn-sm-line-height);
 }
+
 .btn.btn-sm img {
   width: var(--btn-sm-icon-size);
   height: var(--btn-sm-icon-size);
 }
+
 .btn.btn-block {
   width: 100%;
 }
+
 .btn.btn-rounded {
   border-radius: var(--btn-default-rounded-border-radius);
 }
+
 .btn.btn-lg.btn-rounded {
   border-radius: var(--btn-lg-rounded-border-radius);
 }
@@ -62,10 +82,20 @@
   background-color: var(--btn-text-bg);
   color: var(--btn-text-color);
 }
-.btn.btn-only-icon {
-  padding: var( --btn-default-only-icon-padding);
+
+.btn.btn-text:hover {
+  background-color: var(--btn-text-hover-bg)
 }
 
+.btn.btn-only-icon {
+  padding: var(--btn-default-only-icon-padding);
+  width: var(--btn-default-only-icon-size);
+  height: var(--btn-default-only-icon-size);
+}
+
+.btn.btn-only-icon:hover {
+  background-color: var(--btn-only-icon-hover-bg)
+}
 .btn.see-more {
   font-size: var(--font-size-body2);
   line-height: var(--line-height-body2);

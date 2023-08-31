@@ -1,9 +1,8 @@
-import { Button, Empty, Pagination } from 'antd'
 import { ProductFilter, ProductList } from 'domains/Product/components'
 import { memo, useCallback } from 'react'
-import { useLoading, useScreen, useHorizontalScroll } from 'hooks'
+import { useLoading, useBreakpoint, useHorizontalScroll } from 'hooks'
 
-import { LoadingBox, Text } from 'components'
+import { LoadingBox, NoData, Button, Pagination } from 'components'
 import PropTypes from 'prop-types'
 import { StyledSpace } from './ProductsByCategoryAdvancedView.styled'
 import { useFilterContext, useTranslations } from 'contexts'
@@ -14,7 +13,7 @@ const ProductsByCategoryAdvancedView = (props) => {
   const { category } = props
 
   const { t } = useTranslations()
-  const { isSmallScreen, isExtraSmallScreen } = useScreen()
+  const { isSmallScreen, isExtraSmallScreen } = useBreakpoint()
   const router = useRouter()
 
   const {
@@ -69,7 +68,6 @@ const ProductsByCategoryAdvancedView = (props) => {
             <ProductList
               maxHeight={heightToNegotiate}
               products={products}
-              span={{ xs: 24, sm: 24, md: 12, lg: 12, xl: 8, xxl: 6 }}
               pagination={
                 <Pagination
                   hideOnSinglePage={true}
@@ -85,12 +83,8 @@ const ProductsByCategoryAdvancedView = (props) => {
               }
             />
           ) : (
-            <Empty
-              description={
-                <Text secondary>
-                  {t("There aren't products for current category")}
-                </Text>
-              }
+            <NoData
+              description={t("There aren't products for current category")}
             />
           )}
         </LoadingBox>

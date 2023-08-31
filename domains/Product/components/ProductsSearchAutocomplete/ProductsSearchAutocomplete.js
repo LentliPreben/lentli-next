@@ -19,7 +19,6 @@ const ProductsSearchAutocomplete = (props) => {
     setSelectedLocation,
     popupClassName,
     onSelect,
-    input,
     ...rest
   } = props
 
@@ -75,7 +74,6 @@ const ProductsSearchAutocomplete = (props) => {
       onSelect={handleSelect}
       onReset={onReset}
       options={options}
-      input={input}
       {...rest}
     />
   )
@@ -86,7 +84,6 @@ ProductsSearchAutocomplete.propTypes = {
   isProducts: PropTypes.bool,
   isCategories: PropTypes.bool,
   setSelectedLocation: PropTypes.func,
-  input: PropTypes.node,
   onSelect: PropTypes.func,
   popupClassName: PropTypes.string
 }

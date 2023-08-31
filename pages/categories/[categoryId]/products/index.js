@@ -2,13 +2,13 @@ import { PageLayout, LoadingBox, Breadcrumbs, FilterButton } from 'components'
 import { FilterProvider } from 'contexts'
 import { ProductsByCategoryAdvancedView } from 'domains/Product/components'
 import { useGetCategory } from 'domains/Category/hooks'
-import { useScreen } from 'hooks'
+import { useBreakpoint } from 'hooks'
 
 const ProductsByCategory = (props) => {
   const { categoryId } = props
 
   const [category, loadingCategory] = useGetCategory({ categoryId })
-  const { isSmallScreen } = useScreen()
+  const { isSmallScreen } = useBreakpoint()
 
   const showFilter = isSmallScreen && !category?.subcategories?.length
 

@@ -2,10 +2,9 @@ import {
   Body,
   ProductRangeSelectFixedWrapper
 } from './ProductRangeSelectFixed.styles'
-import { Button, Divider, theme } from 'antd'
 import { useCallback, useEffect, useState } from 'react'
-import { useScreen } from 'hooks'
-import { DateRange, Title, Text } from 'components'
+import { useBreakpoint } from 'hooks'
+import { DateRange, Title, Text, Button, Divider } from 'components'
 import { useCart, useTranslations } from 'contexts'
 
 const ProductRangeSelectFixed = (props) => {
@@ -22,8 +21,7 @@ const ProductRangeSelectFixed = (props) => {
   } = props
 
   const { t } = useTranslations()
-  const token = theme.useToken().token
-  const { xs, sm } = useScreen()
+  const { xs, sm } = useBreakpoint()
   const { addCartItem } = useCart()
 
   const [isOpened, setIsOpened] = useState(false)
@@ -60,13 +58,12 @@ const ProductRangeSelectFixed = (props) => {
       isOpened={isOpened}
       xs={xs}
       sm={sm}
-      theme={token}
       onClick={handleToggle}
       id="product-range-select">
       <div className="row">
         <div className="col-auto mr-auto flex-1">
           <div className="row">
-            <div className="col-12 flex align-baseline">
+            <div className="col-12 flex align-baseline gap-2">
               <Title as={titleLevel}>{pricePerDayDisplay}</Title>
               <Text secondary>{`/${t('day')}`}</Text>
             </div>
@@ -127,7 +124,7 @@ const ProductRangeSelectFixed = (props) => {
             <Button
               disabled={disabled}
               block
-              size="large"
+              size="lg"
               type="primary"
               onClick={handleAddItemToCart}>
               {t('Reserve')}

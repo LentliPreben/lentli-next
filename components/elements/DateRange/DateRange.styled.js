@@ -39,7 +39,7 @@ const DateRangeStyled = styled(ReactDateRange)`
   // Add line through number for disabled dates
   .rdrDayDisabled .rdrDayNumber span {
     text-decoration-line: line-through;
-    color: ${({ disableColor }) => disableColor};
+    color: var(--error);
   }
   .rdrDayNumber span {
     font-size: 12px;

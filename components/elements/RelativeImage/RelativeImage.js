@@ -1,4 +1,3 @@
-import { theme } from 'antd'
 import { memo, useEffect, useMemo, useRef, useState } from 'react'
 import Image from 'next/image'
 import { ImageOverlay } from 'components'
@@ -35,8 +34,6 @@ const RelativeImage = (props) => {
   const height = useMemo(() => width / ratio, [width, ratio])
   const computedSrc = src || '/assets/no-image.png'
 
-  const { borderRadiusLG } = theme.useToken().token
-
   return (
     <div ref={ref} style={style} className="full-height">
       <Image
@@ -45,7 +42,7 @@ const RelativeImage = (props) => {
         width={width}
         height={height}
         style={{
-          borderRadius: borderRadiusLG,
+          borderRadius: 'var(--border-radius-default)',
           ...imgProps,
           ...imgStyle,
           ...style

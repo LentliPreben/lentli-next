@@ -1,2 +1,0 @@
-import useGetPlacesAutocompleteBaseHandlers from './useGetPlacesAutocompleteBaseHandlers'
-export default useGetPlacesAutocompleteBaseHandlers

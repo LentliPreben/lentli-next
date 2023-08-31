@@ -1,61 +1,66 @@
-import { AutoComplete, Input } from 'antd'
-import { cloneElement, memo, useState } from 'react'
-
+import { memo, useState } from 'react'
+import { Text } from 'components'
 import PropTypes from 'prop-types'
-import { autoCompleteStyles } from './ProductsSearchAutocomplete.styled'
 import { useTranslations } from 'contexts'
-import searchLg from 'public/assets/searchLg.svg'
-import Image from 'next/image'
+import Select from 'react-select'
+import CustomOptionStyled from './SearchAutocomplete.styled'
 
+// Not finished need fix
 const SearchAutocomplete = (props) => {
-  const {
-    options,
-    onChange,
-    onSelect,
-    onReset,
-    value,
-    input,
-    popupClassName,
-    ...rest
-  } = props
-
-  const [query, setQuery] = useState('')
+  const { options, onChange, onSelect, onReset } = props
 
   const { t } = useTranslations()
 
-  const handleChange = (e) => {
-    const value = e.target.value
+  const [loading, setLoading] = useState(false)
+
+  const handleChange = (value) => {
     onChange?.(value)
-    setQuery(value)
   }
 
-  const handleSelect = (value) => {
+  const handleSelect = (value, setValue) => {
+    setLoading(true)
     onSelect?.(value)
-    onReset?.()
-    setQuery('')
+    setValue('')
+    setLoading(false)
+  }
+
+  const CustomOption = ({
+    label,
+    innerRef,
+    innerProps,
+    data,
+    setValue,
+    ...rest
+  }) => {
+    return (
+      <CustomOptionStyled
+        ref={innerRef}
+        {...innerProps}
+        {...rest}
+        onClick={() => handleSelect(rest.value, setValue)}>
+        {data?.icon}
+        <Text>{label}</Text>
+      </CustomOptionStyled>
+    )
+  }
+
+  const noOptionsMessage = () => null
+  const components = {
+    Option: CustomOption
   }
 
   return (
-    <AutoComplete
-      style={autoCompleteStyles}
-      popupClassName={popupClassName}
-      value={query}
-      open={!!query}
+    <Select
+      isLoading={loading}
+      placeholder={t('Search by location or product name')}
+      inputClassName="input"
       options={options}
-      onSelect={handleSelect}>
-      {input ? (
-        cloneElement(input, { onChange: handleChange })
-      ) : (
-        <Input
-          prefix={
-            <Image src={searchLg} width={12} height={12} alt={t('Search')} />
-          }
-          placeholder={`${t('Search by location or product name')}..`}
-          onChange={handleChange}
-          {...rest}
-        />
-      )}
-    </AutoComplete>
+      components={components}
+      onReset={onReset}
+      isClearable
+      onInputChange={handleChange}
+      noOptionsMessage={noOptionsMessage}
+    />
   )
 }
 

@@ -1,0 +1,15 @@
+.divider {
+  margin: 24px 0;
+  border-top: 1px solid var(--secondary-lighten-6);
+  width: 100%;
+  min-width: 100%;
+  display: flex;
+}
+.divider-vertical {
+  border-right: 1px solid var(--secondary-lighten-6);
+  border-top: unset;
+  margin: 0 24px;
+  width: unset;
+  min-width: unset;
+  height: 100%;
+}

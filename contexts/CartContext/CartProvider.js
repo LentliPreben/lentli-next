@@ -3,15 +3,16 @@ import { useCallback, useEffect, useState } from 'react'
 
 import CartContext from './CartContext'
 import { getDocument } from 'services/api/firebase'
-import { message } from 'antd-notifications-messages'
 import moment from 'moment'
-import { notification } from 'antd'
+import { notification } from 'utils'
 import { useTranslations } from 'contexts'
+import { useHandleError } from 'hooks'
 
 const { DAY_MONTH_YEAR } = MOMENT_FORMATS
 
 const CartProvider = ({ children }) => {
   const { t } = useTranslations()
+  const handleError = useHandleError()
 
   const [countCartItems, setCountCartItems] = useState()
   const [cartItems, setCartItems] = useState()
@@ -77,9 +78,9 @@ const CartProvider = ({ children }) => {
       setCartItems(productsInCart)
       setCountCartItems(productsInCart?.length)
     } catch (error) {
-      message.error(t('Error during getting products'))
+      handleError(error, t('Error during getting products'))
     }
-  }, [t])
+  }, [])
 
   const deleteCartItem = useCallback(
     (productId, dateRange) => {
@@ -123,9 +124,10 @@ const CartProvider = ({ children }) => {
 
       localStorage.setItem('cart', JSON.stringify(updatedCart))
       getCartItems()
-      notification.success({
-        message: t('Success'),
-        description: t('Product was added to the cart')
+      notification({
+        type: 'success',
+        title: t('Success'),
+        message: t('Product was added to the cart')
       })
     },
     [getCartItems]

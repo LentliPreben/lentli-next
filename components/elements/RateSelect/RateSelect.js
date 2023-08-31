@@ -1,4 +1,3 @@
-import { theme } from 'antd'
 import { useEffect, useState } from 'react'
 
 import PropTypes from 'prop-types'
@@ -11,7 +10,6 @@ const RateSelect = (props) => {
   const { value = 0 } = props
 
   const { t } = useTranslations()
-  const { colorWarningBorderHover } = theme.useToken().token
   const [rating, setRating] = useState(value || null)
 
   useEffect(() => {

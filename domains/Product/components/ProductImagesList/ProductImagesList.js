@@ -1,10 +1,16 @@
-import { ImageStyled, ProductImagesWrapper } from './ProductImagesList.styles'
+import { ProductImagesWrapper, ImageWrapper } from './ProductImagesList.styles'
+import Image from 'next/image'
 
 import { getTransformedImageUrl } from 'helpers'
 import { useMemo } from 'react'
+import { useBreakpoint } from 'hooks'
+import { useTranslations } from 'contexts'
 
 const ProductImagesList = (props) => {
   const { mediaObjects } = props
+
+  const { currentScreen } = useBreakpoint()
+  const { t } = useTranslations()
 
   const media = useMemo(
     () =>
@@ -16,7 +22,9 @@ const ProductImagesList = (props) => {
   return (
     <ProductImagesWrapper>
       {media?.map((url) => (
-        <ImageStyled key={url} src={url} preview={false} />
+        <ImageWrapper key={url} currentScreen={currentScreen}>
+          <Image src={url} preview={false} layout="fill" alt={t('Product')} />
+        </ImageWrapper>
       ))}
     </ProductImagesWrapper>
   )

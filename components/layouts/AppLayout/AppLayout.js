@@ -1,7 +1,5 @@
 import { Footer, Header } from 'components'
-import { Layout } from 'antd'
-import { StyledContent } from './AppLayout.styled'
-import Head from 'next/head'
+import StyledContent from './AppLayout.styled'
 
 const AppLayout = (props) => {
   const {
@@ -14,24 +12,19 @@ const AppLayout = (props) => {
   } = props
 
   return (
-    <>
-      <Head>
-        <title>Lentli</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <Layout className="app-layout">
-        <Layout className="relative">
-          {showHeader && <Header topLevelCategories={topLevelCategories} />}
-          <StyledContent
-            className="relative"
-            fullWidth={fullWidth}
-            fullHeight={fullHeight}>
-            {children}
-          </StyledContent>
-          {showFooter && <Footer />}
-        </Layout>
-      </Layout>
-    </>
+    <div className="app-layout">
+      <div className="app-content">
+        {showHeader && <Header topLevelCategories={topLevelCategories} />}
+        <StyledContent
+          className="relative"
+          fullWidth={fullWidth}
+          fullHeight={fullHeight}
+          showFooter={showFooter}>
+          {children}
+        </StyledContent>
+        {showFooter && <Footer />}
+      </div>
+    </div>
   )
 }
 

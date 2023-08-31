@@ -10,8 +10,8 @@ const headerWidthByMedia = {
 }
 
 const HeaderWrapperStyled = styled.header`
-  background-color: ${({ theme }) => theme.colorBgBase};
-  border-bottom: ${({ theme }) => `1px solid ${theme.colorBorderSecondary}`};
+  background-color: var(--text-color-inverse);
+  border-bottom: 1px solid var(--border-default-color);
   display: flex;
   justify-content: center;
 `
@@ -19,6 +19,7 @@ const HeaderWrapperStyled = styled.header`
 const HeaderStyled = styled.div`
   width: ${({ currentScreen }) =>
     headerWidthByMedia?.[currentScreen] || '100%'};
-  padding: ${({ lg }) => (lg ? '12px 0' : '12px 32px')};
+  padding: ${({ xs, sm, md }) => (xs || sm || md ? '16px 32px' : '16px 0')};
+  box-sizing: border-box;
 `
 export { HeaderWrapperStyled, HeaderStyled }

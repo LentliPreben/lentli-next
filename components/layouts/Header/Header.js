@@ -1,32 +1,27 @@
 import { Logo, LanguagesMenu, LogInButton } from 'components'
 import { getClassNames } from 'utils'
-import { theme, Grid } from 'antd'
 import { CartButton } from 'domains/Cart/components'
 import { LikedProductsButton } from 'domains/Product/components'
 import { HeaderWrapperStyled, HeaderStyled } from './Header.styles'
-import { useCurrentScreen } from 'hooks'
+import { useBreakpoint } from 'hooks'
 import { TopCategoriesList } from 'domains/Category/components'
-
-const { useBreakpoint } = Grid
 
 const Header = (props) => {
   const { extraContent, topLevelCategories } = props
 
-  const token = theme.useToken().token
-  const currentScreen = useCurrentScreen()
-  const { lg } = useBreakpoint()
+  const { xs, sm, md, currentScreen } = useBreakpoint()
 
   const headerRowClassNames = getClassNames({
     row: true,
     'justify-content-between': true,
     'align-items-center': true,
     'mb-8': true,
-    'g-2': true
+    'g-3': true
   })
 
   return (
-    <HeaderWrapperStyled theme={token}>
-      <HeaderStyled theme={token} currentScreen={currentScreen} lg={lg}>
+    <HeaderWrapperStyled>
+      <HeaderStyled currentScreen={currentScreen} xs={xs} sm={sm} md={md}>
         <div className={headerRowClassNames}>
           <div className="col">
             <Logo />

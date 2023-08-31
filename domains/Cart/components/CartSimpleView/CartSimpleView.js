@@ -1,6 +1,13 @@
-import { Button, Card, Divider, theme } from 'antd'
 import TitleStyled from './CartSimpleView.styled'
-import { Image, LoadingBox, Text, Title } from 'components'
+import {
+  Image,
+  LoadingBox,
+  Text,
+  Title,
+  Button,
+  Card,
+  Divider
+} from 'components'
 import { formatPrice, getCheckoutId } from 'utils'
 import { useCart, useLikedProducts, useTranslations } from 'contexts'
 
@@ -23,8 +30,6 @@ const CartSimpleView = (props) => {
   const { likedDataForTransfer } = useLikedProducts()
 
   const { t } = useTranslations()
-
-  const { borderRadiusLG } = theme.useToken().token
 
   const { category, loading } = useGetProductAdditionalData({
     categoryId: product?.categoryId
@@ -79,7 +84,7 @@ const CartSimpleView = (props) => {
               alt={t('Product')}
               src={previewImgUrl}
               onError={handleImageError}
-              borderRadius={borderRadiusLG}
+              borderRadius="var(--border-radius-default)"
             />
           </div>
 
@@ -106,25 +111,24 @@ const CartSimpleView = (props) => {
         </div>
 
         <div className="row justify-between align-middle">
-          <div className="col flex">
+          <div className="col flex align-center">
             <Title as="h5">{pricePerPeriodDisplay}</Title>
           </div>
           <div className="col flex align-center justify-end">
             <Button
-              size="small"
+              size="sm"
               type="link"
               onClick={handleCheckout}
-              className="flex justify-center">
+              className="flex justify-center p-0 px-12">
               {t('Checkout')}
             </Button>
-            <Divider type="vertical" className="mx-8 py-4" />
+            <Divider type="vertical" className="mx-8" />
             <Button
               onClick={handleDeleteCartItem}
               danger
               type="link"
-              size="small">
-              <Image src={trash} width={18} height={18} alt={t('Remove')} />
-            </Button>
+              icon={<Image src={trash} alt={t('Remove')} />}
+            />
           </div>
         </div>
       </Card>

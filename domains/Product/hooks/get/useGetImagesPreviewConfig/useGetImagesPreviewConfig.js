@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 
-import { Grid } from 'antd'
-
-const { useBreakpoint } = Grid
+import { useBreakpoint } from 'hooks'
 
 const COUNT_DISPLAYED_IMAGES = 4
 
@@ -28,7 +26,10 @@ const useGetImagesPreviewConfig = (mediaObjects) => {
     // Main image always is the first image in array
     const main = imagesArray?.[0]
 
-    const small = imagesArray?.slice(1, COUNT_DISPLAYED_IMAGES)
+    const small = [
+      ...imagesArray?.slice(1, COUNT_DISPLAYED_IMAGES),
+      ...imagesArray?.slice(1, COUNT_DISPLAYED_IMAGES)
+    ]
 
     return { main, small }
   }, [])

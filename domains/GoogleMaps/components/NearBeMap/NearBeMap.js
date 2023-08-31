@@ -21,7 +21,7 @@ const NearBeMap = () => {
   const productsData = useGetNearProductsData(filteredNearByProducts)
 
   return (
-    <StyledWrapper className="blurry-content">
+    <StyledWrapper className="blurry-content" onScroll>
       <div className="blurry-overlay" />
       <Map
         value={selectedLocation}

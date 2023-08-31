@@ -1,9 +1,15 @@
-import { DateRange, DateRangeInputs, Text, Title } from 'components'
-import { Divider, Popover, theme } from 'antd'
+import {
+  DateRange,
+  DateRangeInputs,
+  Text,
+  Title,
+  Button,
+  Popover,
+  Divider
+} from 'components'
 
 import ProductRangeSelectWrapper from './ProductRangeSelect.styled'
 import { useCart, useTranslations } from 'contexts'
-import { Button } from 'antd'
 
 const ProductRangeSelect = (props) => {
   const {
@@ -20,7 +26,6 @@ const ProductRangeSelect = (props) => {
   } = props
 
   const { t } = useTranslations()
-  const token = theme.useToken().token
   const { addCartItem } = useCart()
 
   const handleAddItemToCart = (event) => {
@@ -29,16 +34,16 @@ const ProductRangeSelect = (props) => {
   }
 
   return (
-    <ProductRangeSelectWrapper theme={token} {...rest}>
+    <ProductRangeSelectWrapper {...rest}>
       <div className="row">
-        <div className="col-12 flex align-baseline mb-24">
+        <div className="col-12 flex align-baseline mb-24 gap-2">
           <Title as="h3">{pricePerDayDisplay}</Title>
           <Text secondary>{`/${t('day')}`}</Text>
         </div>
         <div className="col-12 mb-24">
           <Popover
             id="date-range-popover"
-            content={
+            overlay={
               <DateRange
                 showHeader
                 onChange={handleChangeRange}
@@ -59,13 +64,15 @@ const ProductRangeSelect = (props) => {
 
         <>
           <div className="col-12">
-            <div className="row justify-between">
-              <div className="col flex gap-4">
+            <div className="row justify-between align-center">
+              <div className="col-auto flex gap-4">
                 <Text>{pricePerDayDisplay}</Text>
                 <Text secondary>x</Text>
                 <Text>{t(computedDayLabel)}</Text>
               </div>
-              <div className="col">{pricePerPeriodDisplay}</div>
+              <div className="col-auto">
+                <Text>{pricePerPeriodDisplay}</Text>
+              </div>
             </div>
           </div>
           <div className="col-12">
@@ -78,11 +85,7 @@ const ProductRangeSelect = (props) => {
         </>
 
         <div className="col-12">
-          <Button
-            block
-            size="large"
-            type="primary"
-            onClick={handleAddItemToCart}>
+          <Button block type="primary" onClick={handleAddItemToCart}>
             {t('Reserve')}
           </Button>
         </div>

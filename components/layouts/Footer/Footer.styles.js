@@ -9,23 +9,18 @@ const footerWidthByMedia = {
   xxl: '1320px'
 }
 
-const FooterWrapperStyled = styled.header`
-  background-color: ${({ theme }) => theme.colorBgMask};
-  border-bottom: ${({ theme }) => `1px solid ${theme.colorBorderSecondary}`};
+const FooterWrapperStyled = styled.footer`
+  background-color: var(--secondary-lighten-4);
+  border-bottom: 1px solid var(--secondary-lighten-3);
   display: flex;
   justify-content: center;
+  box-sizing: border-box;
 `
-
-const FooterStyled = styled.div.withConfig({
-  shouldForwardProp: (prop) => !['additionalSpace'].includes(prop)
-})`
+const FooterStyled = styled.div`
   width: ${({ currentScreen }) =>
     footerWidthByMedia?.[currentScreen] || '100%'};
-  padding: ${({ lg, xs, sm, additionalSpace }) =>
-    lg
-      ? '40px 0'
-      : (xs || sm) && additionalSpace
-      ? '40px 32px 120px 32px'
-      : '40px 32px'};
+  padding: ${({ lg }) => (lg ? '32px 0' : '32px')};
+
+  box-sizing: border-box;
 `
 export { FooterWrapperStyled, FooterStyled }

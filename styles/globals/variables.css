@@ -3,6 +3,7 @@
   --white: #ffffff;
   --dark: #000000;
   --gray: #f5f5f5;
+  --error: #ff4d4f;
 
   --primary-default: #1c74e0;
   --primary-lighten-1: #4596ed;
@@ -56,7 +57,7 @@
   --font-size-h5: 16px;
   --font-size-h6: 14px;
   --font-size-label: 20px;
-  --font-size-label2: 18px;
+  --font-size-label2: 16px;
   --font-size-body: 14px;
   --font-size-body2: 14px; /* maybe temporary solution */
   --font-size-caption: 12px;
@@ -69,7 +70,7 @@
   --line-height-h5: 24px;
   --line-height-h6: 21px;
   --line-height-label: 34px;
-  --line-height-label2: 22px;
+  --line-height-label2: 26px;
   --line-height-body: 22px; /* maybe temporary solution */
   --line-height-body2: 22px;
   --line-height-caption: 12px;
@@ -104,42 +105,45 @@
   /* ELEMENTS */
   /* BUTTON */
   /* Button default */
-  --btn-default-vertical-padding: 14px;
-  --btn-default-horizontal-padding: 24px;
+  --btn-lg-height: 32px;
+  --btn-default-vertical-padding: 4px;
+  --btn-default-horizontal-padding: 15px;
   --btn-default-font-size: var(--font-size-body);
   --btn-default-line-height: var(--line-height-body);
   --btn-default-font-family: var(--font-family-body);
-  --btn-default-font-weight: var(--font-weight-medium);
+  --btn-default-font-weight: var(--font-weight-regular);
   --btn-default-border-radius: var(--border-radius-default);
-  --btn-default-icon-size: 24px !important;
+  --btn-default-icon-size: 16px !important;
 
   /* Button large */
-  --btn-lg-vertical-padding: 22px;
-  --btn-lg-horizontal-padding: 40px;
+  --btn-lg-height: 40px;
+  --btn-lg-vertical-padding: 6px;
+  --btn-lg-horizontal-padding: 18px;
   --btn-lg-font-size: var(--font-size-label2);
   --btn-lg-line-height: var(--line-height-label2);
-  --btn-lg-icon-size: 28px !important;
+  --btn-lg-icon-size: 18px !important;
 
   /* Button small */
   --btn-sm-vertical-padding: 8px;
   --btn-sm-horizontal-padding: 16px;
   --btn-sm-font-size: var(--font-size-body);
   --btn-sm-line-height: var(--line-height-body);
-  --btn-sm-icon-size: 20px !important;
+  --btn-sm-icon-size: 14px !important;
 
   /* Button primary  */
   --btn-primary-color: var(--white);
   --btn-primary-bg: var(--primary-default);
 
   /* Button secondary  */
-  --btn-secondary-color: var(--text-color-secondary);
+  --btn-secondary-color: var(--text-color-primary);
   --btn-secondary-bg: var(--white);
   --btn-secondary-border-color: var(--border-default-color);
 
-  /* Button test  */
+  /* Button text  */
   --btn-text-color: var(--text-color-secondary);
   --btn-text-bg: var(--white);
   --btn-text-border-color: var(--border-default-color);
+  --btn-text-hover-bg: var(--secondary-lighten-8);
 
   /* Button rounded */
   --btn-default-rounded-border-radius: calc(
@@ -155,7 +159,9 @@
   );
 
   /* Button only icon */
-  --btn-default-only-icon-padding: 8px;
+  --btn-default-only-icon-padding: 0;
+  --btn-default-only-icon-size: 32px;
+  --btn-only-icon-hover-bg: var(--secondary-lighten-8);
 
   /* See more button */
   --btn-see-more-color: var(--text-color-secondary);
@@ -182,8 +188,9 @@
   --input-lg-line-height: var(--line-height-body);
 
   /* Input small */
+  --input-sm-height: 32px;
   --input-sm-vertical-padding: 8px;
-  --input-sm-horizontal-padding: 16px;
+  --input-sm-horizontal-padding: 12px;
   --input-sm-font-size: var(--font-size-body);
   --input-sm-line-height: var(--line-height-body);
 
@@ -215,12 +222,12 @@
   --input-number-vertical-padding: 5px;
   --input-number-horizontal-padding: 12px;
   --input-number-height: 32px;
-  
+
   /* Border */
   --border-radius-default: 8px;
   --border-radius-sm: 4px;
   --border-radius-round: 100%;
-  --border-default-color: var(--secondary-lighten-6);
+  --border-default-color: var(--secondary-lighten-8);
 
   /* Footer */
   --footer-bg: #687079;
@@ -229,6 +236,13 @@
   --header-bg: var(--gray);
   --header-primary-bg: var(--primary-lighten-5);
 
+  /* Checkbox */
+  --checkbox-checked-bg: var(--primary-default);
+  --checkbox-bg: var(--white);
+  --checkbox-checked-border-color: transparent;
+  --checkbox-border-color: var(--secondary-lighten-6);
+  --checkbox-disabled-bg: var(--secondary-lighten-3);
+
   /* List */
   --pagination-item-color: var(--secondary-lighten-4);
   --pagination-item-border-color: var(--secondary-lighten-4);
@@ -236,7 +250,7 @@
   --pagination-item-active-color: var(--text-color-inverse);
 
   /* Avatar */
-  --avatar-border-color: var(--border-default-color:);
+  --avatar-border-color: var(--border-default-color);
 
   /* Rate */
   --rate-font-size: 22px;
@@ -250,10 +264,11 @@
   --rate-bg: var(--primary-default);
 
   /* Tag */
-  --tag-border-color: var(--primary-lighten-3);
-  --tag-font-size: var(--font-size-body2);
-  --tag-line-height: var(--line-height-body2);
-  --tag-color: var(--primary-lighten-1);
+  --tag-border-color: var(--secondary-lighten-6);
+  --tag-bg: var(--secondary-lighten-7);
+  --tag-font-size: var(--font-size-caption);
+  --tag-line-height: 20px;
+  --tag-color: var(--secondary-lighten-1);
 
   /* Filter */
   --filter-border-color: var(--secondary-lighten-t-7);
@@ -270,4 +285,12 @@
   /* Question */
   --question-number-border-color: var(--primary-lighten-1);
   --question-number-color: var(--primary-lighten-1);
+
+  /* Spin */
+  --spinner-default-size: 24px;
+  --spinner-default-dot-size: 9px;
+  --spinner-dot-left-top-bg: var(--primary-lighten-t-2);
+  --spinner-dot-right-top-bg: var(--primary-lighten-t-3);
+  --spinner-dot-left-bottom-bg: var(--primary-lighten-t-4);
+  --spinner-dot-right-bottom-bg: var(--primary-lighten-t-5);
 }

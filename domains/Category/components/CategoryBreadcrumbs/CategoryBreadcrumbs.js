@@ -1,5 +1,4 @@
-import { Breadcrumb } from 'antd'
-import { StyledBreadCrumb } from './CategoryBreadcrumbs.styled'
+import StyledBreadcrumbs from './CategoryBreadcrumbs.styled'
 
 import { useExtraCategoryBreadcrumbsItems } from './hooks'
 import { Link, Text } from 'components'
@@ -19,33 +18,30 @@ const CategoryBreadcrumbs = (props) => {
     productId
   })
 
+  const Separator = () => (
+    <Image src={chevronRight} width={12} height={12} alt={t('Separator')} />
+  )
+
   return (
-    <StyledBreadCrumb
-      separator={
-        <Image src={chevronRight} width={12} height={12} alt={t('Separator')} />
-      }>
-      <Breadcrumb.Item key={'/'}>
-        <Link href="/" className="flex align-center">
-          <Image width={16} height={16} src={home03Outlined} alt={t('Home')} />
-        </Link>
-      </Breadcrumb.Item>
+    <StyledBreadcrumbs>
+      <Link href="/" className="flex align-center">
+        <Image width={16} height={16} src={home03Outlined} alt={t('Home')} />
+      </Link>
+      {!!extraBreadcrumbItems?.length && <Separator />}
 
       {extraBreadcrumbItems?.map(({ _id, name }, index) => {
         const path = `/categories/${_id}/products`
 
-        return (
-          <Breadcrumb.Item
-            key={_id}
-            active={index === extraBreadcrumbItems.length - 1}>
-            {index === extraBreadcrumbItems.length - 1 ? (
-              <Text>{name}</Text>
-            ) : (
-              <Link href={path}>{name}</Link>
-            )}
-          </Breadcrumb.Item>
+        return index === extraBreadcrumbItems.length - 1 ? (
+          <Text>{name}</Text>
+        ) : (
+          <>
+            <Link href={path}>{name}</Link>
+            <Separator />
+          </>
         )
       })}
-    </StyledBreadCrumb>
+    </StyledBreadcrumbs>
   )
 }
 

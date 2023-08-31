@@ -1,10 +1,9 @@
-import { Button, theme } from 'antd'
 import { StyledFilter, StyledHeader, BlurBox } from './Filter.styled'
 
 import { CloseOutlined } from '@ant-design/icons'
 import PropTypes from 'prop-types'
 import { useTranslations } from 'contexts'
-import { Spinner, Title } from 'components'
+import { Spinner, Title, Button } from 'components'
 
 const Filter = (props) => {
   const {
@@ -18,8 +17,6 @@ const Filter = (props) => {
   } = props
 
   const { t } = useTranslations()
-  /* Getting colorBgContainer from theme */
-  const { colorBgContainer } = theme.useToken().token
 
   /* Closing filter */
   const handleClose = () => setFilterVisibility(false)
@@ -39,10 +36,7 @@ const Filter = (props) => {
           />
         </StyledHeader>
       )}
-      <StyledFilter
-        background={colorBgContainer}
-        allRounded={!withTitle}
-        noShadow={noShadow}>
+      <StyledFilter allRounded={!withTitle} noShadow={noShadow}>
         {children}
 
         {loading && (

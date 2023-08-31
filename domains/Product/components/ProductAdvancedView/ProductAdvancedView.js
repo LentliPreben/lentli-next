@@ -1,4 +1,3 @@
-import { Divider, Grid } from 'antd'
 import {
   ProductCharacteristics,
   ProductDetails,
@@ -8,7 +7,7 @@ import {
   ProductsListFromCurrentLessor
 } from 'domains/Product/components'
 
-import { ImagesPreview, Title, Text } from 'components'
+import { ImagesPreview, Title, Text, Divider } from 'components'
 import PropTypes from 'prop-types'
 import { ReviewsList } from 'domains/Review/components'
 import { TagList } from 'domains/Tag/components'
@@ -16,8 +15,7 @@ import { getTransformedImageUrl } from 'helpers'
 import { useMemo } from 'react'
 import { useProductRangeSelectActions } from 'domains/Product/hooks'
 import { useTranslations } from 'contexts'
-
-const { useBreakpoint } = Grid
+import { useBreakpoint } from 'hooks'
 
 const ProductAdvancedView = (props) => {
   const { product, address, mediaObjects, user, tags, reviews } = props

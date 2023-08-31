@@ -1,9 +1,0 @@
-.categories-page .products-list {
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-}
-.categories-page section:first-child {
-  padding-top: 80px;
-}
-.category-page section:first-child {
-  padding-top: 40px;
-}

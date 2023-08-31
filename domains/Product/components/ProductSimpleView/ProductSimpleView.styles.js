@@ -1,4 +1,4 @@
-import { Card } from 'antd'
+import Card from 'components/elements/Card'
 
 import styled from 'styled-components'
 
@@ -11,7 +11,7 @@ const likeFormStyles = {
 const ImageOverlay = styled.div`
   position: absolute;
   top: 0;
-  bottom: 6px;
+  bottom: 4px;
   left: 0;
   right: 0;
   background: transparent;
@@ -20,24 +20,12 @@ const ImageOverlay = styled.div`
 `
 
 const imageRow = {
-  height: '128px'
+  height: '100px'
 }
 
 const CardStyled = styled(Card)`
   cursor: pointer;
   height: 100%;
-
-  a {
-    width: 100%;
-  }
-
-  .ant-card-body {
-    padding: 0;
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-  }
 `
 
 export { ImageOverlay, CardStyled, likeFormStyles, imageRow }

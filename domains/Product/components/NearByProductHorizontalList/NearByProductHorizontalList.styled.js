@@ -1,8 +1,7 @@
-import { Space } from 'antd'
 import styled from 'styled-components'
 
-export const StyledSpace = styled(Space)`
-  .ant-space-item > div {
+export const StyledSpace = styled.div`
+  & > div {
     display: flex;
   }
   width: 100%;
@@ -32,3 +31,8 @@ export const TitleWrapper = styled.div`
   margin-left: 16px;
   padding-bottom: 8px;
 `
+export const productSimpleViewWrapperStyles = {
+  width: '220px',
+  minWidth: '220px',
+  height: 'inherit'
+}

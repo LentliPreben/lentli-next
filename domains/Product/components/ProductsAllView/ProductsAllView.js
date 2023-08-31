@@ -1,14 +1,13 @@
-import { Col, Empty, Pagination, Row } from 'antd'
 import { memo } from 'react'
-import { Text } from 'components'
+import { NoData, Pagination } from 'components'
 import { ProductList } from 'domains/Product/components'
 import PropTypes from 'prop-types'
 import { useTranslations } from 'contexts'
-import { useScreen } from 'hooks'
+import { useBreakpoint } from 'hooks'
 
 const ProductsAllView = (props) => {
   const { products, totalResults, currentPage, onPageChange } = props
-  const { isExtraSmallScreen } = useScreen()
+  const { isExtraSmallScreen } = useBreakpoint()
 
   const { t } = useTranslations()
 
@@ -23,7 +22,6 @@ const ProductsAllView = (props) => {
           <ProductList
             maxHeight={heightToNegotiate}
             products={products}
-            span={{ xs: 24, sm: 24, md: 12, lg: 12, xl: 8, xxl: 6 }}
             pagination={
               <Pagination
                 style={{ justifyContent: 'center', display: 'flex' }}
@@ -36,12 +34,8 @@ const ProductsAllView = (props) => {
             }
           />
         ) : (
-          <Empty
-            description={
-              <Text secondary>
-                {t("There aren't products for current category")}
-              </Text>
-            }
+          <NoData
+            description={t("There aren't products for current category")}
           />
         )}
       </div>

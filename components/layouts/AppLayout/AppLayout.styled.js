@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { Layout, Grid } from 'antd'
-import { useCurrentScreen } from 'hooks'
+import { useBreakpoint } from 'hooks'
 import styled from 'styled-components'
 
-const { useBreakpoint } = Grid
-
+const LayoutStyled = styled.div`
+  flex: 1;
+`
 const InnerContent = styled.div.withConfig({
   shouldForwardProp: (prop) =>
     !['contentWidthByMedia', 'fullWidth', 'fullHeight'].includes(prop)
@@ -12,20 +12,20 @@ const InnerContent = styled.div.withConfig({
   display: flex;
   flex-direction: column;
   height: ${({ fullHeight }) =>
-    fullHeight ? 'calc(100dvh - 104px)' : '100%'}; // 104px header's height
-  padding: ${({ fullWidth, lg, xs }) =>
-    fullWidth ? (xs ? '20px' : '32px 48px') : lg ? '32px 0' : '32px'};
+    fullHeight ? 'calc(100dvh - 96px)' : '100%'}; // 96px header's height
+  padding: ${({ fullWidth, md, xs, sm }) =>
+    fullWidth ? (xs ? '20px' : '32px 48px') : '32px'};
   width: ${({ currentScreen, contentWidthByMedia, fullWidth }) =>
-    fullWidth ? '100%' : contentWidthByMedia?.[currentScreen]};
+    fullWidth ? 'auto' : contentWidthByMedia?.[currentScreen]};
   margin: 0 auto;
+  box-sizing: border-box;
 `
 
 const StyledContent = (props) => {
   const { children, header, showSimpleHeader, fullWidth, fullHeight, ...rest } =
     props
 
-  const currentScreen = useCurrentScreen()
-  const { lg, xs } = useBreakpoint()
+  const { xs, md, sm, currentScreen } = useBreakpoint()
 
   const contentWidthByMedia = {
     xs: '100%',
@@ -37,18 +37,19 @@ const StyledContent = (props) => {
   }
 
   return (
-    <Layout.Content {...rest}>
+    <LayoutStyled {...rest}>
       <InnerContent
         contentWidthByMedia={contentWidthByMedia}
         fullWidth={fullWidth}
         fullHeight={fullHeight}
         currentScreen={currentScreen}
-        lg={lg}
+        md={md}
+        sm={sm}
         xs={xs}>
         {children}
       </InnerContent>
-    </Layout.Content>
+    </LayoutStyled>
   )
 }
 
-export { StyledContent, InnerContent }
+export default StyledContent

@@ -1,0 +1,18 @@
+.language-select-control {
+  font-size: var(--input-default-font-size);
+  line-height: var(--input-default-line-height);
+  border: 1px solid var(--input-default-border-color);
+  border-radius: var(--input-default-border-radius);
+  outline: none;
+  text-overflow: ellipsis;
+  height: 32px !important;
+  min-height: unset !important;
+  box-shadow: unset !important;
+  border-color: var(--border-default-color) !important;
+}
+
+.language-select-control * {
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

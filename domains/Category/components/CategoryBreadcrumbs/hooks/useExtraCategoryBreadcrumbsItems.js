@@ -2,14 +2,15 @@ import { useCallback, useEffect, useState } from 'react'
 
 import { COLLECTIONS } from '__constants__'
 import { getDocument } from 'services/api/firebase'
-import { message } from 'antd'
 import { useTranslations } from 'contexts'
+import { useHandleError } from 'hooks'
 
 const useExtraCategoryBreadcrumbsItems = (props) => {
   const categoryId = props?.categoryId
   const productId = props?.productId
 
   const { t } = useTranslations()
+  const handleError = useHandleError()
 
   const [loading, setLoading] = useState(true)
   const [breadcrumbsConfig, setBreadcrumbsConfig] = useState([])
@@ -20,11 +21,7 @@ const useExtraCategoryBreadcrumbsItems = (props) => {
       try {
         return await getDocument(COLLECTIONS.CATEGORIES, categoryId)
       } catch (error) {
-        message({
-          type: 'error',
-          title: t('Error'),
-          message: t('Error during getting category')
-        })
+        handleError(error, t('Error during getting category'))
       }
     },
     [t]
@@ -36,11 +33,7 @@ const useExtraCategoryBreadcrumbsItems = (props) => {
       try {
         return await getDocument(COLLECTIONS.PRODUCTS, productId)
       } catch (error) {
-        message({
-          type: 'error',
-          title: t('Error'),
-          message: t('Error during getting product')
-        })
+        handleError(error, t('Error during getting product'))
       }
     },
     [t]
@@ -81,11 +74,7 @@ const useExtraCategoryBreadcrumbsItems = (props) => {
         setBreadcrumbsConfig([...(categoriesConfig?.reverse() || []), product])
       }
     } catch (error) {
-      message({
-        type: 'error',
-        title: t('Error'),
-        message: t('Error during getting config for breadcrumbs')
-      })
+      handleError(error, t('Error during getting config for breadcrumbs'))
     } finally {
       setLoading(false)
     }

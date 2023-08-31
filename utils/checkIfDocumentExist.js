@@ -1,7 +1,7 @@
 import { doc, getDoc } from 'firebase/firestore'
 
 import { firestore } from 'services/firebase'
-import { notification } from 'antd'
+import { notification } from 'utils'
 
 const checkIfDocumentExist = async (_id, collection, messageError) => {
   try {
@@ -9,8 +9,9 @@ const checkIfDocumentExist = async (_id, collection, messageError) => {
     const docSnapshot = await getDoc(docRef)
     return docSnapshot?.exists()
   } catch (error) {
-    notification.error({
-      message: messageError,
+    notification({
+      type: 'error',
+      title: messageError,
       description: error.message
     })
   }

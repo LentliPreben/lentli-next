@@ -1,29 +1,21 @@
-import {
-  ActionsColStyled,
-  PageHeaderWrapper,
-  StyledIcon
-} from './PageHeader.styled'
-import { Divider, Tooltip } from 'antd'
-import { useScreen } from 'hooks'
-import infoCircle from 'public/assets/infoCircle.svg'
-import { Title, Text } from 'components'
+import { ActionsColStyled, PageHeaderWrapper } from './PageHeader.styled'
+import { useBreakpoint } from 'hooks'
+import { Title, Divider } from 'components'
 
 const PageHeader = (props) => {
   const {
     title,
     actions,
-    titleSize = 1,
+    titleSize = 2,
     subTitle,
-    subTitleSize = 5,
     breadcrumbs,
     withoutHeader,
     divider,
-    tooltipTitle,
     topHeader,
     filter
   } = props
 
-  const { xs } = useScreen()
+  const { xs } = useBreakpoint()
   const computedTitleSize =
     xs && `h${titleSize < 5 ? titleSize + 1 : titleSize}`
 
@@ -47,15 +39,6 @@ const PageHeader = (props) => {
               <>
                 <div className={`flex align-center ${subTitle && 'mb-8'}`}>
                   <Title as={computedTitleSize}>{title}</Title>
-                  {tooltipTitle && (
-                    <Tooltip title={tooltipTitle} className="ml-8">
-                      <StyledIcon
-                        titleSize={titleSize}
-                        src={infoCircle}
-                        alt={t('Information')}
-                      />
-                    </Tooltip>
-                  )}
                 </div>
                 {subTitle && subTitle}
               </>

@@ -24,7 +24,7 @@ const SearchResultsHeading = (props) => {
       <Text variant="label">{description}</Text>
       <Button
         primary
-        small
+        size="sm"
         icon="/assets/close.svg"
         onClick={handleClearSearch}>
         {t('Clear search')}

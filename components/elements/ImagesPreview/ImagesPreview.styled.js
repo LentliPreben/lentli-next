@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Button } from 'components'
 
 const ImagesPreviewWrapper = styled.div`
   border-radius: 7px;
@@ -8,7 +9,7 @@ const ImagesPreviewWrapper = styled.div`
   gap: 8px;
   display: flex;
   width: 100%;
-  height: ${({ md }) => (md ? '430px' : '100%')};
+  height: ${({ md }) => (md ? '430px' : '320px')};
 
   img {
     cursor: pointer;
@@ -17,7 +18,7 @@ const ImagesPreviewWrapper = styled.div`
 const MainImageWrapper = styled.div`
   position: relative;
   width: 100%;
-
+  height: inherit;
   img {
     width: 100%;
     object-fit: cover;
@@ -37,7 +38,7 @@ const MainImageWrapper = styled.div`
 const SmallImagesPreviewWrapper = styled.div`
   display: flex;
   flex-direction: ${({ sm }) => (sm ? 'column' : 'row')};
-  height: 100%;
+  height: ${({ xs }) => (xs ? '50%' : '100%')};
   width: ${({ sm }) => (sm ? '30%' : '100%')};
   gap: 8px;
 
@@ -77,10 +78,17 @@ const SmallImagePreview = styled.div`
   }};
 `
 
+const buttonStyle = {
+  position: 'absolute',
+  bottom: '20px',
+  left: '20px'
+}
+
 export {
   ImagesPreviewWrapper,
   MainImageWrapper,
   SmallImagesPreviewWrapper,
   CountImagesWrapper,
-  SmallImagePreview
+  SmallImagePreview,
+  buttonStyle
 }

@@ -1,0 +1,49 @@
+.spinner-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 12px
+  }
+  .spinner-wrapper .spinner {
+    position: relative;
+    height: var(--spinner-default-size);
+    width: var(--spinner-default-size);
+    transform: rotate(45deg);
+    animation-name: spinner;
+    animation-duration: 1.2s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+  .spinner-wrapper .spinner-dot {
+    width: var(--spinner-default-dot-size);
+    height: var(--spinner-default-dot-size);
+    position: absolute;
+    border-radius: var(--border-radius-round);
+  }
+  .spinner-wrapper .spinner-dot.spinner-dot-left-top {
+    top: 0;
+    left: 0;
+    background-color: var(--primary-lighten-t-2);
+  }
+  .spinner-wrapper .spinner-dot.spinner-dot-right-top {
+    top: 0;
+    right: 0;
+    background-color: var(--spinner-dot-right-top-bg);
+  }
+  .spinner-wrapper .spinner-dot.spinner-dot-left-bottom {
+    bottom: 0;
+    left: 0;
+    background-color: var(--spinner-dot-left-bottom-bg);
+  }
+  .spinner-wrapper .spinner-dot.spinner-dot-right-bottom {
+    right: 0;
+    bottom: 0;
+    background-color: var(--spinner-dot-right-bottom-bg);
+  }
+  
+  @keyframes spinner {
+    100% {
+      transform: rotate(405deg);
+    }
+  }

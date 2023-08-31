@@ -1,8 +1,20 @@
-import { Avatar as AntdAvatar } from 'antd'
-import { UserOutlined } from '@ant-design/icons'
+import Image from 'next/image'
+import AvatarStyled from './Avatar.styled'
+import user from 'public/assets/user.svg'
+import { useTranslations } from 'contexts'
 
 const Avatar = (props) => {
-  return <AntdAvatar icon={<UserOutlined />} size={156} {...props} />
+  const { size = 34, src } = props
+  const { t } = useTranslations()
+
+  const scrComputed = src || user
+  const isUserAvatar = !!src
+
+  return (
+    <AvatarStyled size={size} isUserAvatar={isUserAvatar}>
+      <Image src={scrComputed} alt={t('Avatar')} layout="fill" />
+    </AvatarStyled>
+  )
 }
 
 export default Avatar

@@ -1,13 +1,12 @@
-import PropTypes from 'prop-types'
 import styled from 'styled-components'
-import { theme, Button } from 'antd'
+import Button from 'components/elements/Button'
 
 const LikeButtonStyled = styled(Button)`
   svg,
   svg path {
-    fill: ${({ isLiked, theme }) =>
-      isLiked ? theme.colorPrimary : 'transparent'};
-    stroke: ${({ isLiked, theme }) => isLiked && theme.colorPrimary};
+    fill: ${({ isLiked }) =>
+      isLiked ? 'var(--primary-default)' : 'transparent'};
+    stroke: ${({ isLiked }) => isLiked && 'var(--primary-default)'};
   }
 `
 

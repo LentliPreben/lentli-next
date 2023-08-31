@@ -1,24 +1,25 @@
 import { CartList } from 'domains/Cart/components'
-import { Popover } from 'antd'
 import { useTranslations } from 'contexts'
-import { Title } from 'components'
+import { Title, Popover } from 'components'
 
 const CartPopover = (props) => {
-  const { children, countCartItems } = props
+  const { children, countCartItems, show } = props
 
   const { t } = useTranslations()
 
   const popoverTitle = `${t('My cart')} (${countCartItems})`
 
-  return (
+  return show ? (
     <Popover
       overlayClassName="cart-popover"
       showArrow={false}
       trigger="click"
-      content={<CartList />}
+      overlay={<CartList />}
       title={<Title as="h4">{popoverTitle}</Title>}>
       {children}
     </Popover>
+  ) : (
+    children
   )
 }
 

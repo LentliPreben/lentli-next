@@ -10,7 +10,6 @@ const ProductList = (props) => {
     products,
     emptyProps,
     onDraftsToPublishSelect,
-    span,
     pagination,
     maxHeight,
     ...rest
@@ -31,7 +30,6 @@ const ProductList = (props) => {
       wrapperStyles={{
         overflowY: 'auto'
       }}
-      span={span}
       {...rest}
       dataSource={products}
       emptyProps={emptyParams}
@@ -58,7 +56,6 @@ ProductList.propTypes = {
   onDraftsToPublishSelect: PropTypes.func,
   selectedDrafts: PropTypes.array,
   isDraftsPage: PropTypes.bool,
-  span: PropTypes.object,
   pagination: PropTypes.object,
   maxHeight: PropTypes.string
 }

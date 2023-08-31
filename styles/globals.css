@@ -9,8 +9,6 @@
 
 @import url("./helpers/helpers.css");
 
-@import url("./pages/");
-
 html,
 body {
   padding: 0;
@@ -38,9 +36,18 @@ main {
 }
 .app-layout {
   display: flex;
-  height: 100%;
+  height: fit-content;
+
   flex-direction: column;
   background-color: #fff;
+  min-height: 100%;
+  background-color: #f5f5f5;
+}
+.app-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
 }
 ::placeholder {
   color: var(--text-color-placeholder);
@@ -106,17 +113,15 @@ h6 {
 .cart-popover {
   padding: 0px;
   box-shadow: revert;
-
   border-radius: 9px;
   overflow: hidden;
-  height: 50vh !important;
-
   box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px,
     rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px !important;
+  width: 346px;
+  height: fit-content !important;
 }
 
 .cart-popover .ant-popover-content {
-  width: 400px;
   background-color: #fff;
   height: 100%;
 }
@@ -170,4 +175,11 @@ h6 {
 .map-container div[role='menubar'] .gm-style-mtc:last-child button {
   border-top-right-radius: 8px !important;
   border-bottom-right-radius: 8px !important;
+}
+/* Styled for markers on the map*/
+.gm-style-iw  > * {
+  overflow: hidden !important;
+}
+.gm-style {
+  padding: 16px !important
 }

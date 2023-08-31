@@ -1,8 +1,7 @@
-import { Input } from 'antd'
 import moment from 'moment'
 import { useTranslations } from 'contexts'
 import { finalCheck } from './helpers'
-import { Text } from 'components'
+import { Text, Input } from 'components'
 
 const DateRangeInputs = (props) => {
   const { range, onChange } = props
@@ -31,6 +30,7 @@ const DateRangeInputs = (props) => {
   return (
     <div className="flex align-center gap-8 full-width">
       <Input
+        size="sm"
         value={moment(range?.startDate).format('YYYY-MM-DD')}
         allowClear
         type="date"
@@ -42,6 +42,7 @@ const DateRangeInputs = (props) => {
       />
       <Text secondary>-</Text>
       <Input
+        size="sm"
         value={moment(range?.endDate).format('YYYY-MM-DD')}
         allowClear
         type="date"

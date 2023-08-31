@@ -1,0 +1,9 @@
+.rc-pagination-prev,
+.rc-pagination-next,
+.rc-pagination-jump-prev,
+.rc-pagination-jump-next,
+.rc-pagination-prev .rc-pagination-item-link,
+.rc-pagination-next .rc-pagination-item-link , .rc-pagination-item{
+  border-radius: var(--border-radius-default);
+  box-sizing: border-box
+}

@@ -1,5 +1,3 @@
-import { theme } from 'antd'
-
 import { DateRangeInputs, Text, Title } from 'components'
 import { DateRangeStyled } from './DateRange.styled'
 import { LOCALES } from '__constants__'
@@ -15,8 +13,6 @@ const DateRange = (props) => {
     formattedDateRange,
     disabledDates
   } = props
-
-  const { colorErrorText } = theme.useToken().token
 
   const { language } = useTranslations()
 
@@ -61,7 +57,6 @@ const DateRange = (props) => {
             locale={locale}
             editableDateInputs={false}
             onChange={handleChangeDateRange}
-            disableColor={colorErrorText}
             disabledDates={disabledDates}
             moveRangeOnFirstSelection={false}
             showMonthAndYearPickers={false}
