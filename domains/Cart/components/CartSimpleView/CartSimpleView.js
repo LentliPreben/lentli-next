@@ -73,7 +73,6 @@ const CartSimpleView = (props) => {
     likedDataForTransfer,
     product?._id
   ])
-
   const previewImgUrl = getTransformedImageUrl(previewImage)
   return (
     <LoadingBox loading={loading}>

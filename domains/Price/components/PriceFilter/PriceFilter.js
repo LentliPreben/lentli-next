@@ -23,9 +23,10 @@ const PriceFilter = ({ priceRange }) => {
       setMaxValue(value)
     }
   }
+  const handleInputMinValueChange = (value) => handleInputChange(value, 'min')
+  const handleInputMaxValueChange = (value) => handleInputChange(value, 'max')
 
   const handleSliderChange = (values) => {
-    console.log(values)
     setDisabled(false)
     setMinValue(values[0])
     setMaxValue(values[1])
@@ -67,18 +68,14 @@ const PriceFilter = ({ priceRange }) => {
           <Input
             size="sm"
             value={minValue}
-            onChange={(value) => {
-              handleInputChange(value, 'min')
-            }}
+            onChange={handleInputMinValueChange}
           />
           <Text secondary>-</Text>
           <Input
             size="sm"
             className="mr-4"
             value={maxValue}
-            onChange={(value) => {
-              handleInputChange(value, 'max')
-            }}
+            onChange={handleInputMaxValueChange}
           />
 
           <Button disabled={disabled} onClick={applyChanges}>

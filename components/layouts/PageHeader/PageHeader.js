@@ -14,10 +14,11 @@ const PageHeader = (props) => {
     topHeader,
     filter
   } = props
-
   const { xs } = useBreakpoint()
-  const computedTitleSize =
-    xs && `h${titleSize < 5 ? titleSize + 1 : titleSize}`
+
+  const computedTitleSize = xs
+    ? `h${titleSize < 5 ? titleSize + 1 : titleSize}`
+    : `h${titleSize}`
 
   if (withoutHeader) return null
 

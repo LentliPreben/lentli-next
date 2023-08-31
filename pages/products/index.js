@@ -10,8 +10,11 @@ import { LoadingBox } from 'components'
 import { ProductsAllView } from 'domains/Product/components'
 import { useGetDocumentsByIds } from 'services/api/firebase'
 import { useLoading } from 'hooks'
+import { useTranslations } from 'contexts'
 
 const Products = () => {
+  const { t } = useTranslations()
+
   const [currentPage, setCurrentPage] = useState(1)
 
   const searchParams = useMemo(
@@ -34,6 +37,11 @@ const Products = () => {
   const [mergedProducts, mergedProductsLoading] =
     useMergeProductMediaObjects(products)
 
+  const headingProps = {
+    title: t('Products'),
+    textAlign: 'left'
+  }
+
   const loading = useLoading([
     typeSenseProductsLoading,
     mergedProductsLoading,
@@ -41,7 +49,7 @@ const Products = () => {
   ])
 
   return (
-    <PageLayout>
+    <PageLayout headingProps={headingProps}>
       <LoadingBox spinnerProps={{ height: '100%' }} loading={loading}>
         <ProductsAllView
           products={mergedProducts}
