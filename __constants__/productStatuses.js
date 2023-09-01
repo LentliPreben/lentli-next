@@ -5,7 +5,6 @@ const PRODUCT_STATUSES = {
   BLOCKED: 'BLOCKED'
 }
 
-
 const PRODUCT_STATUSES_LABELS = {
   DRAFT: 'Draft',
   PUBLISHED: 'Published',

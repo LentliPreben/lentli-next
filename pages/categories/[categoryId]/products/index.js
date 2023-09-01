@@ -1,8 +1,9 @@
-import { PageLayout, LoadingBox, Breadcrumbs, FilterButton } from 'components'
+import { Breadcrumbs, FilterButton, LoadingBox, PageLayout } from 'components'
+
 import { FilterProvider } from 'contexts'
 import { ProductsByCategoryAdvancedView } from 'domains/Product/components'
-import { useGetCategory } from 'domains/Category/hooks'
 import { useBreakpoint } from 'hooks'
+import { useGetCategory } from 'domains/Category/hooks'
 
 const ProductsByCategory = (props) => {
   const { categoryId } = props

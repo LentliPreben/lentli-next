@@ -1,15 +1,16 @@
-import { useCallback, useEffect, useState } from 'react'
 import {
-  query,
   collection,
-  where,
-  orderBy,
+  getDocs,
   limit,
-  getDocs
+  orderBy,
+  query,
+  where
 } from 'firebase/firestore'
+import { useCallback, useEffect, useState } from 'react'
+
+import { firestore } from 'services/firebase'
 import { useHandleError } from 'hooks'
 import { useTranslations } from 'contexts'
-import { firestore } from 'services/firebase'
 
 const useGetProductPriceRangeByCategory = (categoryId) => {
   const handleError = useHandleError()
@@ -42,8 +43,8 @@ const useGetProductPriceRangeByCategory = (categoryId) => {
       ])
 
       setPriceRange({
-        minPrice: productWithMinPrice?.docs?.[0]?.data()?.pricePerDay,
-        maxPrice: productWithMaxPrice?.docs?.[0]?.data()?.pricePerDay
+        minPrice: productWithMinPrice?.docs?.[0]?.data()?.pricePerDay || 0,
+        maxPrice: productWithMaxPrice?.docs?.[0]?.data()?.pricePerDay || 0
       })
     } catch (error) {
       handleError(error, t('Error during getting price range'))

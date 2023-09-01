@@ -1,11 +1,11 @@
+import { Button, LoadingBox, NoData, Pagination } from 'components'
 import { ProductFilter, ProductList } from 'domains/Product/components'
 import { memo, useCallback } from 'react'
-import { useLoading, useBreakpoint, useHorizontalScroll } from 'hooks'
+import { useBreakpoint, useHorizontalScroll, useLoading } from 'hooks'
+import { useFilterContext, useTranslations } from 'contexts'
 
-import { LoadingBox, NoData, Button, Pagination } from 'components'
 import PropTypes from 'prop-types'
 import { StyledSpace } from './ProductsByCategoryAdvancedView.styled'
-import { useFilterContext, useTranslations } from 'contexts'
 import { useGetSubCategories } from 'domains/Category/hooks'
 import { useRouter } from 'next/router'
 
@@ -96,7 +96,7 @@ const ProductsByCategoryAdvancedView = (props) => {
             minWidth: '268px',
             maxWidth: '268px'
           }}>
-          <ProductFilter filterVisibility category={category} />
+          <ProductFilter filterVisibility={true} category={category} />
         </div>
       )}
     </div>

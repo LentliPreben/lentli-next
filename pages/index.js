@@ -1,8 +1,7 @@
-import { PageLayout } from 'components'
-
+import { FilterProvider } from 'contexts'
 import { NearBeMap } from 'domains/GoogleMaps/components'
 import { NearProductsList } from 'domains/Product/components'
-import { FilterProvider } from 'contexts'
+import { PageLayout } from 'components'
 import { getTopLevelCategories } from 'domains/Category/helpers'
 
 const Home = (props) => {

@@ -1,9 +1,10 @@
-import { memo } from 'react'
 import { NoData, Pagination } from 'components'
+
 import { ProductList } from 'domains/Product/components'
 import PropTypes from 'prop-types'
-import { useTranslations } from 'contexts'
+import { memo } from 'react'
 import { useBreakpoint } from 'hooks'
+import { useTranslations } from 'contexts'
 
 const ProductsAllView = (props) => {
   const { products, totalResults, currentPage, onPageChange } = props
