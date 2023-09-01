@@ -1,4 +1,3 @@
-import { PageLayout } from 'components'
 import { useMemo, useState } from 'react'
 import {
   useMergeProductMediaObjects,
@@ -7,15 +6,21 @@ import {
 
 import { COLLECTIONS } from '__constants__'
 import { LoadingBox } from 'components'
+import { PageLayout } from 'components'
 import { ProductsAllView } from 'domains/Product/components'
+import { getTopLevelCategories } from 'domains/Category/helpers'
 import { useGetDocumentsByIds } from 'services/api/firebase'
 import { useLoading } from 'hooks'
 import { useTranslations } from 'contexts'
 
-const Products = () => {
+const Products = (props) => {
   const { t } = useTranslations()
 
   const [currentPage, setCurrentPage] = useState(1)
+
+  const { topLevelCategoriesJSON } = props
+
+  const topLevelCategories = JSON.parse(topLevelCategoriesJSON)
 
   const searchParams = useMemo(
     () => ({ perPage: 8, page: currentPage }),
@@ -49,7 +54,9 @@ const Products = () => {
   ])
 
   return (
-    <PageLayout headingProps={headingProps}>
+    <PageLayout
+      headingProps={headingProps}
+      topLevelCategories={topLevelCategories}>
       <LoadingBox spinnerProps={{ height: '100%' }} loading={loading}>
         <ProductsAllView
           products={mergedProducts}
@@ -60,6 +67,19 @@ const Products = () => {
       </LoadingBox>
     </PageLayout>
   )
+}
+
+export async function getServerSideProps(props) {
+  try {
+    const topLevelCategories = await getTopLevelCategories()
+    const topLevelCategoriesJSON = JSON.stringify(topLevelCategories || {})
+
+    return {
+      props: { topLevelCategoriesJSON }
+    }
+  } catch (error) {
+    console.error(error)
+  }
 }
 
 export default Products

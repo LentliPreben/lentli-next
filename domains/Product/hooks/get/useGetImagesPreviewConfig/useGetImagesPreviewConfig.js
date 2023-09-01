@@ -26,10 +26,7 @@ const useGetImagesPreviewConfig = (mediaObjects) => {
     // Main image always is the first image in array
     const main = imagesArray?.[0]
 
-    const small = [
-      ...imagesArray?.slice(1, COUNT_DISPLAYED_IMAGES),
-      ...imagesArray?.slice(1, COUNT_DISPLAYED_IMAGES)
-    ]
+    const small = imagesArray?.slice(1, COUNT_DISPLAYED_IMAGES)
 
     return { main, small }
   }, [])

@@ -1,12 +1,12 @@
 import { BrandFilter, FieldFilter, ProductFilterList } from './components'
 import { memo, useMemo } from 'react'
+import { useFilterContext, useTranslations } from 'contexts'
 
 import { COLLECTIONS } from '__constants__'
 import { Filter } from 'components'
-import PropTypes from 'prop-types'
-import { useFilterContext, useTranslations } from 'contexts'
-import { useGetDocumentsByIds } from 'services/api/firebase'
 import { PriceFilter } from 'domains/Price/components'
+import PropTypes from 'prop-types'
+import { useGetDocumentsByIds } from 'services/api/firebase'
 
 const ProductFilter = (props) => {
   const { filterVisibility, setFilterVisibility, category } = props
@@ -39,13 +39,13 @@ const ProductFilter = (props) => {
         brands={brands}
         brandsLoading={brandsLoading}
       />
-      {facetsIds?.length ? (
-        <PriceFilter
-          categoryId={category?._id}
-          priceRange={priceRangeByCategory}
-        />
-      ) : null}
-      <BrandFilter categoryId={category?._id} />
+
+      <PriceFilter
+        categoryId={category?._id}
+        priceRange={priceRangeByCategory}
+      />
+
+      {/* <BrandFilter categoryId={category?._id} /> */}
       {category?.fields?.map(({ name }) => (
         <FieldFilter key={name} field={name} />
       ))}
