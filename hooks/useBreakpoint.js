@@ -30,11 +30,16 @@ const getDeviceConfig = (width) => {
 const useBreakpoint = () => {
   const [brkPnt, setBrkPnt] = useState()
 
+  const currentBreakpointMap = breakPointMap?.[brkPnt] || breakPointMap.sm
+
   const isSmallScreen = useMemo(
-    () => brkPnt === 'sm' || brkPnt === 'md',
-    [brkPnt]
+    () => !currentBreakpointMap.lg,
+    [currentBreakpointMap.lg]
   )
-  const isExtraSmallScreen = useMemo(() => brkPnt === 'xs', [brkPnt])
+  const isExtraSmallScreen = useMemo(
+    () => !currentBreakpointMap.sm,
+    [currentBreakpointMap.sm]
+  )
 
   useEffect(() => {
     const calcInnerWidth = throttle(function () {
@@ -45,8 +50,6 @@ const useBreakpoint = () => {
     window.addEventListener('resize', calcInnerWidth)
     return () => window.removeEventListener('resize', calcInnerWidth)
   }, [])
-
-  const currentBreakpointMap = breakPointMap?.[brkPnt] || breakPointMap.sm
 
   return {
     ...currentBreakpointMap,

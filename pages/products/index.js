@@ -71,7 +71,7 @@ const Products = (props) => {
 
 export async function getServerSideProps(props) {
   try {
-    const topLevelCategories = await getTopLevelCategories()
+    const [, topLevelCategories] = await getTopLevelCategories()
     const topLevelCategoriesJSON = JSON.stringify(topLevelCategories || {})
 
     return {

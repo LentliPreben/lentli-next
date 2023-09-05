@@ -1,8 +1,9 @@
-import { useHorizontalScroll } from 'hooks'
-import { StyledSpace, StyledButton } from './TopCategoriesList.styles'
-import { Link } from 'components'
-import Image from 'next/image'
+import { StyledButton, StyledSpace } from './TopCategoriesList.styles'
+
 import { CATEGORY_ICONS } from '__constants__'
+import Image from 'next/image'
+import { Link } from 'components'
+import { useHorizontalScroll } from 'hooks'
 import { useRouter } from 'next/router'
 
 const TopCategoriesList = (props) => {

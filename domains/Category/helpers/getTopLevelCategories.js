@@ -1,60 +1,65 @@
 import { COLLECTIONS, PRODUCT_STATUSES } from '__constants__'
-import { collection, getDocs, query, where } from 'firebase/firestore'
+import { collection, getDocs, limit, query, where } from 'firebase/firestore'
 
 import { firestore } from 'services/firebase'
 
 const getTopLevelCategories = async () => {
   try {
+    const defaultValue = [[], [], []]
     const allCategoriesSnapshot = await getDocs(
       query(collection(firestore, COLLECTIONS.CATEGORIES))
     )
-    const allCategories = allCategoriesSnapshot?.docs?.map((doc) => doc.data())
-    const productsSnapshot = await getDocs(
-      query(collection(firestore, COLLECTIONS.PRODUCTS))
-    )
-    const products = productsSnapshot?.docs?.map((doc) => doc.data())
+    const categories = allCategoriesSnapshot?.docs?.map((doc) => doc.data())
 
-    const topCategoriesSnapshot = await getDocs(
-      query(
-        collection(firestore, COLLECTIONS.CATEGORIES),
-        where('isTopLevel', '==', true)
-      )
-    )
-    const topCategories = topCategoriesSnapshot?.docs?.map((doc) => doc.data())
-
-    const productsByCategoryId = products.reduce((result, product) => {
-      const categoryId = product.categoryId
-      const isPublishedProduct = product?.status === PRODUCT_STATUSES.PUBLISHED
-      if (categoryId && isPublishedProduct) {
-        result[categoryId] = (result[categoryId] || 0) + 1
-      }
-      return result
-    }, {})
-
-    const countRecursively = (categoryId) => {
-      let totalCount = productsByCategoryId?.[categoryId] || 0
-
-      const categoryDoc = allCategories?.find(
-        (category) => category?._id === categoryId
+    const getCollection = async (categoryId) => {
+      const queryConfig = query(
+        collection(firestore, COLLECTIONS.PRODUCTS),
+        where('categoryId', '==', categoryId),
+        where('status', '==', PRODUCT_STATUSES.PUBLISHED),
+        limit(1)
       )
 
-      if (categoryDoc?.subcategories?.length) {
-        categoryDoc?.subcategories?.forEach((subcategoryId) => {
-          totalCount += countRecursively(subcategoryId)
-        })
-      }
+      const docSnapshot = await getDocs(queryConfig)
 
-      return totalCount
+      const docs = docSnapshot?.docs?.map((doc) => doc.data())
+      return docs
     }
 
-    const topCategoriesWithProducts = topCategories
-      .map((category) => {
-        const hasProducts = countRecursively(category?._id)
-        return hasProducts ? category : null
-      })
-      .filter(Boolean)
+    if (!categories?.length) return defaultValue
 
-    return topCategoriesWithProducts || []
+    const topLevelCategories = []
+    let filteredCategories
+    let subCategories
+
+    const categoriesPromises = categories?.map(async (category) => {
+      if (category?.isTopLevel) return null
+      const [product] = await getCollection(category?._id)
+      if (!product) return null
+
+      const parentId = category?.parentId
+      const isCategoryExist = topLevelCategories?.find(
+        (item) => item?._id === parentId
+      )
+
+      if (!isCategoryExist) {
+        const topLevelCategory = categories.find(
+          (item) => item?._id === parentId && item?.isTopLevel
+        )
+
+        topLevelCategory && topLevelCategories.push(topLevelCategory)
+      }
+      return category
+    })
+
+    const filteredCategoriesResolve = await Promise.all(categoriesPromises)
+
+    const subCategoriesFiltered = filteredCategoriesResolve?.filter(Boolean)
+    filteredCategories = [...topLevelCategories, ...subCategoriesFiltered]
+    subCategories = [...subCategoriesFiltered]
+
+    return (
+      [filteredCategories, topLevelCategories, subCategories] || defaultValue
+    )
   } catch (error) {
     console.error(error)
   }

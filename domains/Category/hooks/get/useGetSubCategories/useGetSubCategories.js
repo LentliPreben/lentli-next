@@ -1,10 +1,10 @@
-import { useEffect, useState, useCallback } from 'react'
+import { collection, getDocs, query, where } from 'firebase/firestore'
+import { useCallback, useEffect, useState } from 'react'
 
-import { collection, where, getDocs, query } from 'firebase/firestore'
 import { COLLECTIONS } from '__constants__'
 import { firestore } from 'services/firebase'
-import { useTranslations } from 'contexts'
 import { useHandleError } from 'hooks'
+import { useTranslations } from 'contexts'
 
 const useGetSubCategories = (categoryId) => {
   const { t } = useTranslations()
@@ -23,14 +23,16 @@ const useGetSubCategories = (categoryId) => {
         )
       )
       const fetchedSubCategories = querySnapshot?.docs?.map((doc) => doc.data())
-
-      setSubCategories(fetchedSubCategories)
+      const subCategoriesWithProducts = fetchedSubCategories?.filter(
+        (category) => category?.productIds?.length > 0
+      )
+      setSubCategories(subCategoriesWithProducts)
     } catch (error) {
       handleError(error, t('Error during getting subcategories'))
     } finally {
       setLoading(false)
     }
-  }, [categoryId, t])
+  }, [categoryId, handleError, t])
 
   useEffect(() => {
     if (categoryId) getSubCategories()

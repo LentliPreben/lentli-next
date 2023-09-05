@@ -64,7 +64,7 @@ const PriceFilter = ({ priceRange }) => {
   return (
     <Collapse ghost id="price" name={t('Price')}>
       <div className="mx-4">
-        <div className="flex gap-4 align-center">
+        <div className="flex gap-4 align-center mb-8">
           <Input
             size="sm"
             value={minValue}

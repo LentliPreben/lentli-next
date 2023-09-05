@@ -1,15 +1,17 @@
+import { Collapse, Spinner } from 'components'
 import { useFilterContext, useTranslations } from 'contexts'
+
 import { TopCategoryWithSubcategoriesCollapse } from './components'
 import { memo } from 'react'
-import { useGetGroupedCategories } from 'domains/Category/hooks'
+import { useGetTopLevelCategories } from 'domains/Category/hooks'
 import { useSubfilterActions } from 'hooks'
-import { Collapse } from 'components'
 
 const CategoryFilter = () => {
   const { setFilterParams, filterParams } = useFilterContext()
   const { t } = useTranslations()
 
-  const { topLevelCategories, groupedByParentId } = useGetGroupedCategories({})
+  const { topLevelCategories, filteredCategories, subCategories, loading } =
+    useGetTopLevelCategories()
 
   const { onChange, checkIsEnabled } = useSubfilterActions({
     filterParams: filterParams,
@@ -20,17 +22,19 @@ const CategoryFilter = () => {
 
   if (!topLevelCategories?.length) return null
 
-  return (
+  return !loading ? (
     <Collapse name={t('Categories')} id="categories">
       <div className="flex flex-col mx-12 gap-32">
         <TopCategoryWithSubcategoriesCollapse
           topLevelCategories={topLevelCategories}
-          groupedByParentId={groupedByParentId}
+          categories={filteredCategories}
           onChange={onChange}
           checkIsEnabled={checkIsEnabled}
         />
       </div>
     </Collapse>
+  ) : (
+    <Spinner />
   )
 }
 
