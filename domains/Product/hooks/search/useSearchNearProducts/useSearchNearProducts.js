@@ -7,7 +7,8 @@ import { getDocuments } from 'modules/typesense-module/helpers'
 const useSearchNearProducts = (
   radius = 15000,
   filterParams,
-  selectedLocation
+  selectedLocation,
+  searchProduct
 ) => {
   const [loading, setLoading] = useState()
 
@@ -27,7 +28,7 @@ const useSearchNearProducts = (
       try {
         setLoading(true)
         const { documents } = await getDocuments(COLLECTIONS.PRODUCTS, {
-          q: '*',
+          q: searchProduct ? searchProduct : '*',
           query_by: 'name',
           filter_by: filterBy,
           sort_by: `address.location(${location}):asc`,
@@ -41,7 +42,7 @@ const useSearchNearProducts = (
         setLoading(false)
       }
     },
-    [handleError, location]
+    [handleError, location, searchProduct]
   )
 
   useEffect(() => {

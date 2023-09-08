@@ -5,18 +5,13 @@ import { memo } from 'react'
 import { useBreakpoint } from 'hooks'
 
 const NearBeSearch = (props) => {
-  const { setSelectedLocation, ...rest } = props
+  const { ...rest } = props
 
   const { xs } = useBreakpoint()
 
   return (
     <StyledWrapper xs={xs}>
-      <ProductsSearchAutocomplete
-        size="sm"
-        setSelectedLocation={setSelectedLocation}
-        isCategories={false}
-        {...rest}
-      />
+      <ProductsSearchAutocomplete size="sm" isCategories={false} {...rest} />
     </StyledWrapper>
   )
 }

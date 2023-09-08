@@ -1,9 +1,9 @@
 import { MapMarkers, NearBeSearch } from './components'
 
+import { FilterButton } from 'components'
 import { Map } from 'domains/GoogleMaps/components'
 import PropTypes from 'prop-types'
 import { StyledWrapper } from './NearBeMap.styled'
-import { FilterButton } from 'components'
 import { useFilterContext } from 'contexts'
 import { useGetNearProductsData } from 'domains/Product/hooks'
 
@@ -15,7 +15,9 @@ const NearBeMap = () => {
     setSelectedLocation,
     searchRadius,
     setSearchRadius,
-    filteredNearByProducts
+    filteredNearByProducts,
+    setSearchProduct,
+    searchProduct
   } = useFilterContext()
 
   const productsData = useGetNearProductsData(filteredNearByProducts)
@@ -38,6 +40,8 @@ const NearBeMap = () => {
         <NearBeSearch
           setSelectedLocation={setSelectedLocation}
           isCategories={false}
+          setSearchProduct={setSearchProduct}
+          searchProduct={searchProduct}
         />
         <FilterButton
           position="absolute"

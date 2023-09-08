@@ -17,6 +17,7 @@ const ProductsSearchAutocomplete = (props) => {
     isProducts = true,
     isCategories = true,
     setSelectedLocation,
+    setSearchProduct,
     popupClassName,
     onSelect,
     ...rest
@@ -29,19 +30,25 @@ const ProductsSearchAutocomplete = (props) => {
 
   const options = useAutocompleteOptions(
     locationSearch.data,
-    productsSearch.data,
+    // productsSearch.data,
     categoriesSearch.data
   )
 
   const handleChange = (value) => {
     if (isLocations) locationSearch.onChange(value)
-    if (isProducts) productsSearch.onChange(value)
+    if (isProducts) {
+      productsSearch.onChange(value)
+      setSearchProduct(value)
+    }
     if (isCategories) categoriesSearch.onChange(value)
   }
 
   const onReset = () => {
     if (isLocations) locationSearch.onReset()
-    if (isProducts) productsSearch.onReset()
+    if (isProducts) {
+      productsSearch.onReset()
+      setSearchProduct(null)
+    }
     if (isCategories) categoriesSearch.onReset()
   }
 
@@ -84,6 +91,7 @@ ProductsSearchAutocomplete.propTypes = {
   isProducts: PropTypes.bool,
   isCategories: PropTypes.bool,
   setSelectedLocation: PropTypes.func,
+  setSearchProduct: PropTypes.func,
   onSelect: PropTypes.func,
   popupClassName: PropTypes.string
 }
