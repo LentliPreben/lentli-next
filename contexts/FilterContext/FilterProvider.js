@@ -21,6 +21,7 @@ const DEFAULT_LOCATION = { lat: 59.9138688, lng: 10.7522454 }
 const FilterProvider = ({ children, category }) => {
   const [currentPage, setCurrentPage] = useState(1)
   const [searchRadius, setSearchRadius] = useState()
+  const [searchProduct, setSearchProduct] = useState('')
 
   const [selectedLocation, setSelectedLocation] = useStateWithStorage(
     DEFAULT_LOCATION,
@@ -83,7 +84,12 @@ const FilterProvider = ({ children, category }) => {
     allNearByProducts,
     filteredNearByProducts,
     loading: loadingSearchNearProducts
-  } = useSearchNearProducts(searchRadius, filterParams, selectedLocation)
+  } = useSearchNearProducts(
+    searchRadius,
+    filterParams,
+    selectedLocation,
+    searchProduct
+  )
 
   const priceRangeNearByMe = useGetProductPriceRangeNearByMe(allNearByProducts)
 
@@ -142,7 +148,9 @@ const FilterProvider = ({ children, category }) => {
         filteredNearByProducts,
         priceRangeByCategory,
         priceRangeNearByMe,
-        products: transformedProducts
+        products: transformedProducts,
+        setSearchProduct,
+        searchProduct
       }}>
       {children}
     </FilterContext.Provider>
