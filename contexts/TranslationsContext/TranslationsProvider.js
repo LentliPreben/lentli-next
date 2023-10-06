@@ -94,6 +94,7 @@ const TranslationsProvider = ({ children }) => {
       const LSLang = window?.localStorage?.getItem(STORAGE_KEY)
       if (!LSLang) {
         window?.localStorage.setItem(STORAGE_KEY, defaultLanguage)
+        setLanguage(defaultLanguage)
       } else {
         setLanguage(LSLang)
       }

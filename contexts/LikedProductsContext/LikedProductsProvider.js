@@ -31,20 +31,24 @@ const LikedProductsProvider = ({ children }) => {
 
       const productsData = await Promise.all(
         likedProductsIdsFormatted?.map(async (productId) => {
-          const product = await getDocument(COLLECTIONS.PRODUCTS, productId)
-          const previewImageId = product?.mediaObjects?.[0]
-          const previewImage = await getDocument(
-            COLLECTIONS.MEDIA_OBJECTS,
-            previewImageId
-          )
+          try {
+            const product = await getDocument(COLLECTIONS.PRODUCTS, productId)
+            const previewImageId = product?.mediaObjects?.[0]
+            const previewImage = await getDocument(
+              COLLECTIONS.MEDIA_OBJECTS,
+              previewImageId
+            )
 
-          return { ...product, previewImage }
+            return { ...product, previewImage }
+          } catch (error) {
+            return null
+          }
         })
       )
-
-      setLikedProductIds(likedProductsIdsFormatted)
-      setCountLikedProducts(likedProductsIdsFormatted?.length)
-      setLikedProducts(productsData)
+      const filteredProductsData = productsData?.filter((value) => value)
+      setLikedProductIds(filteredProductsData?.map(({ _id }) => _id))
+      setCountLikedProducts(filteredProductsData?.length)
+      setLikedProducts(filteredProductsData)
       getDataForTransfer()
     } catch (error) {
       handleError(error, t('Error during getting products'))
