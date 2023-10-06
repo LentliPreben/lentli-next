@@ -32,46 +32,50 @@ const CartProvider = ({ children }) => {
 
       const productsData = await Promise.all(
         productIds.map(async (productId) => {
-          // Get product from data base
-          const product = await getDocument(COLLECTIONS.PRODUCTS, productId)
-          const previewImageId = product?.mediaObjects?.[0]
+          try {
+            // Get product from data base
+            const product = await getDocument(COLLECTIONS.PRODUCTS, productId)
+            const previewImageId = product?.mediaObjects?.[0]
 
-          const previewImage = await getDocument(
-            COLLECTIONS.MEDIA_OBJECTS,
-            previewImageId
-          )
+            const previewImage = await getDocument(
+              COLLECTIONS.MEDIA_OBJECTS,
+              previewImageId
+            )
 
-          const transformedProduct = { ...product, previewImage }
-          /* Get object with date ranges in format
-           { '26.06.2023 - 29.06.2023': true,
-             '30.06.2023 - 05.07.2023': true } */
-          const dates =
-            cartFormatted?.[productId] &&
-            Object.keys(cartFormatted?.[productId])
+            const transformedProduct = { ...product, previewImage }
+            /* Get object with date ranges in format
+ { '26.06.2023 - 29.06.2023': true,
+   '30.06.2023 - 05.07.2023': true } */
+            const dates =
+              cartFormatted?.[productId] &&
+              Object.keys(cartFormatted?.[productId])
 
-          return dates.map((date) => {
-            // Get separated date from range
-            const dateRange = date.split('-')
+            return dates.map((date) => {
+              // Get separated date from range
+              const dateRange = date.split('-')
 
-            // Get count of days between dates
-            const countDays =
-              moment(dateRange?.[1], DAY_MONTH_YEAR).diff(
-                moment(dateRange?.[0], DAY_MONTH_YEAR),
-                'days'
-              ) + 1
+              // Get count of days between dates
+              const countDays =
+                moment(dateRange?.[1], DAY_MONTH_YEAR).diff(
+                  moment(dateRange?.[0], DAY_MONTH_YEAR),
+                  'days'
+                ) + 1
 
-            return {
-              product: transformedProduct,
-              dateRange: {
-                startDate: dateRange?.[0],
-                endDate: dateRange?.[1]
-              },
-              countDays
-            }
-          })
+              return {
+                product: transformedProduct,
+                dateRange: {
+                  startDate: dateRange?.[0],
+                  endDate: dateRange?.[1]
+                },
+                countDays
+              }
+            })
+          } catch (error) {
+            return null
+          }
         })
       )
-      const productsInCart = productsData.flat()
+      const productsInCart = productsData?.filter((value) => value).flat()
 
       getDataForTransfer()
 
