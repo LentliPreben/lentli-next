@@ -10,6 +10,8 @@ import { notification } from 'utils'
 
 const NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME =
   process.env.NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME
+const NEXT_PUBLIC_CUSTOM_URL_EN = process.env.NEXT_PUBLIC_CUSTOM_URL_EN
+
 const STORAGE_KEY = 'language'
 
 const TranslationsProvider = ({ children }) => {
@@ -21,8 +23,6 @@ const TranslationsProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [isStorageLoaded, setIsStorageLoaded] = useState(false)
-
-  const defaultLanguage = LANGUAGES[0].shortCode
 
   // Function set current language to the LS and provider state
   const setCurrentLanguage = async (language) => {
@@ -94,6 +94,11 @@ const TranslationsProvider = ({ children }) => {
     const getStorage = () => {
       const LSLang = window?.localStorage?.getItem(STORAGE_KEY)
       if (!LSLang) {
+        const hostname = window.location.hostname
+
+        const defaultLanguage =
+          hostname === NEXT_PUBLIC_CUSTOM_URL_EN ? 'en' : 'no'
+
         window?.localStorage.setItem(STORAGE_KEY, defaultLanguage)
         setLanguage(defaultLanguage)
       } else {
@@ -102,7 +107,7 @@ const TranslationsProvider = ({ children }) => {
       setIsStorageLoaded(true)
     }
     getStorage()
-  }, [defaultLanguage])
+  }, [])
 
   // Fetching translations from the DB
   useEffect(() => {
