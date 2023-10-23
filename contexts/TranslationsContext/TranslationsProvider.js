@@ -8,7 +8,8 @@ import md5 from 'md5'
 import { LoadingBox } from 'components'
 import { notification } from 'utils'
 
-const APPLICATION_NAME = process.env.NEXT_PUBLIC_APPLICATION_NAME
+const NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME =
+  process.env.NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME
 const STORAGE_KEY = 'language'
 
 const TranslationsProvider = ({ children }) => {
@@ -47,11 +48,11 @@ const TranslationsProvider = ({ children }) => {
         // refEnding - could be passed from the outside, but it should always be a string md5-hash
         if (!shortCode || !refEnding) {
           reject(
-            `appNameComputed(${APPLICATION_NAME}), shortCode(${shortCode}) and refEnding(${refEnding}) - are required parameters`
+            `appNameComputed(${NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME}), shortCode(${shortCode}) and refEnding(${refEnding}) - are required parameters`
           )
         }
         /* Creating a reference to the database. */
-        const ref = `translations/${APPLICATION_NAME}/${shortCode}`
+        const ref = `translations/${NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME}/${shortCode}`
 
         resolve(onWrite?.({ ref, value: { [refEnding]: textLabel } }))
       })
@@ -106,7 +107,9 @@ const TranslationsProvider = ({ children }) => {
   // Fetching translations from the DB
   useEffect(() => {
     let isComponentMounted = true
-    const ref = language && `translations/${APPLICATION_NAME}/${language}`
+    const ref =
+      language &&
+      `translations/${NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME}/${language}`
 
     const fetchTranslations = async () => {
       try {
@@ -146,7 +149,7 @@ const TranslationsProvider = ({ children }) => {
         saveTranslationForLanguage,
         loading,
         languages: LANGUAGES,
-        translationsRDBRef: `translations/${APPLICATION_NAME}/${language}`,
+        translationsRDBRef: `translations/${NEXT_PUBLIC_TRANSLATIONS_APPLICATION_NAME}/${language}`,
         t
       }}>
       <LoadingBox loading={loading}>{children}</LoadingBox>
