@@ -17,8 +17,7 @@ import { useCallback } from 'react'
 import { useGetProductAdditionalData } from 'domains/Product/hooks'
 import trash from 'public/assets/trash.svg'
 import calendar from 'public/assets/calendar.svg'
-
-const NEXT_PUBLIC_APP_URL = process.env.NEXT_PUBLIC_APP_URL
+import { useGetClientAppUrlByLocale } from 'hooks'
 
 const CartSimpleView = (props) => {
   const { cart } = props
@@ -28,6 +27,7 @@ const CartSimpleView = (props) => {
 
   const { deleteCartItem, cartDataForTransfer } = useCart()
   const { likedDataForTransfer } = useLikedProducts()
+  const clientAppUrl = useGetClientAppUrlByLocale()
 
   const { t } = useTranslations()
 
@@ -58,7 +58,7 @@ const CartSimpleView = (props) => {
       endDate: dateRange?.endDate,
       amount: 1
     })
-    const appUrl = `${NEXT_PUBLIC_APP_URL}/checkout/${checkoutId}`
+    const appUrl = `${clientAppUrl}/checkout/${checkoutId}`
 
     const encodedCartData = encodeURIComponent(cartDataForTransfer)
     const encodedLikedData = encodeURIComponent(likedDataForTransfer)
@@ -68,12 +68,14 @@ const CartSimpleView = (props) => {
     window.open(`${appUrl}${queryString}`, '_blank')
   }, [
     cartDataForTransfer,
+    clientAppUrl,
     dateRange?.endDate,
     dateRange?.startDate,
     likedDataForTransfer,
     product?._id
   ])
   const previewImgUrl = getTransformedImageUrl(previewImage)
+
   return (
     <LoadingBox loading={loading}>
       <Card>
