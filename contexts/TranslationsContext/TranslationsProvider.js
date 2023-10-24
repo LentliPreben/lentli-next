@@ -23,6 +23,7 @@ const TranslationsProvider = ({ children }) => {
   const [loading, setLoading] = useState(false)
   const [loaded, setLoaded] = useState(false)
   const [isStorageLoaded, setIsStorageLoaded] = useState(false)
+  const [defaultLanguage, setDefaultLanguage] = useState()
 
   // Function set current language to the LS and provider state
   const setCurrentLanguage = async (language) => {
@@ -93,12 +94,13 @@ const TranslationsProvider = ({ children }) => {
   useEffect(() => {
     const getStorage = () => {
       const LSLang = window?.localStorage?.getItem(STORAGE_KEY)
+
+      const hostname = window.location.hostname
+      const defaultLanguage =
+        hostname === NEXT_PUBLIC_CUSTOM_URL_EN ? 'en' : 'no'
+      setDefaultLanguage(defaultLanguage)
+
       if (!LSLang) {
-        const hostname = window.location.hostname
-
-        const defaultLanguage =
-          hostname === NEXT_PUBLIC_CUSTOM_URL_EN ? 'en' : 'no'
-
         window?.localStorage.setItem(STORAGE_KEY, defaultLanguage)
         setLanguage(defaultLanguage)
       } else {
@@ -150,6 +152,7 @@ const TranslationsProvider = ({ children }) => {
       value={{
         setCurrentLanguage,
         language,
+        defaultLanguage,
         translations,
         saveTranslationForLanguage,
         loading,
