@@ -6,22 +6,21 @@ import { useTranslations } from 'contexts'
 const TopCategoryWithSubcategoriesCollapse = (props) => {
   const { topLevelCategories, categories, checkIsEnabled, onChange } = props
 
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
 
   const getTopCategorySubCategories = (topCategoryId) => {
     return categories?.filter(
       (category) => category?.parentId === topCategoryId
     )
   }
-
   return topLevelCategories?.map((topCategory) => {
     return (
       <Collapse
         className="mb-4 mx-12 gap-24"
-        name={topCategory?.name}
+        name={topCategory?.names?.[language.toUpperCase()] || topCategory?.name}
         id={topCategory?.name}
         key={topCategory?.name}>
-        {categories?.length ? (
+        {topCategory?.subcategories?.length ? (
           <CheckboxGroup
             onChange={onChange}
             options={getTopCategorySubCategories(topCategory?._id)}

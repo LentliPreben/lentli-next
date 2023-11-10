@@ -1,4 +1,5 @@
-import { Checkbox, Text, Button } from 'components'
+import { Button, Checkbox, Text } from 'components'
+
 import { useState } from 'react'
 import { useTranslations } from 'contexts'
 
@@ -7,21 +8,24 @@ const DEFAULT_COUNT_OPTIONS = 8
 const CheckboxGroup = (props) => {
   const { options, onChange, getCount, checkIsEnabled } = props
 
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
 
   const [showAll, setShowAll] = useState(false)
 
   const showSeeMoreButton = options?.length > DEFAULT_COUNT_OPTIONS && !showAll
 
   const handleClickSeeMore = () => setShowAll(true)
-
   return (
     <div className="checkbox-group">
       {options
         ?.slice(0, showAll ? options?.length : DEFAULT_COUNT_OPTIONS)
         ?.map((value, index) => {
           const id = value?._id || value?.value || value
-          const label = value?.name || value?.label || value?.value
+          const label =
+            value?.names?.[language.toUpperCase()] ||
+            value?.name ||
+            value?.label ||
+            value?.value
 
           const count = getCount ? getCount(value) : value?.count
           const check = checkIsEnabled?.(value, index)

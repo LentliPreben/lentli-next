@@ -1,6 +1,7 @@
-import { Text } from 'components'
-import Image from 'next/image'
 import { useCallback, useEffect } from 'react'
+
+import Image from 'next/image'
+import { Text } from 'components'
 
 const Collapse = (props) => {
   const { name, id, openByDefault = true, children } = props
@@ -9,7 +10,7 @@ const Collapse = (props) => {
     const collapseWrapper = document.getElementById(`collapse-wrapper-${id}`)
     const collapse = document.getElementById(id)
 
-    collapse.classList.toggle('active')
+    collapse?.classList.toggle('active')
     collapseWrapper.classList.toggle('active')
 
     const panel = document.getElementById(`panel-${id}`)

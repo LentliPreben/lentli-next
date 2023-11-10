@@ -24,7 +24,7 @@ const CategoryFilter = () => {
 
   return !loading ? (
     <Collapse name={t('Categories')} id="categories">
-      <div className="flex flex-col mx-12 gap-32">
+      <div className="flex flex-col mx-12 gap-24">
         <TopCategoryWithSubcategoriesCollapse
           topLevelCategories={topLevelCategories}
           categories={filteredCategories}

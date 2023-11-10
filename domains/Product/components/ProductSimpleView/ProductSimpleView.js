@@ -30,7 +30,7 @@ const ProductSimpleView = (props) => {
     previewImage
   } = product
 
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
   const router = useRouter()
 
   const [category, loadingCategory] = useGetCategory({ categoryId })
@@ -61,7 +61,7 @@ const ProductSimpleView = (props) => {
             {name}
           </Text>
           <Text className="mb-0" secondary ellipsis={{ rows: 1 }}>
-            {category?.name}
+            {category?.names?.[language?.toUpperCase()] || category?.name}
           </Text>
         </div>
 
