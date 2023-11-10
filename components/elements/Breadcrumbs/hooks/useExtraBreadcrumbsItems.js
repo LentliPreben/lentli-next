@@ -5,8 +5,8 @@ import { APP_PATHS } from '__constants__'
 import { getDocument } from 'services/api/firebase'
 import pluralize from 'pluralize'
 import { useGetCategories } from 'domains/Category/hooks'
-import { useTranslations } from 'contexts'
 import { useRouter } from 'next/router'
+import { useTranslations } from 'contexts'
 
 const breadcrumbNames = Object.fromEntries(
   Object.entries(APP_PATHS).map((a) => a.reverse())
@@ -23,7 +23,7 @@ const getBreadcrumbItem = (name, url, isId, modelName, documentId) => {
 const useExtraBreadcrumbsItems = (collection) => {
   const [extraItems, setExtraItems] = useState(null)
   const [categories] = useGetCategories()
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
   const router = useRouter()
   const params = router.query
   const pathname = router.pathname
@@ -54,7 +54,11 @@ const useExtraBreadcrumbsItems = (collection) => {
           const document = await getDocument(collectionName, documentId)
           if (document) {
             name =
-              document?.name || document?.title || document?.orderNumber || name
+              document?.names?.[language.toUpperCase()] ||
+              document?.name ||
+              document?.title ||
+              document?.orderNumber ||
+              name
             // if document has a parentId, we are dealing with a subcategory,
             // so we add a breadcrumb for 'Products' and for the parent category
             if (document.parentId) {
@@ -64,11 +68,12 @@ const useExtraBreadcrumbsItems = (collection) => {
               //
               if (parentCategory) {
                 breadcrumbItems.push(
-                  getBreadcrumbItem('Products', `/products`, false)
+                  getBreadcrumbItem(t('Products'), `/products`, false)
                 )
                 breadcrumbItems.push(
                   getBreadcrumbItem(
-                    parentCategory.name,
+                    parentCategory?.names?.[language.toUpperCase()] ||
+                      parentCategory.name,
                     `/categories/${parentCategory._id}/products`,
                     false
                   )
@@ -77,7 +82,7 @@ const useExtraBreadcrumbsItems = (collection) => {
               // if the document is top level category, we add a 'Products' breadcrumb
             } else if (document.isTopLevel) {
               breadcrumbItems.push(
-                getBreadcrumbItem('Products', `/products`, false)
+                getBreadcrumbItem(t('Products'), `/products`, false)
               )
             }
           }
@@ -88,7 +93,13 @@ const useExtraBreadcrumbsItems = (collection) => {
           !(transformedName === 'Categories' || transformedName === 'Category')
         ) {
           breadcrumbItems.push(
-            getBreadcrumbItem(name, transformedUrl, isId, modelName, documentId)
+            getBreadcrumbItem(
+              t(name),
+              transformedUrl,
+              isId,
+              modelName,
+              documentId
+            )
           )
         }
       }
@@ -96,7 +107,7 @@ const useExtraBreadcrumbsItems = (collection) => {
     }
 
     extractItems()
-  }, [pathname, params, t, categories, collection])
+  }, [pathname, params, t, categories, collection, language])
 
   return [extraItems]
 }

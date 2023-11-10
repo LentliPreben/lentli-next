@@ -5,10 +5,11 @@ import Image from 'next/image'
 import { Link } from 'components'
 import { useHorizontalScroll } from 'hooks'
 import { useRouter } from 'next/router'
+import { useTranslations } from 'contexts'
 
 const TopCategoriesList = (props) => {
   const { data, tagsView = true } = props
-
+  const { language } = useTranslations()
   const [scrollRef, handleMouseEnter, handleMouseLeave] = useHorizontalScroll()
   const router = useRouter()
 
@@ -22,7 +23,6 @@ const TopCategoriesList = (props) => {
       pathname: href
     })
   }
-
   return (
     <StyledSpace
       size={spaceSize}
@@ -31,7 +31,6 @@ const TopCategoriesList = (props) => {
       onMouseLeave={handleMouseLeave}>
       {data?.map((category) => {
         const src = CATEGORY_ICONS?.[category?.icon]
-
         return (
           <StyledButton
             key={category._id}
@@ -43,7 +42,7 @@ const TopCategoriesList = (props) => {
                 <Image src={src} alt={category?.name} width={12} height={12} />
               )
             }>
-            {category?.name}
+            {category?.names?.[language?.toUpperCase()] || category?.name}
           </StyledButton>
         )
       })}

@@ -15,8 +15,6 @@ const useGetClientAppUrlByLocale = () => {
     )
   }, [defaultLanguage])
 
-  console.log(defaultLanguage)
-
   return clientAppUrl
 }
 

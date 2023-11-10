@@ -1,6 +1,7 @@
 import { ActionsColStyled, PageHeaderWrapper } from './PageHeader.styled'
+import { Divider, Title } from 'components'
+
 import { useBreakpoint } from 'hooks'
-import { Title, Divider } from 'components'
 
 const PageHeader = (props) => {
   const {

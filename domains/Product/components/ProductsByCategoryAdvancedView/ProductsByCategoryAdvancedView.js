@@ -12,7 +12,8 @@ import { useRouter } from 'next/router'
 const ProductsByCategoryAdvancedView = (props) => {
   const { category } = props
 
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
+
   const { isSmallScreen, isExtraSmallScreen } = useBreakpoint()
   const router = useRouter()
 
@@ -59,7 +60,8 @@ const ProductsByCategoryAdvancedView = (props) => {
               <Button
                 onClick={handleOpenSubcategory(subcategory._id)}
                 key={subcategory._id}>
-                {subcategory?.name}
+                {subcategory?.names?.[language?.toUpperCase()] ||
+                  subcategory?.name}
               </Button>
             ))}
           </StyledSpace>

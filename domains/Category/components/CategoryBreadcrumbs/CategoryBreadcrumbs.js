@@ -1,16 +1,16 @@
-import StyledBreadcrumbs from './CategoryBreadcrumbs.styled'
-
-import { useExtraCategoryBreadcrumbsItems } from './hooks'
 import { Link, Text } from 'components'
-import home03Outlined from 'public/assets/home03Outlined.svg'
-import chevronRight from 'public/assets/chevronRight.svg'
+
 import Image from 'next/image'
+import StyledBreadcrumbs from './CategoryBreadcrumbs.styled'
+import chevronRight from 'public/assets/chevronRight.svg'
+import home03Outlined from 'public/assets/home03Outlined.svg'
+import { useExtraCategoryBreadcrumbsItems } from './hooks'
 import { useTranslations } from 'contexts'
 
 const CategoryBreadcrumbs = (props) => {
   const { categoryId, productId } = props
 
-  const { t } = useTranslations()
+  const { t, language } = useTranslations()
 
   /* Getting extra breadcrumbs */
   const [extraBreadcrumbItems] = useExtraCategoryBreadcrumbsItems({
@@ -29,14 +29,14 @@ const CategoryBreadcrumbs = (props) => {
       </Link>
       {!!extraBreadcrumbItems?.length && <Separator />}
 
-      {extraBreadcrumbItems?.map(({ _id, name }, index) => {
+      {extraBreadcrumbItems?.map(({ _id, name, names }, index) => {
         const path = `/categories/${_id}/products`
 
         return index === extraBreadcrumbItems.length - 1 ? (
-          <Text>{name}</Text>
+          <Text>{names?.[language.toUpperCase()] || name}</Text>
         ) : (
           <>
-            <Link href={path}>{name}</Link>
+            <Link href={path}>{names?.[language.toUpperCase()] || name}</Link>
             <Separator />
           </>
         )
