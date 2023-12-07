@@ -4,7 +4,9 @@ const nextConfig = {
   experimental: {
     appDir: true
   },
-  images: { domains: ['firebasestorage.googleapis.com'] },
+  images: {
+    domains: ['firebasestorage.googleapis.com', 'lh3.googleusercontent.com']
+  },
   compiler: {
     styledComponents: true
   }

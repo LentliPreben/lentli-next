@@ -43,17 +43,17 @@ const PriceFilter = ({ priceRange }) => {
   }
 
   useEffect(() => {
-    if (!filterParams?.pricePerDay) {
+    if (!filterParams?.pricePerDayWithFees) {
       setMinValue(minPrice)
       setMaxValue(maxPrice)
     }
-  }, [minPrice, maxPrice, filterParams?.pricePerDay])
+  }, [minPrice, maxPrice, filterParams?.pricePerDayWithFees])
 
   const subfilterOptions = useMemo(
     () => ({
       filterParams,
       setFilterParams,
-      fieldName: 'pricePerDay',
+      fieldName: 'pricePerDayWithFees',
       operand: 'range'
     }),
     [filterParams, setFilterParams]

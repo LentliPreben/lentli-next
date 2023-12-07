@@ -14,8 +14,8 @@ const ProductRangeSelectFixed = (props) => {
     periodInDays,
     range,
     handleChangeRange,
-    pricePerDayDisplay,
-    pricePerPeriodDisplay,
+    pricePerDayWithFeesDisplay,
+    pricePerPeriodWithFeesDisplay,
     computedDayLabel,
     formattedDateRange
   } = props
@@ -64,7 +64,7 @@ const ProductRangeSelectFixed = (props) => {
         <div className="col-auto mr-auto flex-1">
           <div className="row">
             <div className="col-12 flex align-baseline gap-2">
-              <Title as={titleLevel}>{pricePerDayDisplay}</Title>
+              <Title as={titleLevel}>{pricePerDayWithFeesDisplay}</Title>
               <Text secondary>{`/${t('day')}`}</Text>
             </div>
             <div className="col-12">
@@ -76,7 +76,7 @@ const ProductRangeSelectFixed = (props) => {
           <>
             <div className="col-auto flex flex-col align-end">
               <Text secondary>{t('Total')}</Text>
-              <Title as="h5">{pricePerPeriodDisplay}</Title>
+              <Title as="h5">{pricePerPeriodWithFeesDisplay}</Title>
             </div>
             <div className="col-auto">
               <Divider type="vertical" className="full-height m-0" />
@@ -106,11 +106,11 @@ const ProductRangeSelectFixed = (props) => {
           <div className="col-12">
             <div className="row justify-between">
               <div className="col-auto flex gap-4">
-                <Text>{pricePerDayDisplay}</Text>
+                <Text>{pricePerDayWithFeesDisplay}</Text>
                 <Text secondary>x</Text>
                 <Text>{t(computedDayLabel)}</Text>
               </div>
-              <div className="col-auto">{pricePerPeriodDisplay}</div>
+              <div className="col-auto">{pricePerPeriodWithFeesDisplay}</div>
             </div>
           </div>
           <div className="col-12">
@@ -118,7 +118,7 @@ const ProductRangeSelectFixed = (props) => {
           </div>
           <div className="col-12 flex justify-between mb-24">
             <Title as="h5">{t('Total')}</Title>
-            <Title as="h5">{pricePerPeriodDisplay}</Title>
+            <Title as="h5">{pricePerPeriodWithFeesDisplay}</Title>
           </div>
           <div className="col-12">
             <Button
