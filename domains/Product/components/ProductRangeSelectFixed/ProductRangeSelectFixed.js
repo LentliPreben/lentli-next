@@ -6,6 +6,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useBreakpoint } from 'hooks'
 import { DateRange, Title, Text, Button, Divider } from 'components'
 import { useCart, useTranslations } from 'contexts'
+import pluralize from 'pluralize'
 
 const ProductRangeSelectFixed = (props) => {
   const {
@@ -28,6 +29,7 @@ const ProductRangeSelectFixed = (props) => {
 
   const titleLevel = isOpened ? 'h3' : 'h5'
   const showExtraInHeader = !isOpened
+  const periodInDaysDisplay = t(pluralize('day', periodInDays))
 
   const handleToggle = (event) => {
     event.stopPropagation()
@@ -106,11 +108,13 @@ const ProductRangeSelectFixed = (props) => {
           <div className="col-12">
             <div className="row justify-between">
               <div className="col-auto flex gap-4">
-                <Text>{pricePerDayWithFeesDisplay}</Text>
-                <Text secondary>x</Text>
-                <Text>{t(computedDayLabel)}</Text>
+                <Text type="secondary">{t('Period')}:</Text>
               </div>
-              <div className="col-auto">{pricePerPeriodWithFeesDisplay}</div>
+              <div className="col-auto">
+                <Text>
+                  {periodInDays} {periodInDaysDisplay}
+                </Text>
+              </div>
             </div>
           </div>
           <div className="col-12">
