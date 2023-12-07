@@ -10,6 +10,7 @@ import {
 
 import ProductRangeSelectWrapper from './ProductRangeSelect.styled'
 import { useCart, useTranslations } from 'contexts'
+import pluralize from 'pluralize'
 
 const ProductRangeSelect = (props) => {
   const {
@@ -27,6 +28,8 @@ const ProductRangeSelect = (props) => {
 
   const { t } = useTranslations()
   const { addCartItem } = useCart()
+
+  const periodInDaysDisplay = t(pluralize('day', periodInDays))
 
   const handleAddItemToCart = (event) => {
     event?.stopPropagation()
@@ -66,12 +69,12 @@ const ProductRangeSelect = (props) => {
           <div className="col-12">
             <div className="row justify-between align-center">
               <div className="col-auto flex gap-4">
-                <Text>{pricePerDayWithFeesDisplay}</Text>
-                <Text secondary>x</Text>
-                <Text>{t(computedDayLabel)}</Text>
+                <Text type="secondary">{t('Period')}:</Text>
               </div>
               <div className="col-auto">
-                <Text>{pricePerPeriodWithFeesDisplay}</Text>
+                <Text>
+                  {periodInDays} {periodInDaysDisplay}
+                </Text>
               </div>
             </div>
           </div>
