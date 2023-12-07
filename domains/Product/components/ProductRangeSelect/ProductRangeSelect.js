@@ -17,8 +17,8 @@ const ProductRangeSelect = (props) => {
     periodInDays,
     range,
     handleChangeRange,
-    pricePerDayDisplay,
-    pricePerPeriodDisplay,
+    pricePerDayWithFeesDisplay,
+    pricePerPeriodWithFeesDisplay,
     computedDayLabel,
     formattedDateRange,
     disabledDates,
@@ -37,7 +37,7 @@ const ProductRangeSelect = (props) => {
     <ProductRangeSelectWrapper {...rest}>
       <div className="row">
         <div className="col-12 flex align-baseline mb-24 gap-2">
-          <Title as="h3">{pricePerDayDisplay}</Title>
+          <Title as="h3">{pricePerDayWithFeesDisplay}</Title>
           <Text secondary>{`/${t('day')}`}</Text>
         </div>
         <div className="col-12 mb-24">
@@ -66,12 +66,12 @@ const ProductRangeSelect = (props) => {
           <div className="col-12">
             <div className="row justify-between align-center">
               <div className="col-auto flex gap-4">
-                <Text>{pricePerDayDisplay}</Text>
+                <Text>{pricePerDayWithFeesDisplay}</Text>
                 <Text secondary>x</Text>
                 <Text>{t(computedDayLabel)}</Text>
               </div>
               <div className="col-auto">
-                <Text>{pricePerPeriodDisplay}</Text>
+                <Text>{pricePerPeriodWithFeesDisplay}</Text>
               </div>
             </div>
           </div>
@@ -80,7 +80,7 @@ const ProductRangeSelect = (props) => {
           </div>
           <div className="col-12 flex justify-between mb-24">
             <Title as="h5">{t('Total')}</Title>
-            <Title as="h5">{pricePerPeriodDisplay}</Title>
+            <Title as="h5">{pricePerPeriodWithFeesDisplay}</Title>
           </div>
         </>
 

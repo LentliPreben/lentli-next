@@ -1,4 +1,5 @@
 import { CURRENCY_SYMBOLS } from '__constants__'
+import { calculateFinalPayment } from 'helpers'
 /**
  * Function is used to get formatted price 12120 => 12,120, 120 => 120
  * @param   {number} price
@@ -7,7 +8,7 @@ import { CURRENCY_SYMBOLS } from '__constants__'
  */
 const formatPrice = (price, currency) => {
   // Format number to string
-  const priceToString = price?.toString()
+  const priceToString = calculateFinalPayment(price)?.toString()
 
   // Get length
   const length = priceToString?.length

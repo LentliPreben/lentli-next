@@ -6,6 +6,7 @@ import { MOMENT_FORMATS } from '__constants__'
 import { useBreakpoint } from 'hooks'
 import _ from 'lodash'
 import { useGetProductDisabledDates } from 'domains/Product/hooks'
+import { calculateFinalPayment } from 'helpers'
 
 const { MONTH_DAYS_YEAR, DAY_MONTH } = MOMENT_FORMATS
 
@@ -16,14 +17,13 @@ const useProductRangeSelectActions = (product) => {
   const [range, setRange] = useState({})
   const [periodInDays, setPeriodInDays] = useState(1)
 
-  const pricePerDayDisplay = getPriceDisplay({
-    price: product?.pricePerDay,
+  const pricePerDayWithFeesDisplay = getPriceDisplay({
+    price: calculateFinalPayment(product?.pricePerDay) || 0,
     currency: product?.currency
   })
-  const pricePerPeriodDisplay = getPriceDisplay({
-    price: product?.pricePerDay,
-    currency: product?.currency,
-    period: periodInDays
+  const pricePerPeriodWithFeesDisplay = getPriceDisplay({
+    price: calculateFinalPayment(product?.pricePerDay * periodInDays || 0),
+    currency: product?.currency
   })
   const computedDayLabel = pluralize('day', periodInDays, true)
 
@@ -78,8 +78,8 @@ const useProductRangeSelectActions = (product) => {
   return {
     range,
     periodInDays,
-    pricePerDayDisplay,
-    pricePerPeriodDisplay,
+    pricePerDayWithFeesDisplay,
+    pricePerPeriodWithFeesDisplay,
     computedDayLabel,
     disabledDates,
     formattedDateRange,

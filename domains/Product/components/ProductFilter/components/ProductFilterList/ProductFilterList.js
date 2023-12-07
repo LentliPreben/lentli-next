@@ -12,7 +12,7 @@ const ProductFilterList = (props) => {
   const [categories] = useGetCategories()
 
   const createTags = (key, values) => {
-    if (key === 'pricePerDay') {
+    if (key === 'pricePerDayWithFees') {
       const regex = /(\d+)\.\.(\d+)/ // Regular expression to match the numbers before and after the double dots
 
       const matches = values.match(regex) // Extract matches using regex
@@ -84,12 +84,12 @@ const ProductFilterList = (props) => {
   }
   const handleTagClose = (key, value) => {
     const updatedFilterParams = JSON.parse(JSON.stringify(filterParams))
-    if (key === 'pricePerDay' || key === 'address.location') {
+    if (key === 'pricePerDayWithFees' || key === 'address.location') {
       delete updatedFilterParams[key]
       return setFilterParams(updatedFilterParams)
     }
 
-    if (key !== 'pricePerDay' && updatedFilterParams[key]) {
+    if (key !== 'pricePerDayWithFees' && updatedFilterParams[key]) {
       updatedFilterParams[key] = updatedFilterParams[key].filter(
         (v) => v !== value
       )

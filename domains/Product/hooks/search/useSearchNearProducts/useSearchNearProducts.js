@@ -14,7 +14,7 @@ const useSearchNearProducts = (
 
   const searchRadius = useMemo(() => radius / 1000 + 'km', [radius])
   const handleError = useHandleError()
-  const pricePerDay = filterParams?.pricePerDay
+  const pricePerDayWithFees = filterParams?.pricePerDayWithFees
 
   const [allNearByProducts, setAllNearByProducts] = useState([])
   const [filteredNearByProducts, setFilteredNearByProducts] = useState([])
@@ -58,28 +58,28 @@ const useSearchNearProducts = (
   const filteredProductsConditions = useMemo(
     () => ({
       PriceAndSubcategory:
-        formattedIds && pricePerDay
-          ? `address.location:(${location}, ${searchRadius}) && pricePerDay: [${pricePerDay}] && categoryId: [${formattedIds}]`
+        formattedIds && pricePerDayWithFees
+          ? `address.location:(${location}, ${searchRadius}) && pricePerDayWithFees: [${pricePerDayWithFees}] && categoryId: [${formattedIds}]`
           : null,
       OnlyPrice:
-        pricePerDay && !formattedIds
-          ? `address.location:(${location}, ${searchRadius}) && pricePerDay: [${pricePerDay}]`
+        pricePerDayWithFees && !formattedIds
+          ? `address.location:(${location}, ${searchRadius}) && pricePerDayWithFees: [${pricePerDayWithFees}]`
           : null,
       OnlySubcategory:
-        !pricePerDay && formattedIds
+        !pricePerDayWithFees && formattedIds
           ? `address.location:(${location}, ${searchRadius}) && categoryId: [${formattedIds}]`
           : null
     }),
-    [formattedIds, location, pricePerDay, searchRadius]
+    [formattedIds, location, pricePerDayWithFees, searchRadius]
   )
 
   useEffect(() => {
     const filterType =
-      pricePerDay && formattedIds
+      pricePerDayWithFees && formattedIds
         ? 'PriceAndSubcategory'
-        : pricePerDay && !formattedIds
+        : pricePerDayWithFees && !formattedIds
         ? 'OnlyPrice'
-        : !pricePerDay && formattedIds
+        : !pricePerDayWithFees && formattedIds
         ? 'OnlySubcategory'
         : null
 
@@ -92,7 +92,7 @@ const useSearchNearProducts = (
     }
   }, [
     location,
-    pricePerDay,
+    pricePerDayWithFees,
     searchProducts,
     searchRadius,
     allNearByProducts,

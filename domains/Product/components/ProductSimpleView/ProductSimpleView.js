@@ -12,7 +12,7 @@ import {
 
 import { ProductLike } from 'domains/Product/components'
 import PropTypes from 'prop-types'
-import { getTransformedImageUrl } from 'helpers'
+import { getTransformedImageUrl, calculateFinalPayment } from 'helpers'
 import { useGetCategory } from 'domains/Category/hooks'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
@@ -46,6 +46,9 @@ const ProductSimpleView = (props) => {
 
   const previewImageUrl = getTransformedImageUrl(previewImage)
 
+  const productFinalPrice =
+    product?.pricePerDayWithFees || calculateFinalPayment(pricePerDay)
+
   return (
     <CardStyled bordered={false} onClick={handleProductClick} padding="0">
       <div className="row g-0 flex align-center flex-1">
@@ -67,7 +70,7 @@ const ProductSimpleView = (props) => {
 
         <div className="col-12 flex align-end justify-between" wrap={false}>
           <div className="flex align-baseline gap-4">
-            <Title as="h4">{pricePerDay || 'n/a'}</Title>
+            <Title as="h4">{productFinalPrice || 'n/a'}</Title>
             <Title as="h4">{productCurrencySymbol}</Title>
             <Text secondary>
               {' / '}

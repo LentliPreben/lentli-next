@@ -25,8 +25,8 @@ const ProductAdvancedView = (props) => {
   const {
     range,
     periodInDays,
-    pricePerDayDisplay,
-    pricePerPeriodDisplay,
+    pricePerDayWithFeesDisplay,
+    pricePerPeriodWithFeesDisplay,
     computedDayLabel,
     disabledDates,
     formattedDateRange,
@@ -128,8 +128,8 @@ const ProductAdvancedView = (props) => {
               handleChangeRange={handleChangeRange}
               periodInDays={periodInDays}
               range={range}
-              pricePerDayDisplay={pricePerDayDisplay}
-              pricePerPeriodDisplay={pricePerPeriodDisplay}
+              pricePerDayWithFeesDisplay={pricePerDayWithFeesDisplay}
+              pricePerPeriodWithFeesDisplay={pricePerPeriodWithFeesDisplay}
               formattedDateRange={formattedDateRange}
               computedDayLabel={computedDayLabel}
               className="sticky"
@@ -149,8 +149,8 @@ const ProductAdvancedView = (props) => {
           handleChangeRange={handleChangeRange}
           periodInDays={periodInDays}
           range={range}
-          pricePerDayDisplay={pricePerDayDisplay}
-          pricePerPeriodDisplay={pricePerPeriodDisplay}
+          pricePerDayWithFeesDisplay={pricePerDayWithFeesDisplay}
+          pricePerPeriodWithFeesDisplay={pricePerPeriodWithFeesDisplay}
           formattedDateRange={formattedDateRange}
           computedDayLabel={computedDayLabel}
         />
