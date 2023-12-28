@@ -9,7 +9,7 @@ const Footer = () => {
   const { t } = useTranslations()
   const router = useRouter()
 
-  const { lg, currentScreen } = useBreakpoint()
+  const { lg, xs, sm, md, currentScreen } = useBreakpoint()
 
   const additionalSpace = APP_PATHS.PRODUCT_SHOW === router.pathname
 
@@ -18,32 +18,28 @@ const Footer = () => {
       <FooterStyled
         additionalSpace={additionalSpace}
         currentScreen={currentScreen}
-        lg={lg}>
+        lg={lg}
+        xs={xs}
+        sm={sm}
+        md={md}>
         <div className="row gap-24">
-          <div className="col-12 col-sm-6">
+          <div className="col-12 col-sm-4">
             <div className="mb-2">
               <Logo inverse />
             </div>
+
             <Text inverse variant="body2">
-              {t('Teasy er en tjeneste levert av GetOnNet AS.')}
-            </Text>
-            <Text inverse variant="body2">
-              www.lentli.no
-            </Text>
-            <Text inverse variant="body2">
-              {t('Orgnr')}: 121238580706
+              {t('Orgnr')}: 930 795 844
             </Text>
             <Text inverse variant="body2">
               ©lentli
             </Text>
           </div>
-          {/* <div className="col-3"> temporary commented
-            <FooterMenu
-              label={FOOTER_MENU.NAVIGATION?.label}
-              items={FOOTER_MENU.NAVIGATION?.items}
-            />
-          </div> */}
+
           <div className="col-12 col-sm-6">
+            <Text inverse className="mb-4 fw-bold" variant="label2">
+              {t('Contacts')}
+            </Text>
             <FooterMenu
               label={FOOTER_MENU.CONTACT?.label}
               items={FOOTER_MENU.CONTACT?.items}

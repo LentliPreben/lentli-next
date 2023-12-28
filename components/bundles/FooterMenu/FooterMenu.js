@@ -13,14 +13,22 @@ const FooterMenu = (props) => {
               <Image
                 src={icon}
                 alt={alt}
-                width={24}
-                height={24}
+                width={16}
+                height={16}
                 loading="lazy"
               />
             </div>
-            <Text variant="body2" inverse>
-              {text}
-            </Text>
+            {href ? (
+              <Link href={href}>
+                <Text variant="body2" inverse>
+                  {text}
+                </Text>
+              </Link>
+            ) : (
+              <Text variant="body2" inverse>
+                {text}
+              </Text>
+            )}
           </div>
         ) : (
           <div key={text}>
