@@ -13,18 +13,14 @@ const FOOTER_MENU = {
   CONTACT: {
     items: [
       {
-        icon: '/assets/phone-inverse.svg',
-        text: '466 61 140 / 919 21 890',
-        alt: 'Phone'
-      },
-      {
         icon: '/assets/mail-inverse.svg',
-        text: 'admin@reportify.no',
-        alt: 'Email'
+        text: 'Support@lentli.no',
+        alt: 'Email',
+        href: 'mailto:Support@lentli.no'
       },
       {
         icon: '/assets/map-pin-inverse.svg',
-        text: 'Ringsevja 2, 3830 Ulefoss',
+        text: '5304 Hetlevik',
         alt: 'Address'
       }
     ]

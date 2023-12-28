@@ -19,7 +19,7 @@ const FooterWrapperStyled = styled.footer`
 const FooterStyled = styled.div`
   width: ${({ currentScreen }) =>
     footerWidthByMedia?.[currentScreen] || '100%'};
-  padding: ${({ lg }) => (lg ? '32px 0' : '32px')};
+  padding: ${({ xs, sm, md }) => (xs || sm || md ? '32px' : '16pxpx 0')};
 
   box-sizing: border-box;
 `
