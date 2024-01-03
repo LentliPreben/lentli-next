@@ -4,7 +4,6 @@ import { useMemo, useState } from 'react'
 import MapProductView from './MapProductView'
 import PropTypes from 'prop-types'
 import { getIcon } from './helpers'
-import { getTransformedImageUrl } from 'helpers'
 
 const MarkerView = (props) => {
   const {
@@ -14,7 +13,7 @@ const MarkerView = (props) => {
     pricePerDay,
     currency,
     topCategory,
-    previewImage
+    previewImgUrl
   } = props
 
   const [detailsVisible, setDetailsVisible] = useState(false)
@@ -23,13 +22,14 @@ const MarkerView = (props) => {
 
   const options = { closeBoxURL: '', enableEventPropagation: true }
 
-  const previewImgUrl = getTransformedImageUrl(previewImage)
+  const latitude = address?.location?.[0]
+  const longitude = address?.location?.[1]
 
   return (
     <>
-      {detailsVisible && address?.latitude && address?.longitude && (
+      {detailsVisible && latitude && longitude && (
         <InfoWindowF
-          position={{ lat: address?.latitude, lng: address?.longitude }}
+          position={{ lat: latitude, lng: longitude }}
           options={options}>
           <MapProductView
             previewImgUrl={previewImgUrl}
@@ -50,8 +50,8 @@ const MarkerView = (props) => {
           anchor: new window.google.maps.Point(15, 15)
         }}
         position={{
-          lat: address.latitude,
-          lng: address.longitude
+          lat: latitude,
+          lng: longitude
         }}
       />
     </>
