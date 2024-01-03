@@ -10,7 +10,7 @@ const MarkerView = (props) => {
     address,
     _id,
     name,
-    pricePerDay,
+    pricePerDayWithFees,
     currency,
     topCategory,
     previewImgUrl
@@ -33,7 +33,7 @@ const MarkerView = (props) => {
           options={options}>
           <MapProductView
             previewImgUrl={previewImgUrl}
-            pricePerDay={pricePerDay}
+            pricePerDayWithFees={pricePerDayWithFees}
             _id={_id}
             currency={currency}
             name={name}
@@ -64,7 +64,7 @@ MarkerView.propTypes = {
   categoryId: PropTypes.string,
   previewImgUrl: PropTypes.string,
   name: PropTypes.string,
-  pricePerDay: PropTypes.number,
+  pricePerDayWithFees: PropTypes.number,
   currency: PropTypes.string,
   topCategory: PropTypes.object
 }
