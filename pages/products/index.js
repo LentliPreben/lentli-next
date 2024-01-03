@@ -1,15 +1,9 @@
 import { useMemo, useState } from 'react'
-import {
-  useMergeProductMediaObjects,
-  useSearchAllProducts
-} from 'domains/Product/hooks'
+import { useSearchAllProducts } from 'domains/Product/hooks'
 
-import { COLLECTIONS } from '__constants__'
-import { LoadingBox } from 'components'
-import { PageLayout } from 'components'
+import { LoadingBox, PageLayout } from 'components'
 import { ProductsAllView } from 'domains/Product/components'
 import { getTopLevelCategories } from 'domains/Category/helpers'
-import { useGetDocumentsByIds } from 'services/api/firebase'
 import { useLoading } from 'hooks'
 import { useTranslations } from 'contexts'
 
@@ -28,30 +22,17 @@ const Products = (props) => {
   )
 
   const {
-    productIds,
     loading: typeSenseProductsLoading,
-    totalResults
+    totalResults,
+    products
   } = useSearchAllProducts(searchParams)
-
-  const productParams = useMemo(
-    () => ({ collection: COLLECTIONS.PRODUCTS, ids: productIds }),
-    [productIds]
-  )
-
-  const [products, productLoading] = useGetDocumentsByIds(productParams)
-  const [mergedProducts, mergedProductsLoading] =
-    useMergeProductMediaObjects(products)
 
   const headingProps = {
     title: t('Products'),
     textAlign: 'left'
   }
 
-  const loading = useLoading([
-    typeSenseProductsLoading,
-    mergedProductsLoading,
-    productLoading
-  ])
+  const loading = useLoading([typeSenseProductsLoading])
 
   return (
     <PageLayout
@@ -59,7 +40,7 @@ const Products = (props) => {
       topLevelCategories={topLevelCategories}>
       <LoadingBox spinnerProps={{ height: '100%' }} loading={loading}>
         <ProductsAllView
-          products={mergedProducts}
+          products={products}
           totalResults={totalResults}
           currentPage={currentPage}
           onPageChange={setCurrentPage}

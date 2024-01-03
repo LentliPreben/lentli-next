@@ -2,7 +2,6 @@ import { memo, useCallback, useEffect, useMemo, useState } from 'react'
 import {
   useGetProductPriceRangeByCategory,
   useGetProductPriceRangeNearByMe,
-  useMergeProductMediaObjects,
   useSearchAllProducts,
   useSearchFacets,
   useSearchNearProducts,
@@ -11,10 +10,8 @@ import {
 } from 'domains/Product/hooks'
 import { useLoading, useStateWithStorage } from 'hooks'
 
-import { COLLECTIONS } from '__constants__'
 import FilterContext from './FilterContext'
 import PropTypes from 'prop-types'
-import { useGetDocumentsByIds } from 'services/api/firebase'
 
 const DEFAULT_LOCATION = { lat: 59.9138688, lng: 10.7522454 }
 
@@ -73,7 +70,8 @@ const FilterProvider = ({ children, category }) => {
     setSearchValue,
     filterParams,
     setFilterParams,
-    totalResults
+    totalResults,
+    products
   } = category
     ? topLevelWithSubcategories
       ? productsByTopLevelCategory
@@ -104,22 +102,10 @@ const FilterProvider = ({ children, category }) => {
     [facets]
   )
 
-  const productParams = useMemo(
-    () => ({ collection: COLLECTIONS.PRODUCTS, ids: productIds }),
-    [productIds]
-  )
-
-  const [products, productLoading] = useGetDocumentsByIds(productParams)
-
-  const [transformedProducts, transformedProductsLoading] =
-    useMergeProductMediaObjects(products)
-
   const loading = useLoading([
     facetsLoading,
     productsLoading,
-    productLoading,
-    loadingPriceRangeByCategory,
-    transformedProductsLoading
+    loadingPriceRangeByCategory
   ])
 
   useEffect(() => {
@@ -148,7 +134,7 @@ const FilterProvider = ({ children, category }) => {
         filteredNearByProducts,
         priceRangeByCategory,
         priceRangeNearByMe,
-        products: transformedProducts,
+        products,
         setSearchProduct,
         searchProduct
       }}>

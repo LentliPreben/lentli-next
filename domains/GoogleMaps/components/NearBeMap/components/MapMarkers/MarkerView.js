@@ -4,17 +4,16 @@ import { useMemo, useState } from 'react'
 import MapProductView from './MapProductView'
 import PropTypes from 'prop-types'
 import { getIcon } from './helpers'
-import { getTransformedImageUrl } from 'helpers'
 
 const MarkerView = (props) => {
   const {
     address,
     _id,
     name,
-    pricePerDay,
+    pricePerDayWithFees,
     currency,
     topCategory,
-    previewImage
+    previewImgUrl
   } = props
 
   const [detailsVisible, setDetailsVisible] = useState(false)
@@ -23,17 +22,18 @@ const MarkerView = (props) => {
 
   const options = { closeBoxURL: '', enableEventPropagation: true }
 
-  const previewImgUrl = getTransformedImageUrl(previewImage)
+  const latitude = address?.location?.[0]
+  const longitude = address?.location?.[1]
 
   return (
     <>
-      {detailsVisible && address?.latitude && address?.longitude && (
+      {detailsVisible && latitude && longitude && (
         <InfoWindowF
-          position={{ lat: address?.latitude, lng: address?.longitude }}
+          position={{ lat: latitude, lng: longitude }}
           options={options}>
           <MapProductView
             previewImgUrl={previewImgUrl}
-            pricePerDay={pricePerDay}
+            pricePerDayWithFees={pricePerDayWithFees}
             _id={_id}
             currency={currency}
             name={name}
@@ -50,8 +50,8 @@ const MarkerView = (props) => {
           anchor: new window.google.maps.Point(15, 15)
         }}
         position={{
-          lat: address.latitude,
-          lng: address.longitude
+          lat: latitude,
+          lng: longitude
         }}
       />
     </>
@@ -64,7 +64,7 @@ MarkerView.propTypes = {
   categoryId: PropTypes.string,
   previewImgUrl: PropTypes.string,
   name: PropTypes.string,
-  pricePerDay: PropTypes.number,
+  pricePerDayWithFees: PropTypes.number,
   currency: PropTypes.string,
   topCategory: PropTypes.object
 }

@@ -12,7 +12,7 @@ import {
 
 import { ProductLike } from 'domains/Product/components'
 import PropTypes from 'prop-types'
-import { getTransformedImageUrl, calculateFinalPayment } from 'helpers'
+import { calculateFinalPayment } from 'helpers'
 import { useGetCategory } from 'domains/Category/hooks'
 import { useRouter } from 'next/router'
 import { useTranslations } from 'contexts'
@@ -27,7 +27,7 @@ const ProductSimpleView = (props) => {
     name,
     pricePerDay,
     categoryId,
-    previewImage
+    previewImgUrl
   } = product
 
   const { t, language } = useTranslations()
@@ -44,8 +44,6 @@ const ProductSimpleView = (props) => {
   }
   const productCurrencySymbol = currencySymbol(currency)
 
-  const previewImageUrl = getTransformedImageUrl(previewImage)
-
   const productFinalPrice =
     product?.pricePerDayWithFees || calculateFinalPayment(pricePerDay)
 
@@ -53,7 +51,7 @@ const ProductSimpleView = (props) => {
     <CardStyled bordered={false} onClick={handleProductClick} padding="0">
       <div className="row g-0 flex align-center flex-1">
         <div className="col-12 full-height relative">
-          <RelativeImage withOverlay={false} src={previewImageUrl} />
+          <RelativeImage withOverlay={false} src={previewImgUrl} />
           <ImageOverlay />
           <ProductLike style={likeFormStyles} productId={_id} />
         </div>

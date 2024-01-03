@@ -6,7 +6,7 @@ import { useTranslations } from 'contexts'
 import { Text, Title } from 'components'
 
 const MapProductView = (props) => {
-  const { previewImgUrl, _id, name, pricePerDay, currency } = props
+  const { previewImgUrl, _id, name, pricePerDayWithFees, currency } = props
   const productCurrencySymbol = currencySymbol(currency)
   const { t } = useTranslations()
   const href = `/products/${_id}`
@@ -19,7 +19,7 @@ const MapProductView = (props) => {
         </div>
         <div className="col-7">
           <div className="flex gap-4 align-baseline">
-            <Title as="h5">{pricePerDay || 'n/a'}</Title>
+            <Title as="h5">{pricePerDayWithFees || 'n/a'}</Title>
             <Title as="h5">{productCurrencySymbol}</Title>
             <Text secondary>
               {' / '}
@@ -41,7 +41,7 @@ const MapProductView = (props) => {
 MapProductView.propTypes = {
   previewImgUrl: PropTypes.string,
   name: PropTypes.string,
-  pricePerDay: PropTypes.number,
+  pricePerDayWithFees: PropTypes.number,
   currency: PropTypes.string
 }
 

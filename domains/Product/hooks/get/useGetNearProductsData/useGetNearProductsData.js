@@ -36,29 +36,15 @@ const useGetNearProductsData = (nearProducts, numVisible) => {
       const products = await Promise.all(
         visibleProducts.map(async (product) => {
           try {
-            const productData = await getDocument(
-              COLLECTIONS.PRODUCTS,
-              product._id
-            )
-
-            if (!productData) return null
-
-            const address = productData?.addressId
-              ? await getDocument(COLLECTIONS.ADDRESSES, productData.addressId)
+            const address = product?.addressId
+              ? await getDocument(COLLECTIONS.ADDRESSES, product.addressId)
               : {}
 
-            const topCategory = productData?.categoryId
-              ? await getParentCategory(productData?.categoryId)
+            const topCategory = product?.categoryId
+              ? await getParentCategory(product?.categoryId)
               : null
 
-            const previewImageId = productData?.mediaObjects?.[0]
-
-            const previewImage = await getDocument(
-              COLLECTIONS.MEDIA_OBJECTS,
-              previewImageId
-            )
-
-            return { address, topCategory, previewImage, ...productData }
+            return { address, topCategory, ...product }
           } catch (error) {
             handleError(error)
             return null
